@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<otobo_package version="1.1">
+    <Name>FAQ-ExtendedNavigation</Name>
+    <Version>11.0.0</Version>
+    <Framework>11.0.x</Framework>
+    <PackageRequired Version="11.0.10">FAQ</PackageRequired>
+    <Vendor>Rother OSS GmbH</Vendor>
+    <URL>https://otobo.io/</URL>
+    <License>GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007</License>
+    <Description Lang="en">Packages for greater experience of use in the FAQ module.</Description>
+    <Description Lang="de">Paket für bessere Benutzererfahrung im Modul-FAQ.</Description>
+    <Description Lang="es">Paquete para mejorar la experiencia del usuario en el módulo FAQ.</Description>
+    <Description Lang="hu">Csomag a GYIK modul felhasználói élményének javítására.</Description>
+    <Filelist>
+        <File Permission="660" Location="Kernel/Config/Files/XML/FAQImprovements.xml" />
+        <File Permission="660" Location="Kernel/Language/de_FAQImprovements.pm" />
+        <File Permission="660" Location="Kernel/Language/es_FAQImprovements.pm" />
+        <File Permission="660" Location="Kernel/Modules/AgentFAQAutoComplete.pm" />
+        <File Permission="660" Location="Kernel/Modules/CustomerFAQIndex.pm" />
+        <File Permission="660" Location="Kernel/Modules/PublicFAQIndex.pm" />
+        <File Permission="660" Location="Kernel/Modules/AgentFAQIndex.pm" />
+        <File Permission="660" Location="Custom/Kernel/System/FAQ.pm" />
+        <File Permission="660" Location="Custom/Kernel/System/HTMLUtils.pm" />
+        <File Permission="660" Location="Custom/Kernel/Modules/AgentFAQAdd.pm" />
+        <File Permission="660" Location="Custom/Kernel/Modules/AgentFAQEdit.pm" />
+        <File Permission="660" Location="Custom/Kernel/Modules/AgentFAQZoom.pm" />
+        <File Permission="660" Location="Custom/Kernel/Modules/CustomerFAQExplorer.pm" />
+        <File Permission="660" Location="Custom/Kernel/Modules/CustomerFAQZoom.pm" />
+        <File Permission="660" Location="Custom/Kernel/Modules/PublicFAQExplorer.pm" />
+        <File Permission="660" Location="Custom/Kernel/Modules/PublicFAQZoom.pm" />
+        <File Permission="660" Location="Custom/Kernel/Modules/AgentFAQExplorer.pm" />
+        <File Permission="660" Location="Custom/Kernel/Output/HTML/Layout.pm" />
+        <File Permission="660" Location="Custom/Kernel/Output/HTML/Templates/Standard/AgentFAQAdd.tt" />
+        <File Permission="660" Location="Custom/Kernel/Output/HTML/Templates/Standard/AgentFAQEdit.tt" />
+        <File Permission="660" Location="Custom/Kernel/Output/HTML/Templates/Standard/AgentFAQZoom.tt" />
+        <File Permission="660" Location="Custom/Kernel/Output/HTML/Templates/Standard/CustomerFAQExplorer.tt" />
+        <File Permission="660" Location="Custom/Kernel/Output/HTML/Templates/Standard/CustomerFAQZoom.tt" />
+        <File Permission="660" Location="Custom/Kernel/Output/HTML/Templates/Standard/PublicFAQExplorer.tt" />
+        <File Permission="660" Location="Custom/Kernel/Output/HTML/Templates/Standard/PublicFAQZoom.tt" />
+        <File Permission="660" Location="Custom/Kernel/Output/HTML/Templates/Standard/AgentFAQExplorer.tt" />
+        <File Permission="660" Location="Kernel/Output/HTML/Layout/FAQImprovements.pm" />
+        <File Permission="660" Location="Kernel/Output/HTML/Templates/Standard/FAQ/FAQAdditionalData.tt" />
+        <File Permission="660" Location="Kernel/Output/HTML/Templates/Standard/FAQ/FAQSideBar.tt" />
+        <File Permission="660" Location="Kernel/Output/HTML/Templates/Standard/FAQ/FAQTableOfContents.tt" />
+        <File Permission="660" Location="Kernel/Output/HTML/Templates/Standard/CustomerFAQIndex.tt" />
+        <File Permission="660" Location="Kernel/Output/HTML/Templates/Standard/PublicFAQIndex.tt" />
+        <File Permission="660" Location="Kernel/Output/HTML/Templates/Standard/AgentFAQIndex.tt" />
+        <File Permission="660" Location="var/httpd/htdocs/js/FAQ.Improvements.FAQ.js" />
+        <File Permission="660" Location="var/httpd/htdocs/js/Core.UI.CKEditor5Wrapper.js" />
+        <File Permission="660" Location="var/httpd/htdocs/js/Core.UI.RichTextEditor.js" />
+        <!-- <File Permission="660" Location="var/httpd/htdocs/skins/Agent/default/css/FAQ.Agent.Default.css" /> -->
+        <!-- <File Permission="660" Location="var/httpd/htdocs/skins/Agent/default/css/FAQ.Agent.Detail.css" /> -->
+        <!-- <File Permission="660" Location="var/httpd/htdocs/skins/Customer/default/css/FAQ.Customer.Default.css" />
+        <File Permission="660" Location="var/httpd/htdocs/skins/Customer/default/css/FAQ.Customer.Detail.css" />
+        <File Permission="660" Location="var/httpd/htdocs/skins/Customer/default/css/FAQ.RelatedArticles.css" /> -->
+        <File Permission="660" Location="var/httpd/htdocs/skins/Customer/default/img/home.svg" />
+        <File Permission="660" Location="var/httpd/htdocs/skins/Agent/default/img/faq.svg" />
+    </Filelist>
+    <DatabaseInstall Type="post">
+        <TableAlter Name="faq_item">
+            <ColumnAdd Name="icon" Type="LONGBLOB" Required="false" />
+        </TableAlter>
+    </DatabaseInstall>
+    <DatabaseUninstall>
+        <TableAlter Name="faq_item">
+            <ColumnDrop Name="icon" />
+        </TableAlter>
+    </DatabaseUninstall>
+    <IntroInstall Lang="en" Title="Install Information" Type="pre">
+        &lt;br&gt;
+        WELCOME!&lt;br&gt;
+        &lt;br&gt;
+        You are about to install the package to improve the user experience of the FAQ module.&lt;br&gt;
+        &lt;br&gt;
+        &lt;br&gt;
+        Please click continue to proceed!&lt;br&gt;
+        &lt;br&gt;
+    </IntroInstall>
+    <IntroInstall Lang="de" Title="Installationsinformationen" Type="pre">
+        &lt;br&gt;
+        Herzlich willkommen!&lt;br&gt;
+        &lt;br&gt;
+        Sie sind im Begriff, das Paket zu installieren, um die Benutzerfreundlichkeit des FAQ-Moduls zu verbessern.&lt;br&gt;
+        &lt;br&gt;
+        &lt;br&gt;
+        &lt;br&gt;
+        Bitte klicken Sie auf „Weiter“, um fortzufahren!&lt;br&gt;
+        &lt;br&gt;
+    </IntroInstall>
+    <IntroInstall Lang="es" Title="Información de Instalación" Type="pre">
+        &lt;br&gt;
+        BIENVENIDO!&lt;br&gt;
+        &lt;br&gt;
+        Está a punto de instalar el paquete para mejorar la experiencia del usuario del módulo FAQ.&lt;br&gt;
+        &lt;br&gt;
+        &lt;br&gt;
+        &lt;br&gt;
+        Haga clic en continuar para proceder!&lt;br&gt;
+        &lt;br&gt;
+    </IntroInstall>
+    <IntroInstall Lang="hu" Title="Telepítési információk" Type="pre">
+        &lt;br&gt;
+        Üdvözöljük!&lt;br&gt;
+        &lt;br&gt;
+        A GYIK modul felhasználói élményének javítását célzó csomag telepítésére készül.&lt;br&gt;
+        &lt;br&gt;
+        &lt;br&gt;
+        &lt;br&gt;
+        A folytatáshoz kérjük kattintson a folytatás gombra!&lt;br&gt;
+        &lt;br&gt;
+    </IntroInstall>
+</otobo_package>

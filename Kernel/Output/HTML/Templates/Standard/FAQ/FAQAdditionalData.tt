@@ -1,0 +1,137 @@
+# --
+# OTOBO is a web-based ticketing system for service organisations.
+# --
+# Copyright (C) 2001-2020 OTRS AG, https://otrs.com/
+# Copyright (C) 2019-2026 Rother OSS GmbH, https://otobo.io/
+# --
+# This program is free software: you can redistribute it and/or modify it under
+# the terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+# This program is distributed in the hope that it will be useful, but WITHOUT
+# ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+# FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+# You should have received a copy of the GNU General Public License
+# along with this program. If not, see <https://www.gnu.org/licenses/>.
+# --
+
+    <div class="AdditionalData">
+        <div class="WidgetSimple">
+            <div class="oooFAQAdditionalData">
+                <ul class="oooFAQSidebarList">
+                    <li class="oooFAQHeader">[% Translate("FAQ Information") | html %]</li>
+
+                    <li><span class="Key">[% Translate("Article Number") | html %]:</span> <span>[% Data.Number | html %]</span></li>
+                    <li><span class="Key">[% Translate("Category") | html %]:</span> <span title="[% Translate(Data.CategoryName) | html %]">[% Translate(Data.CategoryName) | html %]</span></li>
+
+                    <li class="KeywordsContainer">
+                        <span class="Key">[% Translate("Keywords") | html %]:</span>
+[% RenderBlockStart("Keywords") %]
+                        <span class="Keyword" title="[% Translate("Search for articles with keyword") | html %]: [% Data.Keyword | html %]">
+                            <a href="[% Env("Baselink") %]Action=[% Data.ExplorerAction | uri %];Subaction=Search;Keyword=[% Data.Keyword | uri %]">[% Data.Keyword | html %]</a>
+                        </span>
+[% RenderBlockEnd("Keywords") %]
+                    </li>
+                    <li><span class="Key">[% Translate("State") | html %]:</span> <span title="[% Translate(Data.State) | html %]">[% Translate(Data.State) | html %]</span></li>
+[% RenderBlockStart("Language") %]
+                    <li><span class="Key">[% Translate("Language") | html %]:</span> <span title="[% Translate(Data.Language) | html %]">[% Translate(Data.Language) | html %]</span></li>
+[% RenderBlockEnd("Language") %]
+
+# show faq dynamic fields
+[% RenderBlockStart("FAQDynamicField") %]
+                    <li>
+                        <span class="Key">[% Translate(Data.Label) | html %]:</span>
+                        <span title="[% Data.Title | html %]">[% Data.Value %]</span>
+                    </li>
+[% RenderBlockEnd("FAQDynamicField") %]
+# example of how to use fixed dynamic field blocks for customizations
+# Note: Field1 and Field2 are the names of the fields and had to be replaced with the actual
+# field names
+#[% RenderBlockStart("FAQDynamicField_Field1") %]
+#                <li>
+#                    <span class="Key">[% Translate(Data.Label) | html %]:</span>
+#                    <span title="[% Data.Title1 | html %]">[% Data.Value %]</span>
+#                </li>
+#[% RenderBlockEnd("FAQDynamicField_Field1") %]
+#[% RenderBlockStart("FAQDynamicField_Field2") %]
+#                <li>
+#                    <span class="Key">[% Translate(Data.Label) | html %]:</span>
+#                    <span title="[% Data.Title2 | html %]">[% Data.Value %]</span>
+#                </li>
+#[% RenderBlockEnd("FAQDynamicField_Field2") %]
+
+[% RenderBlockStart("ViewRating") %]
+                    <li>
+                        <span class="Key RatingLabel">[% Translate("Rating") | html %]:</span>
+[% RenderBlockStart("RateStars") %]
+                        <span class="RateStar"><i class="fa fa-star"></i></span>
+[% RenderBlockEnd("RateStars") %]
+[% RenderBlockStart("RateStarsCount") %]
+                        <span class="RateStarText" title="[% Data.Stars | html %] [% Translate("out of 5") | html %]">
+                            [% Data.Stars | html %] [% Translate("out of 5") | html %]
+                        </span>
+[% RenderBlockEnd("RateStarsCount") %]
+                    </li>
+[% RenderBlockEnd("ViewRating") %]
+
+[% RenderBlockStart("ViewVotes") %]
+                    <li><span class="Key">[% Translate("Votes") | html %]:</span> <span title="[% Data.Votes | html %]">[% Data.Votes | html %]</span></li>
+[% RenderBlockEnd("ViewVotes") %]
+
+        [% IF Data.VoteMessage != "" %]
+            <li class="Center"><h3>[% Translate(Data.VoteMessage) | html %]</h3></li>
+        [% END %]
+
+[% RenderBlockStart("FAQVoting") %]
+        <li class="oooFAQHeader">[% Translate("Rating") | html %]:</li>
+
+        <li>
+        <form action="[% Env("CGIHandle") %]" method="post" enctype="multipart/form-data" name="FAQVote" class="PreventMultipleSubmits">
+            <div class="VotingContainer">
+                <div class="VotingBox Visible">
+                    <div id="FAQVoting" class="FAQVoting">
+                        <span class="VotingQuestion">[% Translate("How helpful was this article? Please give us your rating and help to improve the FAQ Database. Thank You!") | html %]</span>
+
+                       <div class="SpacingTop"></div>
+                       <div id="Messenger" class="Center">
+                            <div class="SpacingTop"></div>
+                            <div>
+                                <span class="RateLabelBefore ooog">[% Translate("not helpful") | html %]</span>
+                            </div>
+
+[% RenderBlockStart("FAQVotingRateRow") %]
+                            <div id="RateButton[% Data.Value %]">
+                                <span class="RateButton RateUnChecked">
+                                    <i class="fa fa-star-o"></i>
+                                    <i class="fa fa-star"></i>
+                                    [% Data.Title | html %]
+                                </span>
+                            </div>
+[% RenderBlockEnd("FAQVotingRateRow") %]
+
+                            <div>
+                                <span class="RateLabelAfter ooog">[% Translate("very helpful") | html %]</span>
+                            </div>
+                            <input type="hidden" name="Action" value="[% Data.Action | html %]"/>
+                            <input type="hidden" name="Subaction" value="Vote"/>
+                            <input type="hidden" name="CategoryID" value="[% Data.CategoryID | html %]"/>
+                            <input type="hidden" name="ItemID" value="[% Data.ItemID | html %]"/>
+                        </div>
+
+                         <div class="ActionRow VotingActionRow Center">
+                                <button type="submit"  id="RateSubmitButton" class="Hidden oooXS" value="[% Translate("Submit") | html %]">[% Translate("Submit") | html %]</button>
+                                <input type="hidden" name="Rate" value="[% Data.SelectedRate | html %]"id="RateValue"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+        </li>
+[% RenderBlockEnd("FAQVoting") %]
+
+                </ul>
+            </div> <!-- .oooFAQAdditionalData -->
+
+
+
+        </div>
+    </div>

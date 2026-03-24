@@ -1,0 +1,479 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<otobo_config version="2.0" init="Application">
+    <Setting Name="Frontend::Module###AgentFAQAutoComplete" Required="0" Valid="1">
+        <Description Translatable="1">Frontend module registration for the agent interface.</Description>
+        <Navigation>Frontend::Agent::ModuleRegistration</Navigation>
+        <Value>
+            <Item ValueType="FrontendRegistration">
+                <Hash>
+                    <Item Key="Group">
+                        <Array>
+                        </Array>
+                    </Item>
+                    <Item Key="GroupRo">
+                        <Array>
+                        </Array>
+                    </Item>
+                    <Item Key="Description" Translatable="1">FAQ Module for autocomplete tags.</Item>
+                    <Item Key="NavBarName"></Item>
+                    <Item Key="Title" Translatable="1">FAQ autocomplete</Item>
+                </Hash>
+            </Item>
+        </Value>
+    </Setting>
+    <Setting Name="Loader::Agent::CommonJS###210-FAQImprovements" Required="1" Valid="1">
+        <Description Translatable="1">List of JS files to always be loaded for the agent interface for FAQ.</Description>
+        <Navigation>Frontend::Base::Loader</Navigation>
+        <Value>
+            <Array>
+                <Item>FAQ.Improvements.FAQ.js</Item>
+            </Array>
+        </Value>
+    </Setting>
+    <Setting Name="Loader::Customer::CommonJS###210-FAQImprovements" Required="1" Valid="1">
+        <Description Translatable="1">List of JS files to always be loaded for the customer interface for FAQ.</Description>
+        <Navigation>Frontend::Base::Loader</Navigation>
+        <Value>
+            <Array>
+                <Item>FAQ.Improvements.FAQ.js</Item>
+            </Array>
+        </Value>
+    </Setting>
+
+    <Setting Name="Frontend::Module###AgentFAQIndex" Required="0" Valid="1">
+        <Description Translatable="1">Frontend module registration for the agent interface.</Description>
+        <Navigation>Frontend::Agent::ModuleRegistration</Navigation>
+        <Value>
+            <Item ValueType="FrontendRegistration">
+                <Hash>
+                    <Item Key="Group">
+                        <Array>
+                        </Array>
+                    </Item>
+                    <Item Key="GroupRo">
+                        <Array>
+                        </Array>
+                    </Item>
+                    <Item Key="Description" Translatable="1">Agent FAQ Index.</Item>
+                    <Item Key="NavBarName">FAQ</Item>
+                    <Item Key="Title"></Item>
+                </Hash>
+            </Item>
+        </Value>
+    </Setting>
+    <Setting Name="Loader::Module::AgentFAQIndex###002-FAQ" Required="0" Valid="1">
+        <Description Translatable="1">Loader module registration for the agent interface.</Description>
+        <Navigation>Frontend::Agent::ModuleRegistration::Loader</Navigation>
+        <Value>
+            <Hash>
+                <Item Key="CSS">
+                    <Array>
+                        <Item>FAQ.Agent.Detail.css</Item>
+                        <Item>Core.AllocationList.css</Item>
+                    </Array>
+                </Item>
+                <Item Key="JavaScript">
+                    <Array>
+                        <Item>FAQ.Agent.ConfirmationDialog.js</Item>
+                        <Item>FAQ.Agent.TicketCompose.js</Item>
+                        <Item>FAQ.Agent.FAQZoom.js</Item>
+                        <Item>Core.UI.AllocationList.js</Item>
+                        <Item>Core.UI.Table.Sort.js</Item>
+                        <Item>Core.Agent.TableFilters.js</Item>
+                        <Item>Core.Agent.LinkObject.js</Item>
+                        <Item>FAQ.Improvements.FAQ.js</Item>
+                    </Array>
+                </Item>
+            </Hash>
+        </Value>
+    </Setting>
+    <Setting Name="Frontend::Navigation###AgentFAQIndex###002-FAQ" Required="0" Valid="1">
+        <Description Translatable="1">Main menu item registration.</Description>
+        <Navigation>Frontend::Agent::ModuleRegistration::MainMenu</Navigation>
+        <Value>
+            <Array>
+                <DefaultItem ValueType="FrontendNavigation">
+                    <Hash>
+                    </Hash>
+                </DefaultItem>
+                <Item>
+                    <Hash>
+                        <Item Key="Group">
+                            <Array>
+                            </Array>
+                        </Item>
+                        <Item Key="GroupRo">
+                            <Array>
+                            </Array>
+                        </Item>
+                        <Item Key="Description" Translatable="1">FAQ Home.</Item>
+                        <Item Key="Name" Translatable="1">FAQ Home</Item>
+                        <Item Key="Link">Action=AgentFAQIndex</Item>
+                        <Item Key="LinkOption"></Item>
+                        <Item Key="NavBar">FAQ</Item>
+                        <Item Key="Type"></Item>
+                        <Item Key="Block"></Item>
+                        <Item Key="AccessKey">h</Item>
+                        <Item Key="Prio">100</Item>
+                    </Hash>
+                </Item>
+            </Array>
+        </Value>
+    </Setting>
+    <Setting Name="FAQ::Frontend::AgentFAQIndex###DynamicField" Required="0" Valid="1">
+        <Description Translatable="1">Dynamic fields shown in the FAQ index screen of the agent interface.</Description>
+        <Navigation>Frontend::Agent::View::FAQIndex</Navigation>
+        <Value>
+            <Hash>
+                <DefaultItem ValueType="Select">
+                    <Item ValueType="Option" Value="0" Translatable="1">0 - Disabled</Item>
+                    <Item ValueType="Option" Value="1" Translatable="1">1 - Enabled</Item>
+                </DefaultItem>
+            </Hash>
+        </Value>
+    </Setting>
+    <Setting Name="CustomerFrontend::Module###CustomerFAQIndex" Required="0" Valid="1">
+        <Description Translatable="1">Frontend module registration for the customer interface.</Description>
+        <Navigation>Frontend::Customer::ModuleRegistration</Navigation>
+        <Value>
+            <Item ValueType="FrontendRegistration">
+                <Hash>
+                    <Item Key="Group">
+                        <Array>
+                        </Array>
+                    </Item>
+                    <Item Key="GroupRo">
+                        <Array>
+                        </Array>
+                    </Item>
+                    <Item Key="Description" Translatable="1">Customer FAQ Index.</Item>
+                    <Item Key="NavBarName">FAQ</Item>
+                    <Item Key="Title"></Item>
+                </Hash>
+            </Item>
+        </Value>
+    </Setting>
+    <Setting Name="Loader::Module::CustomerFAQIndex###002-FAQ" Required="0" Valid="1">
+        <Description Translatable="1">Loader module registration for the customer interface.</Description>
+        <Navigation>Frontend::Customer::ModuleRegistration::Loader</Navigation>
+        <Value>
+            <Hash>
+                <Item Key="CSS">
+                    <Array>
+                        <Item>FAQ.Customer.Detail.css</Item>
+                        <Item>FAQ.Customer.Default.css</Item>
+                        <Item>FAQ.Widget.css</Item>
+                    </Array>
+                </Item>
+                <Item Key="JavaScript">
+                    <Array>
+                        <Item>FAQ.Customer.FAQZoom.js</Item>
+                        <Item>Core.Customer.Search.js</Item>
+                    </Array>
+                </Item>
+            </Hash>
+        </Value>
+    </Setting>
+    <Setting Name="CustomerFrontend::CommonParam###DefaultFAQAction" Required="1" Valid="1">
+        <Description Translatable="1">Defines the default used Frontend-Module for FAQ Action parameter given in the url on the customer interface.</Description>
+        <Navigation>Frontend::Customer</Navigation>
+        <Value>
+            <Item ValueType="String" ValueRegex=""></Item>
+        </Value>
+    </Setting>
+    <Setting Name="FAQSideBar::Customer::Enabled" Required="1" Valid="1">
+        <Description Translatable="1">Determines if the sidebar is enabled for Customer Interface.</Description>
+        <Navigation>Frontend::Base::FAQSideBar</Navigation>
+        <Value>
+            <Item ValueType="Select" SelectedID="No">
+                <Item ValueType="Option" Value="Yes" Translatable="1">Yes</Item>
+                <Item ValueType="Option" Value="No" Translatable="1">No</Item>
+            </Item>
+        </Value>
+    </Setting>
+    <Setting Name="FAQSideBar::Public::Enabled" Required="1" Valid="1">
+        <Description Translatable="1">Determines if the sidebar is enabled for Public Interface.</Description>
+        <Navigation>Frontend::Base::FAQSideBar</Navigation>
+        <Value>
+            <Item ValueType="Select" SelectedID="No">
+                <Item ValueType="Option" Value="Yes" Translatable="1">Yes</Item>
+                <Item ValueType="Option" Value="No" Translatable="1">No</Item>
+            </Item>
+        </Value>
+    </Setting>
+    <Setting Name="FAQSideBar::Agent::Enabled" Required="1" Valid="1">
+        <Description Translatable="1">Determines if the sidebar is enabled for Agent Interface.</Description>
+        <Navigation>Frontend::Base::FAQSideBar</Navigation>
+        <Value>
+            <Item ValueType="Select" SelectedID="No">
+                <Item ValueType="Option" Value="Yes" Translatable="1">Yes</Item>
+                <Item ValueType="Option" Value="No" Translatable="1">No</Item>
+            </Item>
+        </Value>
+    </Setting>
+    <Setting Name="FAQSideBar::ExpandSubcategories" Required="1" Valid="1">
+        <Description Translatable="1">Determines if the subcategories must be expandes on Sidebar init.</Description>
+        <Navigation>Frontend::Base::FAQSideBar</Navigation>
+        <Value>
+            <Item ValueType="Select" SelectedID="No">
+                <Item ValueType="Option" Value="Yes" Translatable="1">Yes</Item>
+                <Item ValueType="Option" Value="No" Translatable="1">No</Item>
+            </Item>
+        </Value>
+    </Setting>
+    <Setting Name="FAQTableOfContents::MaxDepth" Required="1" Valid="1">
+        <Description Translatable="1">Determines the maximum depth levels for each field in tht TOC.</Description>
+        <Navigation>Frontend::Base::FAQTableOfContents</Navigation>
+        <Value>
+            <Item ValueType="Select" SelectedID="3">
+                <Item ValueType="Option" Value="1" Translatable="1">1</Item>
+                <Item ValueType="Option" Value="2" Translatable="1">2</Item>
+                <Item ValueType="Option" Value="3" Translatable="1">3</Item>
+                <Item ValueType="Option" Value="4" Translatable="1">4</Item>
+                <Item ValueType="Option" Value="5" Translatable="1">5</Item>
+                <Item ValueType="Option" Value="6" Translatable="1">6</Item>
+            </Item>
+        </Value>
+    </Setting>
+    <Setting Name="CustomerFAQColorDefinitions" Required="1" Valid="1">
+        <Description Translatable="1">Color definitions for the FAQ in the customer/public interface.</Description>
+        <Navigation>Frontend::Customer</Navigation>
+        <Value>
+            <Hash>
+                <Item Key="TextFAQHome">#ec008b</Item>
+                <Item Key="BGSideBar">#ec008b</Item>
+                <Item Key="TextSideBarHeader">#fff</Item>
+                <Item Key="TextSideBarList">#fff</Item>
+                <Item Key="BGKeyword">#ec008b</Item>
+                <Item Key="TextKeyword">#fff</Item>
+                <Item Key="BGFAQTOC">#fff</Item>
+                <Item Key="TextFAQHeader">#ec008b</Item>
+                <Item Key="TextFAQTOCList">#64748B</Item>
+            </Hash>
+        </Value>
+    </Setting>
+    <Setting Name="PublicFrontend::Module###PublicFAQIndex" Required="0" Valid="1">
+        <Description Translatable="1">Frontend module registration for the public interface.</Description>
+        <Navigation>Frontend::Public::ModuleRegistration</Navigation>
+        <Value>
+            <Item ValueType="FrontendRegistration">
+                <Hash>
+                    <Item Key="Group">
+                        <Array>
+                        </Array>
+                    </Item>
+                    <Item Key="GroupRo">
+                        <Array>
+                        </Array>
+                    </Item>
+                    <Item Key="Description" Translatable="1">Public FAQ Index.</Item>
+                    <Item Key="NavBarName">FAQ</Item>
+                    <Item Key="Title"></Item>
+                </Hash>
+            </Item>
+        </Value>
+    </Setting>
+    <Setting Name="Loader::Module::PublicFAQIndex###002-FAQ" Required="0" Valid="1">
+        <Description Translatable="1">Loader module registration for the public interface.</Description>
+        <Navigation>Frontend::Public::ModuleRegistration::Loader</Navigation>
+        <Value>
+            <Hash>
+                <Item Key="CSS">
+                    <Array>
+                        <Item>FAQ.Customer.Detail.css</Item>
+                        <Item>FAQ.Customer.Default.css</Item>
+                        <Item>FAQ.Widget.css</Item>
+                    </Array>
+                </Item>
+                <Item Key="JavaScript">
+                    <Array>
+                        <Item>FAQ.Customer.FAQZoom.js</Item>
+                        <Item>Core.Customer.Search.js</Item>
+                    </Array>
+                </Item>
+            </Hash>
+        </Value>
+    </Setting>
+    <Setting Name="PublicFrontend::Navigation###PublicFAQIndex###002-FAQ" Required="0" Valid="1">
+        <Description Translatable="1">Main menu item registration.</Description>
+        <Navigation>Frontend::Public::ModuleRegistration</Navigation>
+        <Value>
+            <Array>
+                <DefaultItem ValueType="FrontendNavigation">
+                    <Hash>
+                    </Hash>
+                </DefaultItem>
+                <Item>
+                    <Hash>
+                        <Item Key="Group">
+                            <Array>
+                            </Array>
+                        </Item>
+                        <Item Key="GroupRo">
+                            <Array>
+                            </Array>
+                        </Item>
+                        <Item Key="Description" Translatable="1">Public FAQ Index</Item>
+                        <Item Key="Name" Translatable="1">Public FAQ Index</Item>
+                        <Item Key="Link">Action=PublicFAQIndex</Item>
+                        <Item Key="LinkOption"></Item>
+                        <Item Key="NavBar"></Item>
+                        <Item Key="Type"></Item>
+                        <Item Key="Block"></Item>
+                        <Item Key="AccessKey">x</Item>
+                        <Item Key="Prio">420</Item>
+                    </Hash>
+                </Item>
+            </Array>
+        </Value>
+    </Setting>
+    <Setting Name="FAQ::Frontend::CustomerFAQIndex###DynamicField" Required="0" Valid="1">
+        <Description Translatable="1">Dynamic fields shown in the FAQ index screen of the customer interface.</Description>
+        <Navigation>Frontend::Customer::View::FAQIndex</Navigation>
+        <Value>
+            <Hash>
+                <DefaultItem ValueType="Select">
+                    <Item ValueType="Option" Value="0" Translatable="1">0 - Disabled</Item>
+                    <Item ValueType="Option" Value="1" Translatable="1">1 - Enabled</Item>
+                </DefaultItem>
+            </Hash>
+        </Value>
+    </Setting>
+    <Setting Name="FAQ::Frontend::PublicFAQIndex###DynamicField" Required="0" Valid="1">
+        <Description Translatable="1">Dynamic fields shown in the FAQ index screen of the public interface.</Description>
+        <Navigation>Frontend::Public::View::FAQIndex</Navigation>
+        <Value>
+            <Hash>
+                <DefaultItem ValueType="Select">
+                    <Item ValueType="Option" Value="0" Translatable="1">0 - Disabled</Item>
+                    <Item ValueType="Option" Value="1" Translatable="1">1 - Enabled</Item>
+                </DefaultItem>
+            </Hash>
+        </Value>
+    </Setting>
+    <Setting Name="FAQSideBar::Articles###Config-001" Required="0" Valid="1">
+        <Description Translatable="1">Set Language like 'en' or 'de'. Configure sidebar article links by entering combinations of: Header / FAQ Item ID for each interface.</Description>
+        <Navigation>Frontend::Base::FAQSideBar</Navigation>
+        <Value>
+            <Hash>
+                <Item Key="Language"></Item>
+                <Item Key="DefaultItemID"></Item>
+                <Item Key="CustomGroupOrderAgent"></Item>
+                <Item Key="CustomGroupOrderPublic"></Item>
+                <Item Key="CustomGroupOrderCustomer"></Item>
+                <Item Key="ArticlesAgent">
+                    <Array>
+                    </Array>
+                </Item>
+                <Item Key="ArticlesCustomer">
+                    <Array>
+                    </Array>
+                </Item>
+                <Item Key="ArticlesPublic">
+                    <Array>
+                    </Array>
+                </Item>
+            </Hash>
+        </Value>
+    </Setting>
+    <Setting Name="FAQSideBar::Articles###Config-002" Required="0" Valid="1">
+        <Description Translatable="1">Set Language like 'en' or 'de'. Configure sidebar article links by entering combinations of: Header / FAQ Item ID for each interface.</Description>
+        <Navigation>Frontend::Base::FAQSideBar</Navigation>
+        <Value>
+            <Hash>
+                <Item Key="Language"></Item>
+                <Item Key="DefaultItemID"></Item>
+                <Item Key="CustomGroupOrderAgent"></Item>
+                <Item Key="CustomGroupOrderPublic"></Item>
+                <Item Key="CustomGroupOrderCustomer"></Item>
+                <Item Key="ArticlesAgent">
+                    <Array>
+                    </Array>
+                </Item>
+                <Item Key="ArticlesCustomer">
+                    <Array>
+                    </Array>
+                </Item>
+                <Item Key="ArticlesPublic">
+                    <Array>
+                    </Array>
+                </Item>
+            </Hash>
+        </Value>
+    </Setting>
+    <Setting Name="FAQSideBar::Articles###Config-003" Required="0" Valid="1">
+        <Description Translatable="1">Set Language like 'en' or 'de'. Configure sidebar article links by entering combinations of: Header / FAQ Item ID for each interface.</Description>
+        <Navigation>Frontend::Base::FAQSideBar</Navigation>
+        <Value>
+            <Hash>
+                <Item Key="Language"></Item>
+                <Item Key="DefaultItemID"></Item>
+                <Item Key="CustomGroupOrderAgent"></Item>
+                <Item Key="CustomGroupOrderPublic"></Item>
+                <Item Key="CustomGroupOrderCustomer"></Item>
+                <Item Key="ArticlesAgent">
+                    <Array>
+                    </Array>
+                </Item>
+                <Item Key="ArticlesCustomer">
+                    <Array>
+                    </Array>
+                </Item>
+                <Item Key="ArticlesPublic">
+                    <Array>
+                    </Array>
+                </Item>
+            </Hash>
+        </Value>
+    </Setting>
+    <Setting Name="FAQSideBar::Articles###Config-004" Required="0" Valid="1">
+        <Description Translatable="1">Set Language like 'en' or 'de'. Configure sidebar article links by entering combinations of: Header / FAQ Item ID for each interface.</Description>
+        <Navigation>Frontend::Base::FAQSideBar</Navigation>
+        <Value>
+            <Hash>
+                <Item Key="Language"></Item>
+                <Item Key="DefaultItemID"></Item>
+                <Item Key="CustomGroupOrderAgent"></Item>
+                <Item Key="CustomGroupOrderPublic"></Item>
+                <Item Key="CustomGroupOrderCustomer"></Item>
+                <Item Key="ArticlesAgent">
+                    <Array>
+                    </Array>
+                </Item>
+                <Item Key="ArticlesCustomer">
+                    <Array>
+                    </Array>
+                </Item>
+                <Item Key="ArticlesPublic">
+                    <Array>
+                    </Array>
+                </Item>
+            </Hash>
+        </Value>
+    </Setting>
+    <Setting Name="FAQSideBar::Articles###Config-005" Required="0" Valid="1">
+        <Description Translatable="1">Set Language like 'en' or 'de'. Configure sidebar article links by entering combinations of: Header / FAQ Item ID for each interface.</Description>
+        <Navigation>Frontend::Base::FAQSideBar</Navigation>
+        <Value>
+            <Hash>
+                <Item Key="Language"></Item>
+                <Item Key="DefaultItemID"></Item>
+                <Item Key="CustomGroupOrderAgent"></Item>
+                <Item Key="CustomGroupOrderPublic"></Item>
+                <Item Key="CustomGroupOrderCustomer"></Item>
+                <Item Key="ArticlesAgent">
+                    <Array>
+                    </Array>
+                </Item>
+                <Item Key="ArticlesCustomer">
+                    <Array>
+                    </Array>
+                </Item>
+                <Item Key="ArticlesPublic">
+                    <Array>
+                    </Array>
+                </Item>
+            </Hash>
+        </Value>
+    </Setting>
+</otobo_config>

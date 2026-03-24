@@ -1,0 +1,42 @@
+# --
+# OTOBO is a web-based ticketing system for service organisations.
+# --
+# Copyright (C) 2001-2020 OTRS AG, https://otrs.com/
+# Copyright (C) 2019-2026 Rother OSS GmbH, https://otobo.io/
+# --
+# This program is free software: you can redistribute it and/or modify it under
+# the terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+# This program is distributed in the hope that it will be useful, but WITHOUT
+# ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+# FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+# You should have received a copy of the GNU General Public License
+# along with this program. If not, see <https://www.gnu.org/licenses/>.
+# --
+
+    <div class="TableOfContents" id="TOC">
+        <div class="WidgetSimple">
+            <div class="oooFAQTOC">
+                <ul class="oooFAQSidebarList">
+                    <li class="oooFAQHeader">[% Translate("Table of Contents") | html %]</li>
+
+[% RenderBlockStart("ArticleField") %]
+                    <li class="oooFAQTOCArticle">
+                        <i class="fa fa-angle-right TOCLevel1"></i>
+                        <a href="#[% Data.Field %]" title="[% Translate(Data.Caption) | html %]" class="LinkLevel">[% Translate(Data.Caption) | html %]</a>
+                    </li>
+[% RenderBlockStart("ArticleAnchor") %]
+                    <li class="oooFAQTOCArticle">
+                        <i class="fa fa-angle-right TOCLevel2"></i>
+                        <!--<a href="javascript:void(0)" onclick="document.getElementById().contentWindow.document.getElementById('[% Data.ID %]').scrollIntoView();"-->
+                        <a href="javascript:void(0)" onclick="FAQ.Improvements.FAQ.anchorFrameScroll('IframeFAQ[% Data.Field %]','[% Data.ID %]');"
+                           title="[% Translate(Data.Caption) | html %]" class="LinkLevel2">[% Translate(Data.Caption) | html %]</a>
+                    </li>
+[% RenderBlockEnd("ArticleAnchor") %]
+
+[% RenderBlockEnd("ArticleField") %]
+
+            </ul>
+           </div>
+        </div>
+    </div>

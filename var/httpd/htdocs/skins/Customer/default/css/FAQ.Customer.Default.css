@@ -1,0 +1,428 @@
+/* OTOBO is a web-based ticketing system for service organisations.
+
+Copyright (C) 2019-2025 Rother OSS GmbH, https://otobo.io/
+
+This program is free software: you can redistribute it and/or modify it under
+the terms of the GNU General Public License as published by the Free Software
+Foundation, either version 3 of the License, or (at your option) any later version.
+This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+You should have received a copy of the GNU General Public License
+along with this program. If not, see <https://www.gnu.org/licenses/>.
+*/
+
+iframe.FAQField {
+    width: 100%;
+}
+
+/* Rother OSS / FAQ Improvements Package */
+
+.FAQHome {
+    color: var(--colTextFAQHome);
+}
+.FAQElement > #oooHeader {
+    background-color: #fff;
+    position: sticky;
+    top: 0;
+    height: 145px;
+    border-bottom: 1.2px solid #e5e5eb;  
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+    width: 100% !important;
+    display: grid; 
+    grid-template-columns: 27% auto; 
+    grid-template-rows: repeat(2, 40px);
+    align-content: center;
+}
+
+.HeaderRowTitle {
+  grid-row: span 2;
+  padding-left: 100px;
+}
+
+.PublicHeaderRowTitle {
+  grid-row: span 2;
+  padding-left: 190px;
+}
+
+.HeaderRow {
+  width: 100%; 
+  display: flex;
+  align-items: baseline;
+  justify-content: left;
+}
+
+.FAQSearchBox {
+    padding-right: 0 !important;
+}
+
+.oooSearchFAQ:focus {
+    width: 40vw !important;
+}
+
+.FAQContent {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 15px;
+    margin-top: 10px;
+    padding-left: 8%;
+    padding-right: 8% !important;
+    width: 83vw !important;
+    align-items: flex-start;
+}
+
+.SidebarArea {
+    flex: 0 0 18%;
+    padding: 6px;
+}
+
+.ArticleArea {
+    flex: 0 0 62%;
+    padding: 8px;
+}
+
+.WidgetColumn {
+    flex: 0 0 20%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.WidgetArea-Top, .WidgetArea-Middle, .WidgetArea-Bottom {
+    padding: 8px;
+}
+
+.ArticleArea>.WidgetSimple,
+.TableOfContents>.WidgetSimple,
+.SidebarArea>.WidgetSimple
+{
+    margin-top: 0px;
+    width: 100%;
+}
+
+.AdditionalData>.WidgetSimple {
+    margin-top: 0px;
+}
+
+#RateSubmitButton {
+    position: relative;
+    top: 15px;
+}
+
+.VotingContainer {
+    margin-bottom: 10px;
+}
+
+.Keyword {
+    color: var(--colTextKeyword)
+}
+
+.oooFAQIndex {
+    margin-top: 0px !important;
+}
+
+.ContentIndex {
+    margin-top: 15px !important;
+}
+
+.ContentIndex > a {
+    scroll-margin-top: 155px;
+}
+
+.oooFAQTOC {
+    display: block;
+    min-height: 20vh;
+    border-radius: 20px;
+    box-shadow: 0 1px 4px 0 rgba(4, 0, 71, .16);
+    box-shadow: 0 1px 4px 0 var(--colShadowDark);
+    background-color: var(--colBGFAQTOC);
+    padding: 16px 16px 16px 16px;
+}
+
+.TOCLevel1 {
+    display: inline-block;
+    position: relative;
+    top: -6px;
+}
+
+.TOCLevel2 {
+    display: inline-block;
+    position: relative;
+    top: -6px;
+    left: 10px;
+}
+
+.LinkLevel {
+    position: relative;
+    padding-left: 6px;
+    font-weight: 600 !important;
+}
+
+.LinkLevel2 {
+    position: relative;
+    padding-left: 16px;
+}
+
+.Keyword > a { 
+    background: var(--colBGKeyword);
+    color: #fff;
+    padding: 3px 6px 3px 6px;
+    border-radius: 6px;
+    font-size: 11px;
+}
+
+.oooFAQAdditionalData {
+    display: block;
+    min-height: 20vh;
+    border-radius: 20px;
+    box-shadow: 0 1px 4px 0 rgba(4, 0, 71, .16);
+    box-shadow: 0 1px 4px 0 var(--colShadowDark);
+    background-color: #ffffff;
+    padding: 16px 16px 16px 16px;
+}
+
+.VotingBox {
+    margin-top: 0px !important;
+}
+
+.RateButton {
+    width: 20px;
+}
+
+.RateLabelBefore {
+    margin-left: 0px;
+    padding-right: 3px;
+}
+
+.RateLabelAfter {
+    margin-right: 0px;
+}
+
+#Messenger {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.oooFAQExplorer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    box-shadow: 0 1px 4px 0 rgba(4, 0, 71, .16);
+    box-shadow: 0 1px 4px 0 var(--colShadowDark);
+    background-color: #ffffff;
+    padding: 16px 16px 16px 16px;
+}
+
+.MainSideBar {
+    margin-bottom: 30px;
+}
+
+.oooSideBarIconExplorer {
+    width: 20px;
+    height: 20px;
+    vertical-align: top;
+    margin-right: 4px;
+    display: inline-block;
+    content: url( '../img/faq.svg' );
+    position: relative;
+}
+
+.oooSideBarIconHome {
+    font-size: 20px !important;
+    position: relative;
+    top: 1px;
+    margin-right: 4px;
+}
+
+.oooIndexIconExplorer {
+    width: 20px;
+    height: 20px;
+    vertical-align: top;
+    margin-right: 4px;
+    display: inline-block;
+    position: relative;
+    top: 2px;
+    content: url( '../img/faq.svg' );
+}
+
+.LinkFAQExplorer {
+    display: inline-block;
+}
+
+.oooFAQSidebar {
+    display: block;
+    min-height: 50vh;
+    border-radius: 20px;
+    box-shadow: 0 1px 4px 0 rgba(4, 0, 71, .16);
+    box-shadow: 0 1px 4px 0 var(--colShadowDark);
+    background-color: var(--colBGSideBar);
+    padding: 16px 16px 16px 16px;
+}
+
+.oooFAQSidebarList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    max-width: 320px;
+}
+
+.oooFAQSidebarHeader {
+    color: var(--colTextSideBarHeader);
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    padding: 25px 10px 10px 0px;
+}
+
+.oooFAQSidebarSubHeader {
+    color: var(--colTextSideBarHeader);
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    padding-left: 15px;
+    padding-top: 8px;
+    cursor: pointer;
+}
+
+.oooFAQSubHeaderSpacing {
+    padding-left: 23px !important;
+}
+
+.oooIconSubHeader {
+    color: var(--colTextSideBarHeader);
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    padding-right: 3px;
+    transition: transform 0.2s ease;
+    cursor: pointer;    
+}
+
+.oooFAQHeader {
+    color: var(--colTextFAQHeader);
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    padding: 25px 10px 10px 0px;
+}
+
+.oooFAQSidebarHeader:first-child,
+.oooFAQTOCHeader:first-child
+{
+    padding-top: 20px;
+}
+
+.oooFAQLinks:first-child {
+    padding-top: 10px;
+}
+
+.oooFAQLinks > li {
+    margin-bottom: 5px;
+}
+
+.oooFAQSidebarArticle {
+    list-style: none;
+    padding-top: 0.25rem;
+    padding-left: 0.1rem;
+}
+
+.oooFAQBox svg {
+    width: 24px;
+    height: 24px;
+    margin-right: 5px;
+    top: -2px;
+    filter: brightness(0) opacity(0.5);
+}
+
+.oooFAQSidebarArticle svg {
+    width: 20px;
+    height: 20px;
+    vertical-align: top;
+    margin-right: 4px;
+    display: inline-block;
+    fill: var(--colTextSideBarList);
+}
+
+.oooFAQSidebarList li:last-child {
+  padding-bottom: 20px;
+}
+
+.oooFAQSidebarArticle+.oooFAQSidebarHeader {
+    border-top: 1px solid #e9e8e88c;
+    margin-top: 15px;
+    padding-top: 25px;
+}
+
+.oooSideBarIcon {
+    width: 20px;
+    height: 20px;
+    vertical-align: top;
+    margin-right: 4px;
+    display: inline-block;
+}
+
+.oooFAQTOCArticle a {
+    display: inline-block;
+    color: var(--colTextFAQTOCList);
+    width: 85%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-weight: 400;
+    position: relative;
+}
+
+.oooFAQSidebarArticle a {
+    display: inline-block;
+    color: var(--colTextSideBarList);
+    width: 85%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-weight: 400;
+    position: relative;
+}
+
+.oooFAQSidebarArticle:hover a {
+    color: var(--colHighlight);
+}
+
+.BackTop {
+    float: right;
+    cursor: pointer;
+    color: var(--colTextLight);
+    opacity: 0.5;
+}
+
+.CaptionLabel {
+    display: inline-block;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 145px;
+}
+
+.oooFAQSidebarArticle.oooFAQSubHeaderSpacing {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.oooFAQSidebarArticle.ooo-is-visible {
+    display: flex;
+    opacity: 1;
+}
+
+.oooFAQSidebarSubHeader.is-expanded .fa-chevron-right {
+    transform: rotate(90deg);
+    transition: transform 0.2s ease;
+    position: relative;
+    top: 2px;
+    left: -4px;
+}
+
+/* EO FAQ Improvements Package */

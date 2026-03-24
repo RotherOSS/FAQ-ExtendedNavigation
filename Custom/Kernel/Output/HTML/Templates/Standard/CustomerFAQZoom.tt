@@ -1,0 +1,162 @@
+# --
+# OTOBO is a web-based ticketing system for service organisations.
+# --
+# Copyright (C) 2001-2019 OTRS AG, https://otrs.com/
+# Copyright (C) 2019-2026 Rother OSS GmbH, https://otobo.io/
+# --
+# This program is free software: you can redistribute it and/or modify it under
+# the terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+# This program is distributed in the hope that it will be useful, but WITHOUT
+# ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+# FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+# You should have received a copy of the GNU General Public License
+# along with this program. If not, see <https://www.gnu.org/licenses/>.
+# --
+## nofilter(TidyAll::Plugin::OTOBO::TT::ScriptUsage)
+
+<div id="oooContent" class="FAQElement">
+
+    <div id="oooHeader">
+        <div class="HeaderRowTitle">
+            <h1>[% Translate("FAQ Explorer") | html %]</h1>
+        </div>
+        <div class="HeaderRow">
+            <div class="BreadCrumb">
+[% RenderBlockStart("FAQPathCategoryElement") %]
+                <a href="[% Env("Baselink") %]Action=CustomerFAQExplorer;CategoryID=[% Data.CategoryID | uri %]">
+                    <h3 class='ooog'>[% Translate(Data.Name) | html %]</h3>
+                </a>
+[% RenderBlockEnd("FAQPathCategoryElement") %]
+[% RenderBlockStart("FAQPathItemElement") %]
+                <h3 class='ooog'>[% Data.Title | html %]</h3>
+[% RenderBlockEnd("FAQPathItemElement") %]
+            </div>
+        </div>
+        <div id="oooSearchBox" class="HeaderRow FAQSearchBox">
+            <form action="[% Env("CGIHandle") %]" method="post" name="compose">
+                <input type="hidden" name="Action" value="CustomerFAQExplorer"/>
+                <input type="hidden" name="Subaction" value="Search"/>
+
+                <h3 class='ooog'>
+                    <i class="ooofo ooofo-search"></i>
+                    <input type="text" name="What" id="oooSearch" title="[% Translate('FAQ Search') | html %]"  class="oooSearchFAQ"/>
+                    <span id='oooSearchLabel'>[% Translate('FAQ Search') | html %]</span>
+                </h3>
+            </form>
+        </div>
+    </div>
+
+    <div id="oooMainBox" class="FAQContent">
+
+    [% Data.SideBar %]
+
+    <div class="ArticleArea">
+
+         <div class="oooFAQBox">
+             <a class="oooFAQ oooFAQIndex" href="#">
+                [% Data.Icon %]
+                 <h3 class="Title" title="[% Data.Title | html %]">[% Data.Title | html %]</h3>
+                 <p class="Language ooog" title="[% Data.Language | html %]">[% Data.Language | html %]</p>
+             </a>
+         </div>
+
+        <div class='WidgetSimple'>
+
+            <ul id="Messages">
+[% RenderBlockStart("AttachmentHeader") %]
+                <li class="Customer Visible ContentIndex">
+                    <div class="MessageHeader">
+                        <h3>[% Translate("Attachments") | html %]:</h3>
+                        <div class="Clear"></div>
+                    </div>
+                    <div class="Attachments">
+[% RenderBlockStart("AttachmentRow") %]
+                        <i class="fa fa-paperclip"></i>
+                        <span class="DownloadAttachment" title="[% Translate("Download Attachment") | html %]">
+                            <a href="[% Env("Baselink") %]Action=[% Env("Action") %];Subaction=DownloadAttachment;ItemID=[% Data.ItemID | uri %];FileID=[% Data.FileID | uri %]">
+                                [% Data.Filename | html %]
+                            </a>
+                            , [% Data.Filesize | html %]
+                        </span>
+                        <br/>
+[% RenderBlockEnd("AttachmentRow") %]
+                    </div>
+                </li>
+[% RenderBlockEnd("AttachmentHeader") %]
+
+#[% RenderBlockStart("BrowserLinkMessage") %]
+## Show info, that links within the iframe must be clicked with strg/cmd/shift (depending on the used browser and os)
+## to open the links in a new window without the security permissions given to the iframe
+#            <li>
+#                <div class="FAQMessageBrowser">
+#                    <p>
+#        [% Translate("To open links in the following description blocks, you might need to press Ctrl or Cmd or Shift key while clicking the link (depending on your browser and OS).") | html %]
+#                    </p>
+#                    <a class="Close" title="[% Translate("Close this message") | html %]" href="#"><i class="fa fa-times"></i></a>
+#                </div>
+#            </li>
+#[% RenderBlockEnd("BrowserLinkMessage") %]
+
+                <li class="Customer Visible ContentIndex">
+[% RenderBlockStart("FAQContent") %]
+                    <a id="[% Data.Field %]"></a>
+                    <div class="MessageHeader">
+                        <h3 class="CaptionLabel">[% Translate(Data.Caption) | html %]:</h3>
+                        <a class="BackTop" title="[% Translate("Back to top") | html %]">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                        <div class="Clear"></div>
+                    </div>
+                    <input type="hidden" value="true" name="FieldState">
+[% RenderBlockStart("FAQContentHTML") %]
+# execute IFrame JS asynchronously. Otherwise it could happen before our API was loaded
+# the following JS code must be within the template, otherwise it could happen, that also this code itself is not loaded yet
+<script>
+function CheckIFrameHeight(IFrameID) {
+    if (typeof FAQ === 'object' && typeof FAQ.Customer === 'object' && typeof FAQ.Customer.FAQZoom === 'object') {
+        FAQ.Customer.FAQZoom.IframeAutoHeight($('#' + IFrameID));
+    }
+    else {
+        window.setTimeout(function () {
+            CheckIFrameHeight(IFrameID);
+        }, 500);
+    }
+}
+</script>
+                    <div class="MessageBody">
+# Use the HTML5 sandbox attribute to prevent plugins and scripts from being executed in the browser.
+# Append session info to URL because IE will not send cookies.
+# Set 'allow-popups' to allow IE10+ to open links. ref: http://www.w3.org/html/wg/wiki/ChangeProposals/sandbox_allow_popups
+
+# Rother OSS / Allowing top navigation for FAQ Improvements Package
+                        <iframe sandbox="allow-same-origin allow-popups ms-allow-popups allow-popups-to-escape-sandbox allow-top-navigation" class="FAQField" id="IframeFAQ[% Data.Field | html %]" onload="window.setTimeout( function (){ CheckIFrameHeight('IframeFAQ[% Data.Field | html %]'); }, 500);" src="[% Env("Baselink") %]Action=CustomerFAQZoom;Subaction=HTMLView;ItemID=[% Data.ItemID | html %];Field=[% Data.Field | html %];[% Env("SessionName") | html %]=[% Env("SessionID") | html %]"></iframe>
+# EO FAQ Improvements Package
+                    </div>
+[% RenderBlockEnd("FAQContentHTML") %]
+[% RenderBlockStart("FAQContentPlain") %]
+                    <div class="ArticleFAQContent">
+                        <div class="message">
+                            [% Data.Content %]
+                        </div>
+                    </div>
+[% RenderBlockEnd("FAQContentPlain") %]
+
+[% RenderBlockEnd("FAQContent") %]
+                </li>
+            </ul>
+        </div>
+
+        </div> <!-- ArticleArea -->
+
+        <div class="WidgetColumn">
+            <div class="WidgetArea-Top">
+                [% Data.TOC %]
+            </div>
+            <div class="WidgetArea-Middle">
+                [% Data.AdditionalData %]
+            </div>
+            <div class="WidgetArea-Bottom"></div>
+        </div>
+    </div>
+</div>

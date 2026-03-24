@@ -1,0 +1,116 @@
+/* OTOBO is a web-based ticketing system for service organisations.
+
+Copyright (C) 2019-2025 Rother OSS GmbH, https://otobo.io/
+
+This program is free software: you can redistribute it and/or modify it under
+the terms of the GNU General Public License as published by the Free Software
+Foundation, either version 3 of the License, or (at your option) any later version.
+This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+You should have received a copy of the GNU General Public License
+along with this program. If not, see <https://www.gnu.org/licenses/>.
+*/
+
+@media screen,projection,tv,handheld {
+
+#FAQRelatedArticles.Hidden {
+    display: none !important;
+}
+
+#FAQRelatedArticles:before {
+    position: relative;
+    top: 5px;
+
+    display: inline-block;
+    vertical-align: top;
+    font-size: 14px;
+    /* use !important to prevent issues with browser extensions that change fonts */
+    font-family: 'otobo' !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    content: "\e911";
+}
+
+#FAQRelatedArticles > .WidgetSimple {
+    display: inline-block;
+    vertical-align: top;
+    width: 220px;
+    white-space: normal;
+}
+
+#FAQRelatedArticles .Header {
+    margin-bottom: 8px;
+}
+
+#FAQRelatedArticles li {
+    padding-top: 16px;
+    margin-bottom: 16px;
+    border-top: 1.2px solid #e5e5eb;
+}
+
+#FAQRelatedArticles li:first-child {
+    border-top: none;
+}
+
+.RelatedFAQArticleList {
+    font-size: 15px;
+    letter-spacing: 0.3px;
+}
+    
+@media only screen and (max-width: 1279px) {
+
+    #FAQRelatedArticles {
+        position: relative;
+        left: 8px;
+
+        display: inline-block;
+        vertical-align: top;
+
+        box-sizing: border-box;
+        width: 100%;
+        padding: 8px;
+    }
+
+    #FAQRelatedArticles > .WidgetSimple {
+        width: 100%;
+    }
+
+    #FAQRelatedArticles > .WidgetSimple  li {
+        padding-top: 8px;
+        margin-bottom: 8px;
+    }
+
+    #FAQRelatedArticles > .WidgetSimple > .Content {
+        max-height: 100px;
+        overflow-y: auto;
+    }
+
+}
+
+@media only screen and (min-width: 1280px) {
+
+    #FAQRelatedArticles {
+        --article-list-width: 240px;
+        position: absolute;
+        right: calc( -1 * ( var(--article-list-width) + 8px ));
+        top: 8px;
+
+        display: inline-block;
+        vertical-align: top;
+
+        width: var(--article-list-width);
+        padding: 0;
+    }
+
+}
+
+} /* end @media */
