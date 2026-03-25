@@ -21,6 +21,15 @@
             </Item>
         </Value>
     </Setting>
+    <Setting Name="Loader::Agent::CommonCSS###210-FAQExtendedNavigation" Required="1" Valid="1">
+        <Description Translatable="1">List of CSS files to always be loaded for the agent interface.</Description>
+        <Navigation>Frontend::Base::Loader</Navigation>
+        <Value>
+            <Array>
+                <Item>FAQExtendedNavigation.Agent.Default.css</Item>
+            </Array>
+        </Value>
+    </Setting>
     <Setting Name="Loader::Agent::CommonJS###210-FAQImprovements" Required="1" Valid="1">
         <Description Translatable="1">List of JS files to always be loaded for the agent interface for FAQ.</Description>
         <Navigation>Frontend::Base::Loader</Navigation>
@@ -39,7 +48,6 @@
             </Array>
         </Value>
     </Setting>
-
     <Setting Name="Frontend::Module###AgentFAQIndex" Required="0" Valid="1">
         <Description Translatable="1">Frontend module registration for the agent interface.</Description>
         <Navigation>Frontend::Agent::ModuleRegistration</Navigation>
@@ -82,6 +90,58 @@
                         <Item>Core.Agent.TableFilters.js</Item>
                         <Item>Core.Agent.LinkObject.js</Item>
                         <Item>FAQ.Improvements.FAQ.js</Item>
+                    </Array>
+                </Item>
+            </Hash>
+        </Value>
+    </Setting>
+    <Setting Name="Loader::Module::AgentFAQExplorer###003-FAQExtendedNavigation" Required="0" Valid="1">
+        <Description Translatable="1">Loader module registration for the agent interface.</Description>
+        <Navigation>Frontend::Agent::ModuleRegistration::Loader</Navigation>
+        <Value>
+            <Hash>
+                <Item Key="CSS">
+                    <Array>
+                        <Item>FAQExtendedNavigation.Agent.Detail.css</Item>
+                    </Array>
+                </Item>
+            </Hash>
+        </Value>
+    </Setting>
+    <Setting Name="Loader::Module::AgentFAQAdd###003-FAQExtendedNavigation" Required="0" Valid="1">
+        <Description Translatable="1">Loader module registration for the agent interface.</Description>
+        <Navigation>Frontend::Agent::ModuleRegistration::Loader</Navigation>
+        <Value>
+            <Hash>
+                <Item Key="CSS">
+                    <Array>
+                        <Item>FAQExtendedNavigation.Agent.Detail.css</Item>
+                    </Array>
+                </Item>
+            </Hash>
+        </Value>
+    </Setting>
+    <Setting Name="Loader::Module::AgentFAQEdit###003-FAQExtendedNavigation" Required="0" Valid="1">
+        <Description Translatable="1">Loader module registration for the agent interface.</Description>
+        <Navigation>Frontend::Agent::ModuleRegistration::Loader</Navigation>
+        <Value>
+            <Hash>
+                <Item Key="CSS">
+                    <Array>
+                        <Item>FAQExtendedNavigation.Agent.Detail.css</Item>
+                    </Array>
+                </Item>
+            </Hash>
+        </Value>
+    </Setting>
+    <Setting Name="Loader::Module::AgentFAQZoom###003-FAQExtendedNavigation" Required="0" Valid="1">
+        <Description Translatable="1">Loader module registration for the agent interface.</Description>
+        <Navigation>Frontend::Agent::ModuleRegistration::Loader</Navigation>
+        <Value>
+            <Hash>
+                <Item Key="CSS">
+                    <Array>
+                        <Item>FAQExtendedNavigation.Agent.Detail.css</Item>
                     </Array>
                 </Item>
             </Hash>
@@ -161,7 +221,9 @@
                 <Item Key="CSS">
                     <Array>
                         <Item>FAQ.Customer.Detail.css</Item>
+                        <Item>FAQExtendedNavigation.Customer.Detail.css</Item>
                         <Item>FAQ.Customer.Default.css</Item>
+                        <Item>FAQExtendedNavigation.Customer.Default.css</Item>
                         <Item>FAQ.Widget.css</Item>
                     </Array>
                 </Item>
@@ -169,6 +231,88 @@
                     <Array>
                         <Item>FAQ.Customer.FAQZoom.js</Item>
                         <Item>Core.Customer.Search.js</Item>
+                    </Array>
+                </Item>
+            </Hash>
+        </Value>
+    </Setting>
+    <Setting Name="Loader::Module::CustomerFAQExplorer###003-FAQExtendedNavigation" Required="0" Valid="1">
+        <Description Translatable="1">Loader module registration for the customer interface.</Description>
+        <Navigation>Frontend::Customer::ModuleRegistration::Loader</Navigation>
+        <Value>
+            <Hash>
+                <Item Key="CSS">
+                    <Array>
+                        <Item>FAQExtendedNavigation.Customer.Default.css</Item>
+                        <Item>FAQExtendedNavigation.Customer.Detail.css</Item>
+                    </Array>
+                </Item>
+            </Hash>
+        </Value>
+    </Setting>
+    <Setting Name="Loader::Module::PublicFAQExplorer###003-FAQExtendedNavigation" Required="0" Valid="1">
+        <Description Translatable="1">Loader module registration for the public interface.</Description>
+        <Navigation>Frontend::Public::ModuleRegistration::Loader</Navigation>
+        <Value>
+            <Hash>
+                <Item Key="CSS">
+                    <Array>
+                        <Item>FAQExtendedNavigation.Customer.Default.css</Item>
+                        <Item>FAQExtendedNavigation.Customer.Detail.css</Item>
+                    </Array>
+                </Item>
+            </Hash>
+        </Value>
+    </Setting>
+    <Setting Name="Loader::Module::CustomerFAQZoom###003-FAQExtendedNavigation" Required="0" Valid="1">
+        <Description Translatable="1">Loader module registration for the customer interface.</Description>
+        <Navigation>Frontend::Customer::ModuleRegistration::Loader</Navigation>
+        <Value>
+            <Hash>
+                <Item Key="CSS">
+                    <Array>
+                        <Item>FAQExtendedNavigation.Customer.Default.css</Item>
+                        <Item>FAQExtendedNavigation.Customer.Detail.css</Item>
+                    </Array>
+                </Item>
+            </Hash>
+        </Value>
+    </Setting>
+    <Setting Name="Loader::Module::PublicFAQZoom###003-FAQExtendedNavigation" Required="0" Valid="1">
+        <Description Translatable="1">Loader module registration for the public interface.</Description>
+        <Navigation>Frontend::Public::ModuleRegistration::Loader</Navigation>
+        <Value>
+            <Hash>
+                <Item Key="CSS">
+                    <Array>
+                        <Item>FAQExtendedNavigation.Customer.Default.css</Item>
+                        <Item>FAQExtendedNavigation.Customer.Detail.css</Item>
+                    </Array>
+                </Item>
+            </Hash>
+        </Value>
+    </Setting>
+    <Setting Name="Loader::Module::PublicFAQSearch###003-FAQExtendedNavigation" Required="0" Valid="1">
+        <Description Translatable="1">Loader module registration for the public interface.</Description>
+        <Navigation>Frontend::Public::ModuleRegistration::Loader</Navigation>
+        <Value>
+            <Hash>
+                <Item Key="CSS">
+                    <Array>
+                        <Item>FAQExtendedNavigation.Customer.Default.css</Item>
+                    </Array>
+                </Item>
+            </Hash>
+        </Value>
+    </Setting>
+    <Setting Name="Loader::Module::CustomerTicketMessage###003-FAQExtendedNavigation" Required="0" Valid="1">
+        <Description Translatable="1">Loader module registration for the customer interface.</Description>
+        <Navigation>Frontend::Customer::ModuleRegistration::Loader</Navigation>
+        <Value>
+            <Hash>
+                <Item Key="CSS">
+                    <Array>
+                        <Item>FAQExtendedNavigation.Customer.Default.css</Item>
                     </Array>
                 </Item>
             </Hash>
@@ -281,7 +425,9 @@
                 <Item Key="CSS">
                     <Array>
                         <Item>FAQ.Customer.Detail.css</Item>
+                        <Item>FAQExtendedNavigation.Customer.Detail.css</Item>
                         <Item>FAQ.Customer.Default.css</Item>
+                        <Item>FAQExtendedNavigation.Customer.Default.css</Item>
                         <Item>FAQ.Widget.css</Item>
                     </Array>
                 </Item>

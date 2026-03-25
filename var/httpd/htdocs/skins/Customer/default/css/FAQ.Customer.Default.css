@@ -12,12 +12,6 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-iframe.FAQField {
-    width: 100%;
-}
-
-/* Rother OSS / FAQ Improvements Package */
-
 .FAQHome {
     color: var(--colTextFAQHome);
 }
@@ -425,4 +419,3 @@ html {
     left: -4px;
 }
 
-/* EO FAQ Improvements Package */
