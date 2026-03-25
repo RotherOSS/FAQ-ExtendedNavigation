@@ -12,9 +12,9 @@
     <Description Lang="es">Paquete para mejorar la experiencia del usuario en el módulo FAQ.</Description>
     <Description Lang="hu">Csomag a GYIK modul felhasználói élményének javítására.</Description>
     <Filelist>
-        <File Permission="660" Location="Kernel/Config/Files/XML/FAQImprovements.xml" />
-        <File Permission="660" Location="Kernel/Language/de_FAQImprovements.pm" />
-        <File Permission="660" Location="Kernel/Language/es_FAQImprovements.pm" />
+        <File Permission="660" Location="Kernel/Config/Files/XML/FAQExtendedNavigation.xml" />
+        <File Permission="660" Location="Kernel/Language/de_FAQExtendedNavigation.pm" />
+        <File Permission="660" Location="Kernel/Language/es_FAQExtendedNavigation.pm" />
         <File Permission="660" Location="Kernel/Modules/AgentFAQAutoComplete.pm" />
         <File Permission="660" Location="Kernel/Modules/CustomerFAQIndex.pm" />
         <File Permission="660" Location="Kernel/Modules/PublicFAQIndex.pm" />

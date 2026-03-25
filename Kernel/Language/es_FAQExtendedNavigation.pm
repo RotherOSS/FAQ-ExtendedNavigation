@@ -14,7 +14,7 @@
 # along with this program. If not, see <https://www.gnu.org/licenses/>.
 # --
 
-package Kernel::Language::es_FAQImprovements;
+package Kernel::Language::es_FAQExtendedNavigation;
 
 use strict;
 use warnings;

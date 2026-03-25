@@ -14,7 +14,7 @@
 # along with this program. If not, see <https://www.gnu.org/licenses/>.
 # --
 
-package Kernel::Language::de_FAQImprovements;
+package Kernel::Language::de_FAQExtendedNavigation;
 
 use strict;
 use warnings;
@@ -26,7 +26,7 @@ sub Data {
     $Self->{Translation}->{'Table of Contents'} = 'Inhaltsverzeichnis';
     $Self->{Translation}->{'Back to FAQ Home'} = 'Zurück zur FAQ-Startseite';
     $Self->{Translation}->{'Back to top'} = 'Zurück nach oben';
-    $Self->{Translation}->{'Icon'} = 'Symbol';
+    $Self->{Translation}->{'Icon'} = '';
 
 }
 
