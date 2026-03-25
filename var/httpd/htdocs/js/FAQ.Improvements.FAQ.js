@@ -129,7 +129,11 @@ FAQ.Improvements.FAQ = (function (TargetNS) {
      */
 
     function escapeString(str) {
-      return str.replace(/[!"#$%&'()*+,.\/:;<=>?@[\\\]^`{|}~]/g, "\\$&");
+        if ( typeof str == 'undefined' ) {
+            return '';
+        }
+
+        return str.replace(/[!"#$%&'()*+,.\/:;<=>?@[\\\]^`{|}~]/g, "\\$&");
     }
 
     /**
