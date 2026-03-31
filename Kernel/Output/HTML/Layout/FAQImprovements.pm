@@ -278,27 +278,28 @@ sub FAQSideBar {
             );
 
         }
-    }
 
-    if ( $Param{IsAllowed} && $Param{ItemID} ) {
-        $LayoutObject->Block(
-            Name => 'FAQExplorerLink',
-            Data => \%Param
-        );
-    }
+        if ( $Param{IsAllowed} && $Param{ItemID} ) {
+            $LayoutObject->Block(
+                Name => 'FAQExplorerLink',
+                Data => \%Param
+            );
+        }
 
-    if ( $ZoomAction ne 'CustomerFAQIndex' && $ZoomAction ne 'PublicFAQIndex' && $ZoomAction ne 'AgentFAQIndex' ) {
-        $LayoutObject->Block(
-            Name => 'FAQBackHomeLink',
-            Data => \%Param
-        );
-    }
+        if ( $ZoomAction ne 'CustomerFAQIndex' && $ZoomAction ne 'PublicFAQIndex' && $ZoomAction ne 'AgentFAQIndex' ) {
+            $LayoutObject->Block(
+                Name => 'FAQBackHomeLink',
+                Data => \%Param
+            );
+        }
 
-    if ( $Param{Action} eq 'CustomerFAQExplorer' || $Param{Action} eq 'PublicFAQExplorer' || $Param{Action} eq 'AgentFAQExplorer' ) {
-        $LayoutObject->Block(
-            Name => 'FAQBackHomeBlock',
-            Data => \%Param
-        );
+        if ( $Param{Action} eq 'CustomerFAQExplorer' || $Param{Action} eq 'PublicFAQExplorer' || $Param{Action} eq 'AgentFAQExplorer' ) {
+            $LayoutObject->Block(
+                Name => 'FAQBackHomeBlock',
+                Data => \%Param
+            );
+        }
+
     }
 
     my $Output = $LayoutObject->Output(
@@ -358,7 +359,7 @@ sub FAQTableOfContents {
         next FIELD if !$FieldConfig;
         next FIELD if $FieldConfig->{Show} eq 'internal' && $Param{Mode} ne 'Agent';
 
-        my @SubAnchors = $Data{$Field} =~ m|<h[1-4][^>]*>(.*?)</h[1-4]>|gi;
+        my @SubAnchors = $Data{$Field} =~ m|<h([1-6])[^>]*>(.*?)</h[1-6]>|gi;
 
         $LayoutObject->Block(
             Name => 'ArticleField',
@@ -370,23 +371,27 @@ sub FAQTableOfContents {
 
         if (@SubAnchors) {
             my $Count = 1;
+            
+            NESTED:
+            while ( my ( $Level, $Content ) = splice( @SubAnchors, 0, 2 ) ) {
+                next NESTED if $Level > $MaxDepth;
 
-            DEPTH:
-            for my $SubAnchor (@SubAnchors) {
-                last DEPTH if $Count > $MaxDepth;
+                my $Padding = ( $Level - 1 ) * 15; 
 
                 $LayoutObject->Block(
                     Name => 'ArticleAnchor',
                     Data => {
-                        Caption => $Kernel::OM->Get('Kernel::System::HTMLUtils')->ToAscii( String => $SubAnchor ),
+                        Caption => $Kernel::OM->Get('Kernel::System::HTMLUtils')->ToAscii( String => $Content ),
                         Field   => $Field,
-                        ID      => "$Field-$Count"
+                        ID      => "$Field-$Count",
+                        Level   => $Level,
+                        Padding => $Padding,
                     }
                 );
                 $Count++;
             }
         }
-    }
+    }    
 
     my $Output = $LayoutObject->Output(
         TemplateFile => 'FAQ/FAQTableOfContents',

@@ -26,9 +26,8 @@
                         <a href="#[% Data.Field %]" title="[% Translate(Data.Caption) | html %]" class="LinkLevel">[% Translate(Data.Caption) | html %]</a>
                     </li>
 [% RenderBlockStart("ArticleAnchor") %]
-                    <li class="oooFAQTOCArticle">
+                    <li class="oooFAQTOCArticle" style="position: relative; left: [% Data.Padding | html %]px;">
                         <i class="fa fa-angle-right TOCLevel2"></i>
-                        <!--<a href="javascript:void(0)" onclick="document.getElementById().contentWindow.document.getElementById('[% Data.ID %]').scrollIntoView();"-->
                         <a href="javascript:void(0)" onclick="FAQ.Improvements.FAQ.anchorFrameScroll('IframeFAQ[% Data.Field %]','[% Data.ID %]');"
                            title="[% Translate(Data.Caption) | html %]" class="LinkLevel2">[% Translate(Data.Caption) | html %]</a>
                     </li>

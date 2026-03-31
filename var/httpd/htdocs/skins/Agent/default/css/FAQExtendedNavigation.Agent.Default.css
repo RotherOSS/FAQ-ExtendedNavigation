@@ -48,6 +48,7 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
     text-transform: uppercase;
     padding-left: 15px;
     margin-top: 10px;
+    cursor: pointer;
 }
 
 .oooFAQSubHeaderSpacing {

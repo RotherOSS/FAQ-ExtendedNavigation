@@ -41,7 +41,7 @@
 
 # Rother OSS / FAQ Improvements Package
 
-                    <label for="Icon">[% Translate("Icon") | html %]:</label>
+                    <label for="Icon">[% Translate("Icon (svg)") | html %]:</label>
                     <div class="Field">
                           <div id="IconPreview" class="IconBox"></div>
                            <input type="hidden" name="Icon" id="Icon" value="[% Data.Icon | html %]"/>

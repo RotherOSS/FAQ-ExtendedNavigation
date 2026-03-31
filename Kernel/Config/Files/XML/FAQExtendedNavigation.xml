@@ -77,6 +77,7 @@
                 <Item Key="CSS">
                     <Array>
                         <Item>FAQ.Agent.Detail.css</Item>
+                        <Item>FAQExtendedNavigation.Agent.Detail.css</Item>
                         <Item>Core.AllocationList.css</Item>
                     </Array>
                 </Item>
@@ -89,7 +90,6 @@
                         <Item>Core.UI.Table.Sort.js</Item>
                         <Item>Core.Agent.TableFilters.js</Item>
                         <Item>Core.Agent.LinkObject.js</Item>
-                        <Item>FAQ.Improvements.FAQ.js</Item>
                     </Array>
                 </Item>
             </Hash>

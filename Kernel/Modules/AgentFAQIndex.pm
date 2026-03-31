@@ -88,13 +88,6 @@ sub Run {
 
     $GetParam{ItemID} ||= '';
 
-    # if ( !$GetParam{ItemID} ) {
-    #     return $LayoutObject->ErrorScreen(
-    #         Message => Translatable('No ItemID is given!'),
-    #         Comment => Translatable('Please contact the administrator.'),
-    #     );
-    # }
-
     my $FAQObject = $Kernel::OM->Get('Kernel::System::FAQ');
 
     my %FAQData;

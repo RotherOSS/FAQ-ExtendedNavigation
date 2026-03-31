@@ -26,7 +26,7 @@ sub Data {
     $Self->{Translation}->{'Table of Contents'} = 'Tabla de Contenidos';
     $Self->{Translation}->{'Back to FAQ Home'} = 'Página inicial';
     $Self->{Translation}->{'Back to top'} = 'Volver al inicio';
-    $Self->{Translation}->{'Icon'} = 'Icono';
+    $Self->{Translation}->{'Icon (svg)'} = 'Icono (svg)';
 
 }
 
