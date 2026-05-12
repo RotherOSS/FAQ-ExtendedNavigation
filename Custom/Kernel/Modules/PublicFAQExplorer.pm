@@ -20,10 +20,10 @@ use strict;
 use warnings;
 use Kernel::Language qw(Translatable);
 
-# Rother OSS / FAQ Improvements Package
+# Rother OSS / FAQ Extended Navigation Package
 use MIME::Base64 qw(decode_base64 encode_base64);
 
-# EO Rother OSS / FAQ Improvements Package
+# EO Rother OSS / FAQ Extended Navigation Package
 
 use MIME::Base64 qw();
 
@@ -74,6 +74,23 @@ sub Run {
         # redirect to FAQ zoom
         return $LayoutObject->Redirect( OP => 'Action=PublicFAQZoom;ItemID=' . $ItemID );
     }
+
+    # Rother OSS / FAQ Extended Navigation Package
+    # Check if there is a default article defined for the current language
+    my $HasDefaultArticle = 0;
+    my %Data              = %{ $Kernel::OM->Get('Kernel::Config')->Get('PublicFAQSideBar::Articles') };
+
+    CONFIG:
+    for my $Config ( keys %Data ) {
+        next CONFIG if $Data{$Config}->{Language} ne $LayoutObject->{UserLanguage};
+
+        if ( $Data{$Config}->{DefaultItemID} ) {
+            $HasDefaultArticle = 1;
+            last CONFIG;
+        }
+    }
+
+    # EO Rother OSS / FAQ Extended Navigation Package
 
     my $CategoryID = $ParamObject->GetParam( Param => 'CategoryID' ) || 0;
 
@@ -367,10 +384,10 @@ sub Run {
                     Size  => $Config->{TitleSize},
                 );
 
-                # Rother OSS / FAQ Improvements Package
+                # Rother OSS / FAQ Extended Navigation Package
                 $FAQData{Icon} = $FAQData{Icon} ? decode_base64( $FAQData{Icon} ) : '';
 
-                # EO Rother OSS / FAQ Improvements Package
+                # EO Rother OSS / FAQ Extended Navigation Package
 
                 # add blocks to template
                 $LayoutObject->Block(
@@ -484,20 +501,20 @@ sub Run {
         return $LayoutObject->ErrorScreen();
     }
 
-    #Rother OSS / FAQ Improvements package
-    my %Data = %{ $ConfigObject->Get('FAQSideBar::Articles') };
-
+    # Rother OSS / FAQ Extended Navigation Package
     #Get Sidebar info
+
     $Param{SideBar} = $LayoutObject->FAQSideBar(
-        Mode      => 'Public',
-        Language  => $LayoutObject->{UserLanguage},
-        UserID    => $Self->{UserID},
-        IsAllowed => 1,
-        ItemID    => 0,
-        Action    => $Self->{Action}
+        Mode              => 'Public',
+        Language          => $LayoutObject->{UserLanguage} || 'en',
+        UserID            => $Self->{UserID},
+        IsAllowed         => 1,
+        ItemID            => 0,
+        Action            => $Self->{Action},
+        HasDefaultArticle => $HasDefaultArticle
     );
 
-    # EO FAQ Improvements package
+    # EO Rother OSS / FAQ Extended Navigation Package
 
     $Output .= $LayoutObject->Output(
         TemplateFile => 'PublicFAQExplorer',

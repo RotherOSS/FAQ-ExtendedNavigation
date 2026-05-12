@@ -18,6 +18,13 @@
 
 [% RenderBlockStart("SideBar") %]
         <div class="WidgetSimple MainSideBar">
+
+[% RenderBlockStart("HeaderTitle") %]
+                <div class="Header">
+                    <h2>[% Translate("Quickstart Links") | html %]</h2>
+                </div>
+[% RenderBlockEnd("HeaderTitle") %]
+
                 <div class="oooFAQSidebar">
                     <ul class="oooFAQSidebarList">
 [% RenderBlockStart("Header") %]
@@ -46,7 +53,7 @@
                 </li>
 [% RenderBlockEnd("FAQBackHomeLink") %]
                 <li>
-                    <a href="[% Env('BaseLink') %]?Action=[% Data.ExplorerAction | uri %]" title="[% Translate("FAQ Explorer") | html %]" class="LinkFAQExplorer"><img class="oooSideBarIconExplorer">  [% Translate("FAQ Explorer") | html %]</a>
+                    <a href="[% Env('BaseLink') %]?Action=[% Data.ExplorerAction | uri %]" title="[% Translate("FAQ Explorer") | html %]" class="LinkFAQExplorer [% IF Data.IsDefaultArticle %]oooFAQLinkPosition[% END %]"><img class="oooSideBarIconExplorer">  [% Translate("FAQ Explorer") | html %]</a>
                 </li>
                 </ul>
             </div>
@@ -56,7 +63,11 @@
 [% RenderBlockStart("FAQBackHomeBlock") %]
         <div class="WidgetSimple">
             <div class="oooFAQExplorer">
-                    <a href="[% Env('BaseLink') %]?Action=[% Data.HomeAction | uri %]" title="[% Translate("Back to FAQ Home") | html %]" class="LinkFAQExplorer"><i class="fa fa-home oooSideBarIconHome"></i> [% Translate("Back to FAQ Home") | html %]</a>
+                <ul class="oooFAQLinks">
+                    <li>
+                        <a href="[% Env('BaseLink') %]?Action=[% Data.HomeAction | uri %]" title="[% Translate("Back to FAQ Home") | html %]" class="LinkFAQExplorer"><i class="fa fa-home oooSideBarIconHome oooFAQLinkFirst"></i> [% Translate("Back to FAQ Home") | html %]</a>
+                    </li>
+                </ul>
             </div>
         </div>
 [% RenderBlockEnd("FAQBackHomeBlock") %]

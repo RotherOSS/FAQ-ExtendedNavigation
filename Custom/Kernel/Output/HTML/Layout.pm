@@ -4451,16 +4451,6 @@ sub CustomerHeader {
         $Param{ColorDefinitions} .= "--col$Color:$ColorDefinitions->{ $Color };";
     }
 
-    # Rother OSS / FAQ Improvements package
-    # Include custom color vars for FAQ
-
-    my $FAQColorDefinitions = $ConfigObject->Get('CustomerFAQColorDefinitions');
-    for my $Color ( sort keys %{$FAQColorDefinitions} ) {
-        $Param{ColorDefinitions} .= "--col$Color:$FAQColorDefinitions->{ $Color };";
-    }
-
-    #EO FAQ Improvements package
-
     $Self->_AddHeadersToResponseObject(
         ContentDisposition            => $Param{ContentDisposition},
         DisableIFrameOriginRestricted => $Param{DisableIFrameOriginRestricted},
@@ -4700,23 +4690,6 @@ sub CustomerNavigationBar {
         NAVIGATION_CONFIG:
         for my $Key ( sort keys %{ $NavigationConfig->{$Module} || {} } ) {
             next NAVIGATION_CONFIG if $Key !~ m{^\d+};
-
-            # Rother OSS / FAQ Improvements Package
-            # Rewrite Navbar link with FAQ Default action if it's configured
-
-            if ( $Key eq '002-FAQ' ) {
-                my $Common = $ConfigObject->Get('CustomerFrontend::CommonParam');
-
-                if ( $Common->{DefaultFAQAction} ) {
-                    $NavigationConfig->{$Module}->{$Key}[0]->{Link}        = 'Action=' . $Common->{DefaultFAQAction};
-                    $NavigationConfig->{$Module}->{$Key}[1]->{Link}        = 'Action=' . $Common->{DefaultFAQAction};
-                    $NavigationConfig->{$Module}->{$Key}[1]->{Name}        = $Self->{LanguageObject}->Translate('FAQ Index');
-                    $NavigationConfig->{$Module}->{$Key}[1]->{Description} = $Self->{LanguageObject}->Translate('FAQ Index');
-                }
-
-            }
-
-            # EO FAQ Improvements Package
 
             # FIXME: Support both old (HASH) and new (ARRAY of HASH) navigation configurations, for reasons of backwards
             #   compatibility. Once we are sure everything has been migrated correctly, support for HASH-only
@@ -6563,6 +6536,7 @@ sub SetRichTextParameters {
         );
     }
 
+    # Rother OSS / FAQ Extended Navigation Package
     my @Plugins = (
         'Alignment',    'Autoformat', 'BlockQuote', 'Bold', 'CodeBlock', 'DataFilter', 'DataSchema', 'FindAndReplace', 'FontColor',
         'FontFamily',   'FontSize',   'FontBackgroundColor', 'GeneralHtmlSupport', 'Heading', 'HorizontalLine', 'Image', 'ImageResize', 'ImageStyle', 'ImageUpload',
@@ -6571,6 +6545,8 @@ sub SetRichTextParameters {
         'SpecialCharactersEssentials',
         'Strikethrough', 'Table', 'TableCellProperties', 'TableColumnResize', 'TableProperties', 'TableToolbar', 'Underline', 'Undo', 'PasteFromOffice'
     );
+
+    # EO Rother OSS / FAQ Extended Navigation Package
 
     # set data with AddJSData()
     $Self->AddJSData(
@@ -6737,6 +6713,7 @@ sub CustomerSetRichTextParameters {
         );
     }
 
+    # Rother OSS / FAQ Extended Navigation Package
     my @Plugins = (
         'Alignment',    'Autoformat', 'BlockQuote', 'Bold', 'CodeBlock', 'DataFilter', 'DataSchema', 'FindAndReplace', 'FontColor',
         'FontFamily',   'FontSize',   'FontBackgroundColor', 'GeneralHtmlSupport', 'Heading', 'HorizontalLine', 'Image', 'ImageResize', 'ImageStyle', 'ImageUpload',
@@ -6745,6 +6722,8 @@ sub CustomerSetRichTextParameters {
         'SpecialCharactersEssentials',
         'Strikethrough', 'Table', 'TableCellProperties', 'TableColumnResize', 'TableProperties', 'TableToolbar', 'Underline', 'Undo', 'PasteFromOffice'
     );
+
+    # EO Rother OSS / FAQ Extended Navigation Package
 
     # set data with AddJSData()
     $Self->AddJSData(

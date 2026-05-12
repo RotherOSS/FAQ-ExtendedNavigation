@@ -1,0 +1,125 @@
+/* OTOBO is a web-based ticketing system for service organisations.
+
+Copyright (C) 2019-2026 Rother OSS GmbH, https://otobo.io/
+
+This program is free software: you can redistribute it and/or modify it under
+the terms of the GNU General Public License as published by the Free Software
+Foundation, either version 3 of the License, or (at your option) any later version.
+This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+You should have received a copy of the GNU General Public License
+along with this program. If not, see <https://www.gnu.org/licenses/>.
+*/
+
+/**
+ * @package     Skin "Default"
+ * @section     Default Settings
+ */
+
+@media screen,projection,tv,handheld {
+
+.DropdownSpacing {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.ArrayItem button.RemoveButton {
+    position: relative;
+    width: 22px;
+    background: #fff;
+    top: 0px;
+    border: 0px;
+    cursor: pointer;
+    transition: all ease 0.3s;
+    color: #bbb;
+    font-size: 14px;
+}
+
+#BtnAddEntry.AddButton
+{
+    position: relative;
+    width: 22px;
+    background: #fff;
+    margin-top: 5px;
+    left: 5px;
+    border: 0px;
+    cursor: pointer;
+    transition: all ease 0.3s;
+    color: #bbb;
+    font-size: 14px;
+}
+
+.ArrayItem button.RemoveButton:hover,
+.ArrayItem button.RemoveButton:focus,
+#BtnAddEntry.AddButton:hover,
+#BtnAddEntry.AddButton:focus
+{
+    outline: none;
+}
+
+.SideBarExplanation > li
+{
+    margin-bottom: 5px;
+    line-height: 16px;
+}
+
+.SideBarExplanation > li > ul > li 
+{
+    margin-bottom: 5px;
+    line-height: 16px;
+    padding-left: 15px;
+}
+
+.SideBarExplanation > li> ul > li:first-child {
+    margin-top: 5px;
+}
+
+.OptionList {
+    width: 300px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    overflow: hidden;
+    background: white;
+    margin-top: 3px;
+    margin-bottom: 3px;
+}
+
+.ListContainer {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.ListItem {
+    padding: 3px 7px;
+    cursor: pointer;
+    border-bottom: 1px solid #eee;
+    transition: background 0.2s;
+}
+
+.ListItem:hover {
+    background-color: var(--colHoverLight);
+}
+
+.ListItem.selected {
+    background-color: var(--colBGLightMedium);
+    border-left: 4px solid var(--colTextLink);
+    font-weight: bold;
+}
+
+.OrderButtons {
+    display: flex;
+    gap: 5px;
+    padding: 5px;
+}
+
+#btnUp, #btnDown {
+    cursor: pointer;
+
+}
+
+}

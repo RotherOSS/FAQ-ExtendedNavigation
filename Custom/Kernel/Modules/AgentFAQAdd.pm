@@ -81,7 +81,7 @@ sub Run {
     # Get parameters from web request.
     my %GetParam;
 
-    # Rother OSS / FAQ Improvements Package
+    # Rother OSS / FAQ Extended Navigation Package
 
     for my $ParamName (
         qw(Title CategoryID StateID LanguageID ValidID Keywords Approved Field1 Field2 Field3 Field4 Field5 Field6 Icon)
@@ -90,7 +90,7 @@ sub Run {
         $GetParam{$ParamName} = $ParamObject->GetParam( Param => $ParamName );
     }
 
-    # EO Rother OSS / FAQ Improvements Package
+    # EO Rother OSS / FAQ Extended Navigation Package
 
     my $FAQObject = $Kernel::OM->Get('Kernel::System::FAQ');
 

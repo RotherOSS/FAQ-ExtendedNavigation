@@ -14,7 +14,7 @@
 # along with this program. If not, see <https://www.gnu.org/licenses/>.
 # --
 
-package Kernel::Output::HTML::Layout::FAQImprovements;
+package Kernel::Output::HTML::Layout::FAQExtendedNavigation;
 
 use strict;
 use warnings;
@@ -40,11 +40,11 @@ our @ObjectDependencies = (
 
 =head1 NAME
 
-Kernel::Output::HTML::Layout::FAQImprovements - all FAQImprovements-related HTML functions
+Kernel::Output::HTML::Layout::FAQExtendedNavigation - all FAQExtendedNavigation-related HTML functions
 
 =head1 DESCRIPTION
 
-All FAQImprovements-related HTML functions
+All FAQExtendedNavigation-related HTML functions
 
 =head1 PUBLIC INTERFACE
 
@@ -90,14 +90,14 @@ sub FAQSideBar {
     my $IsActive = $ConfigObject->Get("FAQSideBar::$Param{Mode}::Enabled") || 'No';
 
     #Set Zoom Action
-    my $ZoomAction = ( $Param{Mode} eq 'Agent' ) ? 'AgentFAQIndex' :
-        ( $Param{Mode} eq 'Customer' ) ? 'CustomerFAQIndex' :
-        ( $Param{Mode} eq 'Public' )   ? 'PublicFAQIndex' : '';
+    my $ZoomAction = ( $Param{Mode} eq 'Agent' ) ? 'AgentFAQZoom' :
+        ( $Param{Mode} eq 'Customer' ) ? 'CustomerFAQZoom' :
+        ( $Param{Mode} eq 'Public' )   ? 'PublicFAQZoom' : '';
 
     #Set Home Action
-    $Param{HomeAction} = ( $Param{Mode} eq 'Agent' ) ? 'AgentFAQIndex' :
-        ( $Param{Mode} eq 'Customer' ) ? 'CustomerFAQIndex' :
-        ( $Param{Mode} eq 'Public' )   ? 'PublicFAQIndex' : '';
+    $Param{HomeAction} = ( $Param{Mode} eq 'Agent' ) ? 'AgentFAQZoom' :
+        ( $Param{Mode} eq 'Customer' ) ? 'CustomerFAQZoom' :
+        ( $Param{Mode} eq 'Public' )   ? 'PublicFAQZoom' : '';
 
     #Set Explorer Action
     $Param{ExplorerAction} = ( $Param{Mode} eq 'Agent' ) ? 'AgentFAQExplorer' :
@@ -127,19 +127,21 @@ sub FAQSideBar {
     my %ValidIDLookup = map { $_ => 1 } @ValidIDs;
 
     my $SidebarInit = 0;
+    $Param{IsDefaultArticle}  ||= 0;
+    $Param{HasDefaultArticle} ||= 0;
 
     if ( $IsActive eq 'Yes' ) {
-        my %Data = %{ $ConfigObject->Get('FAQSideBar::Articles') };
+        my %Data = %{ $ConfigObject->Get("$Param{Mode}FAQSideBar::Articles") };
 
         CONFIG:
         for my $Config ( keys %Data ) {
             next CONFIG if $Data{$Config}->{Language} ne $Param{Language};
 
-            my @ArticleData = @{ $Data{$Config}->{"Articles$Param{Mode}"} };
+            my @ArticleData = @{ $Data{$Config}->{"Articles"} };
             my @Groups      = map { /^(.+?)::/; $1 } @ArticleData;
 
-            if ( $Data{$Config}->{"CustomGroupOrder$Param{Mode}"} ) {    ## nofilter(TidyAll::Plugin::OTOBO::Perl::PerlCritic)
-                @Groups = split /\,/, $Data{$Config}->{"CustomGroupOrder$Param{Mode}"};
+            if ( $Data{$Config}->{"CustomGroupOrder"} ) {    ## nofilter(TidyAll::Plugin::OTOBO::Perl::PerlCritic)
+                @Groups = split /\,/, $Data{$Config}->{"CustomGroupOrder"};
                 @Groups = map {s/^\s+|\s+$//gr} @Groups;
             }
 
@@ -204,7 +206,7 @@ sub FAQSideBar {
 
                             # get interface state list
                             my $InterfaceStates = $Kernel::OM->Get('Kernel::System::FAQ')->StateTypeList(
-                                Types  => $ConfigObject->Get('FAQ::Customer::StateTypes'),
+                                Types  => $ConfigObject->Get("FAQ::$Param{Mode}::StateTypes"),
                                 UserID => $Self->{UserID},
                             );
 
@@ -257,11 +259,18 @@ sub FAQSideBar {
                         Name => 'SideBar',
                         Data => \%Param
                     );
+
+                    if ( $Param{Mode} eq 'Agent' ) {
+                        $LayoutObject->Block(
+                            Name => 'HeaderTitle',
+                            Data => {}
+                        );
+                    }
                     $SidebarInit++;
                 }
 
-                my @TopLevel = $Data{$Config}->{"CustomGroupOrder$Param{Mode}"}
-                    ? split( /,/, $Data{$Config}->{"CustomGroupOrder$Param{Mode}"} )
+                my @TopLevel = $Data{$Config}->{"CustomGroupOrder"}
+                    ? split( /,/, $Data{$Config}->{"CustomGroupOrder"} )
                     : sort keys %Nested;
 
                 GROUP:
@@ -279,21 +288,28 @@ sub FAQSideBar {
 
         }
 
-        if ( $Param{IsAllowed} && $Param{ItemID} ) {
+        if ( $Param{ItemID} ) {
             $LayoutObject->Block(
                 Name => 'FAQExplorerLink',
                 Data => \%Param
             );
         }
 
-        if ( $ZoomAction ne 'CustomerFAQIndex' && $ZoomAction ne 'PublicFAQIndex' && $ZoomAction ne 'AgentFAQIndex' ) {
-            $LayoutObject->Block(
-                Name => 'FAQBackHomeLink',
-                Data => \%Param
-            );
+        if (
+            ( $ZoomAction ne 'CustomerFAQZoom' && $ZoomAction ne 'PublicFAQZoom' && $ZoomAction ne 'AgentFAQZoom' )
+            || ( $Param{Action} eq 'CustomerFAQZoom' || $Param{Action} eq 'PublicFAQZoom' || $Param{Action} eq 'AgentFAQZoom' ) && !$Param{IsDefaultArticle}
+            )
+        {
+            if ( $Param{HasDefaultArticle} ) {
+                $LayoutObject->Block(
+                    Name => 'FAQBackHomeLink',
+                    Data => \%Param
+                );
+            }
         }
 
-        if ( $Param{Action} eq 'CustomerFAQExplorer' || $Param{Action} eq 'PublicFAQExplorer' || $Param{Action} eq 'AgentFAQExplorer' ) {
+        if ( ( $Param{Action} eq 'CustomerFAQExplorer' || $Param{Action} eq 'PublicFAQExplorer' || $Param{Action} eq 'AgentFAQExplorer' ) && $Param{HasDefaultArticle} )
+        {
             $LayoutObject->Block(
                 Name => 'FAQBackHomeBlock',
                 Data => \%Param
@@ -351,7 +367,25 @@ sub FAQTableOfContents {
     my $MaxDepth = $ConfigObject->Get('FAQTableOfContents::MaxDepth') || 3;
     my %Data     = %{ $Param{FAQData} };
 
-    my @TOCFields = grep { $Data{$_} =~ /\S/ } qw(Field1 Field2 Field3 Field4 Field5 Field6);
+    my @TOCFields       = grep { $Data{$_} =~ /\S/ } qw(Field1 Field2 Field3 Field4 Field5 Field6);
+    my $SingleFieldMode = 0;
+
+    # Identify if we are in single field mode
+    SINGLEFIELD:
+    for my $Field (@TOCFields) {
+        my $FieldConfig = $Kernel::OM->Get('Kernel::Config')->Get( 'FAQ::Item::' . $Field );
+        next SINGLEFIELD if !$FieldConfig;
+        next SINGLEFIELD if $FieldConfig->{Show} eq 'internal' && $Param{Mode} ne 'Agent';
+
+        if ( $Data{$Field} ) {
+            $SingleFieldMode++;
+        }
+    }
+
+    $LayoutObject->Block(
+        Name => 'ArticleField',
+        Data => {}
+    );
 
     FIELD:
     for my $Field (@TOCFields) {
@@ -361,25 +395,34 @@ sub FAQTableOfContents {
 
         my @SubAnchors = $Data{$Field} =~ m|<h([1-6])[^>]*>(.*?)</h[1-6]>|gi;
 
-        $LayoutObject->Block(
-            Name => 'ArticleField',
-            Data => {
-                Caption => $Kernel::OM->Get('Kernel::System::HTMLUtils')->ToAscii( String => $FieldConfig->{Caption} ),
-                Field   => $Field
-            }
-        );
+        if ( $SingleFieldMode > 1 ) {
+            $LayoutObject->Block(
+                Name => 'ArticleFieldParent',
+                Data => {
+                    Caption => $Kernel::OM->Get('Kernel::System::HTMLUtils')->ToAscii( String => $FieldConfig->{Caption} ),
+                    Field   => $Field
+                }
+            );
+        }
 
         if (@SubAnchors) {
             my $Count = 1;
-            
+
             NESTED:
             while ( my ( $Level, $Content ) = splice( @SubAnchors, 0, 2 ) ) {
                 next NESTED if $Level > $MaxDepth;
 
-                my $Padding = ( $Level - 1 ) * 15; 
+                my $Padding = 0;
+
+                if ( $SingleFieldMode == 1 && $Count == 1 ) {
+                    $Padding = 0;
+                }
+                elsif ( ( $SingleFieldMode == 1 && $Count > 1 ) || $SingleFieldMode != 1 ) {
+                    $Padding = ( $Level - 1 ) * 15;
+                }
 
                 $LayoutObject->Block(
-                    Name => 'ArticleAnchor',
+                    Name => $SingleFieldMode > 1 ? 'ArticleAnchor' : 'ArticleAnchorSingle',
                     Data => {
                         Caption => $Kernel::OM->Get('Kernel::System::HTMLUtils')->ToAscii( String => $Content ),
                         Field   => $Field,
@@ -391,7 +434,7 @@ sub FAQTableOfContents {
                 $Count++;
             }
         }
-    }    
+    }
 
     my $Output = $LayoutObject->Output(
         TemplateFile => 'FAQ/FAQTableOfContents',

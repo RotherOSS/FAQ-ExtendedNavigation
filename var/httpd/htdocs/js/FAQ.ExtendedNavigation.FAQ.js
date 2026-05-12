@@ -17,22 +17,22 @@
 "use strict";
 
 var FAQ = FAQ || {};
-FAQ.Improvements = FAQ.Improvements || {};
+FAQ.ExtendedNavigation = FAQ.ExtendedNavigation || {};
 
 /**
  * @namespace
- * @exports TargetNS as FAQ.Improvements.FAQ
+ * @exports TargetNS as FAQ.ExtendedNavigation.FAQ
  * @description
- *      This namespace contains the special module functions for FAQ Improvements package.
+ *      This namespace contains the special module functions for FAQ Extended Navigation Package.
  */
-FAQ.Improvements.FAQ = (function (TargetNS) {
+FAQ.ExtendedNavigation.FAQ = (function (TargetNS) {
 
     /**
      * @name Init
-     * @memberof FAQ.Improvements.FAQ
+     * @memberof FAQ.ExtendedNavigation.FAQ
      * @function
      * @description
-     *      This function initialize the Tags Improvements FAQ Module.
+     *      This function initialize the Tags ExtendedNavigation FAQ Module.
      */
     TargetNS.Init = function() {
 
@@ -40,6 +40,11 @@ FAQ.Improvements.FAQ = (function (TargetNS) {
         const FileInput = document.getElementById('IconUpload');
 
         if ( FileInput !== null ) {
+
+            $("#BtnUploadIcon").bind("click", function() {
+                $("#IconUpload").trigger("click");
+                $("#BtnUploadIcon").trigger("blur");
+            });
 
             FileInput.addEventListener('change', function(e) {
                 const File = e.target.files[0];
@@ -122,7 +127,7 @@ FAQ.Improvements.FAQ = (function (TargetNS) {
 
     /**
      * @name escapeString
-     * @memberof FAQ.Improvements.FAQ
+     * @memberof FAQ.ExtendedNavigation.FAQ
      * @function
      * @description
      *      This function escape string content for Jquery fields.
@@ -138,7 +143,7 @@ FAQ.Improvements.FAQ = (function (TargetNS) {
 
     /**
      * @name loadIconFile
-     * @memberof FAQ.Improvements.FAQ
+     * @memberof FAQ.ExtendedNavigation.FAQ
      * @function
      * @description
      *      This function load icon file in container.
@@ -153,7 +158,7 @@ FAQ.Improvements.FAQ = (function (TargetNS) {
 
     /**
      * @name getFAQArticles
-     * @memberof FAQ.Improvements.FAQ
+     * @memberof FAQ.ExtendedNavigation.FAQ
      * @function
      * @description
      *      This function return FAQ articles allowed to be metioned for the current user.
@@ -198,7 +203,7 @@ FAQ.Improvements.FAQ = (function (TargetNS) {
 
     /**
      * @name anchorFrameScroll
-     * @memberof FAQ.Improvements.FAQ
+     * @memberof FAQ.ExtendedNavigation.FAQ
      * @function
      * @description
      *      This function do scroll to Iframe anchor.
@@ -233,4 +238,4 @@ FAQ.Improvements.FAQ = (function (TargetNS) {
     Core.Init.RegisterNamespace(TargetNS, 'APP_MODULE');
 
     return TargetNS;
-}(FAQ.Improvements.FAQ || {}));
+}(FAQ.ExtendedNavigation.FAQ || {}));

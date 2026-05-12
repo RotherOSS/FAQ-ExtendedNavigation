@@ -245,7 +245,7 @@ sub FAQGet {
     # otherwise get %Data from the DB
     else {
 
-        # Rother OSS / FAQ Improvements Package
+        # Rother OSS / FAQ Extended Navigation Package
         return if !$DBObject->Prepare(
             SQL => '
                 SELECT i.f_name, i.f_language_id, i.f_subject, i.created, i.created_by, i.changed,
@@ -261,7 +261,7 @@ sub FAQGet {
             Limit => 1,
         );
 
-        # EO FAQ Improvements Package
+        # EO FAQ Extended Navigation Package
 
         while ( my @Row = $DBObject->FetchrowArray() ) {
 
@@ -293,10 +293,10 @@ sub FAQGet {
                 StateTypeID   => $Row[17],
                 StateTypeName => $Row[18],
 
-                # Rother OSS / FAQ Improvements Package
+                # Rother OSS / FAQ Extended Navigation Package
                 Icon => $Row[19],
 
-                #EO Rother OSS / FAQ Improvements Package
+                #EO Rother OSS / FAQ Extended Navigation Package
             );
         }
         if ( !%Data ) {
@@ -605,7 +605,7 @@ sub FAQAdd {
         $Param{Approved} = 1;
     }
 
-    # Rother OSS / FAQ Improvements Package
+    # Rother OSS / FAQ Extended Navigation Package
     return if !$Kernel::OM->Get('Kernel::System::DB')->Do(
         SQL => '
             INSERT INTO faq_item
@@ -628,7 +628,7 @@ sub FAQAdd {
         ],
     );
 
-    # EO Rother OSS / FAQ Improvements Package
+    # EO Rother OSS / FAQ Extended Navigation Package
 
     # build SQL to get the id of the newly inserted FAQ article
     my $SQL = '
@@ -871,7 +871,7 @@ sub FAQUpdate {
 
     # eo FAQ Services
 
-    # Rother OSS / FAQ Improvements Package
+    # Rother OSS / FAQ Extended Navigation Package
 
     return if !$Kernel::OM->Get('Kernel::System::DB')->Do(
         SQL => '
@@ -895,7 +895,7 @@ sub FAQUpdate {
         ],
     );
 
-    # EO Rother OSS / FAQ Improvements Package
+    # EO Rother OSS / FAQ Extended Navigation Package
 
     # delete cache
     $Self->_DeleteFromFAQCache(%Param);
@@ -3097,6 +3097,46 @@ sub _DeleteFromFAQCache {
 
     return 1;
 }
+
+# Rother OSS / FAQ-ExtendedNavigation
+
+=head2 LinkQuoteMention()
+
+creates an approval ticket
+
+    my $String = $FAQObject->LinkQuoteMention(
+        String     => 'Text',
+    );
+
+Returns:
+
+    $String = '<Link quote mention>';
+
+=cut
+
+sub LinkQuoteMention {
+    my ( $Self, %Param ) = @_;
+
+    my $String = $Param{String} // '';
+
+    $String =~ s{
+        (<a\s{1,10})([^>]*class=\"mention\"[^>]*)>
+    }
+    {
+        my $Start = $1;
+        my $Value = $2;
+        if ( $Value !~ /href=/i || $Value =~ /target=/i ) {
+            "$Start$Value>";
+        }
+        else {
+            "$Start$Value target=\"_parent\">";
+        }
+    }egxsi;
+
+    return $String;
+}
+
+# EO FAQ-ExtendedNavigation
 
 1;
 

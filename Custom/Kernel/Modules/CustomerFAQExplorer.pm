@@ -20,10 +20,10 @@ use strict;
 use warnings;
 use Kernel::Language qw(Translatable);
 
-# Rother OSS / FAQ Improvements Package
+# Rother OSS / FAQ Extended Navigation Package
 use MIME::Base64 qw(decode_base64 encode_base64);
 
-# EO Rother OSS / FAQ Improvements Package
+# EO Rother OSS / FAQ Extended Navigation Package
 
 our $ObjectManagerDisabled = 1;
 
@@ -45,7 +45,8 @@ sub Run {
     # get config of frontend module
     my $Config = $ConfigObject->Get("FAQ::Frontend::$Self->{Action}");
 
-    my $ParamObject = $Kernel::OM->Get('Kernel::System::Web::Request');
+    my $ParamObject  = $Kernel::OM->Get('Kernel::System::Web::Request');
+    my $LayoutObject = $Kernel::OM->Get('Kernel::Output::HTML::Layout');
 
     # get config data
     my $StartHit        = int( $ParamObject->GetParam( Param => 'StartHit' ) || 1 );
@@ -67,6 +68,23 @@ sub Run {
         $CategoryID = 0;
     }
 
+    # Rother OSS / FAQ Extended Navigation Package
+    # Check if there is a default article defined for the current language
+    my $HasDefaultArticle = 0;
+    my %Data              = %{ $Kernel::OM->Get('Kernel::Config')->Get('CustomerFAQSideBar::Articles') };
+
+    CONFIG:
+    for my $Config ( keys %Data ) {
+        next CONFIG if $Data{$Config}->{Language} ne $LayoutObject->{UserLanguage};
+
+        if ( $Data{$Config}->{DefaultItemID} ) {
+            $HasDefaultArticle = 1;
+            last CONFIG;
+        }
+    }
+
+    # EO Rother OSS / FAQ Extended Navigation Package
+
     # get category by name
     my $Category = $ParamObject->GetParam( Param => 'Category' ) || '';
 
@@ -83,8 +101,6 @@ sub Run {
 
         $CategoryID = $ReverseCategoryTree{$Category} || 0;
     }
-
-    my $LayoutObject = $Kernel::OM->Get('Kernel::Output::HTML::Layout');
 
     # try to get the category data
     my %CategoryData;
@@ -335,10 +351,10 @@ sub Run {
                     UserID     => $Self->{UserID},
                 );
 
-                # Rother OSS / FAQ Improvements Package
+                # Rother OSS / FAQ Extended Navigation Package
                 $FAQData{Icon} = $FAQData{Icon} ? decode_base64( $FAQData{Icon} ) : '';
 
-                # EO Rother OSS / FAQ Improvements Package
+                # EO Rother OSS / FAQ Extended Navigation Package
 
                 $FAQData{CleanTitle} = $FAQObject->FAQArticleTitleClean(
                     Title => $FAQData{Title},
@@ -457,20 +473,20 @@ sub Run {
         return $LayoutObject->ErrorScreen();
     }
 
-    #Rother OSS / FAQ Improvements package
-    my %Data = %{ $ConfigObject->Get('FAQSideBar::Articles') };
-
+    #Rother OSS / FAQ Extended Navigation Package
     #Get Sidebar info
+
     $Param{SideBar} = $LayoutObject->FAQSideBar(
-        Mode      => 'Customer',
-        Language  => $Self->{UserLanguage},
-        UserID    => $Self->{UserID},
-        IsAllowed => 1,
-        ItemID    => 0,
-        Action    => $Self->{Action}
+        Mode              => 'Customer',
+        Language          => $Self->{UserLanguage} || 'en',
+        UserID            => $Self->{UserID},
+        IsAllowed         => 1,
+        ItemID            => 0,
+        Action            => $Self->{Action},
+        HasDefaultArticle => $HasDefaultArticle,
     );
 
-    # EO FAQ Improvements package
+    # EO FAQ Extended Navigation Package
 
     $Output .= $LayoutObject->Output(
         TemplateFile => 'CustomerFAQExplorer',

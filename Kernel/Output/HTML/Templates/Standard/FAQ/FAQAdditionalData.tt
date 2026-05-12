@@ -80,58 +80,63 @@
         [% IF Data.VoteMessage != "" %]
             <li class="Center"><h3>[% Translate(Data.VoteMessage) | html %]</h3></li>
         [% END %]
+            </ul>
+        </div>
+        </div>
 
 [% RenderBlockStart("FAQVoting") %]
-        <li class="oooFAQHeader">[% Translate("Rating") | html %]:</li>
+    <div class="Rating">
+        <div class="WidgetSimple">
+            <div class="oooFAQRating">
+                <ul class="oooFAQSidebarList">
 
-        <li>
-        <form action="[% Env("CGIHandle") %]" method="post" enctype="multipart/form-data" name="FAQVote" class="PreventMultipleSubmits">
-            <div class="VotingContainer">
-                <div class="VotingBox Visible">
-                    <div id="FAQVoting" class="FAQVoting">
-                        <span class="VotingQuestion">[% Translate("How helpful was this article? Please give us your rating and help to improve the FAQ Database. Thank You!") | html %]</span>
+                    <li class="oooFAQHeader">[% Translate("Rating") | html %]:</li>
 
-                       <div class="SpacingTop"></div>
-                       <div id="Messenger" class="Center">
-                            <div class="SpacingTop"></div>
-                            <div>
-                                <span class="RateLabelBefore ooog">[% Translate("not helpful") | html %]</span>
+                    <li>
+                    <form action="[% Env("CGIHandle") %]" method="post" enctype="multipart/form-data" name="FAQVote" class="PreventMultipleSubmits">
+                        <div class="VotingContainer">
+                            <div class="VotingBox Visible">
+                                <div id="FAQVoting" class="FAQVoting">
+                                    <span class="VotingQuestion">[% Translate("How helpful was this article? Please give us your rating and help to improve the FAQ Database. Thank You!") | html %]</span>
+
+                                <div class="SpacingTop"></div>
+                                <div id="Messenger" class="Center">
+                                        <div class="SpacingTop"></div>
+                                        <div>
+                                            <span class="RateLabelBefore ooog">[% Translate("not helpful") | html %]</span>
+                                        </div>
+
+            [% RenderBlockStart("FAQVotingRateRow") %]
+                                        <div id="RateButton[% Data.Value %]">
+                                            <span class="RateButton RateUnChecked">
+                                                <i class="fa fa-star-o"></i>
+                                                <i class="fa fa-star"></i>
+                                                [% Data.Title | html %]
+                                            </span>
+                                        </div>
+            [% RenderBlockEnd("FAQVotingRateRow") %]
+
+                                        <div>
+                                            <span class="RateLabelAfter ooog">[% Translate("very helpful") | html %]</span>
+                                        </div>
+                                        <input type="hidden" name="Action" value="[% Data.Action | html %]"/>
+                                        <input type="hidden" name="Subaction" value="Vote"/>
+                                        <input type="hidden" name="CategoryID" value="[% Data.CategoryID | html %]"/>
+                                        <input type="hidden" name="ItemID" value="[% Data.ItemID | html %]"/>
+                                    </div>
+
+                                    <div class="ActionRow VotingActionRow Center">
+                                            <button type="submit"  id="RateSubmitButton" class="Hidden oooXS" value="[% Translate("Submit") | html %]">[% Translate("Submit") | html %]</button>
+                                            <input type="hidden" name="Rate" value="[% Data.SelectedRate | html %]"id="RateValue"/>
+                                    </div>
+                                </div>
                             </div>
-
-[% RenderBlockStart("FAQVotingRateRow") %]
-                            <div id="RateButton[% Data.Value %]">
-                                <span class="RateButton RateUnChecked">
-                                    <i class="fa fa-star-o"></i>
-                                    <i class="fa fa-star"></i>
-                                    [% Data.Title | html %]
-                                </span>
-                            </div>
-[% RenderBlockEnd("FAQVotingRateRow") %]
-
-                            <div>
-                                <span class="RateLabelAfter ooog">[% Translate("very helpful") | html %]</span>
-                            </div>
-                            <input type="hidden" name="Action" value="[% Data.Action | html %]"/>
-                            <input type="hidden" name="Subaction" value="Vote"/>
-                            <input type="hidden" name="CategoryID" value="[% Data.CategoryID | html %]"/>
-                            <input type="hidden" name="ItemID" value="[% Data.ItemID | html %]"/>
                         </div>
-
-                         <div class="ActionRow VotingActionRow Center">
-                                <button type="submit"  id="RateSubmitButton" class="Hidden oooXS" value="[% Translate("Submit") | html %]">[% Translate("Submit") | html %]</button>
-                                <input type="hidden" name="Rate" value="[% Data.SelectedRate | html %]"id="RateValue"/>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </form>
-        </li>
-[% RenderBlockEnd("FAQVoting") %]
-
+                    </form>
+                    </li>
                 </ul>
-            </div> <!-- .oooFAQAdditionalData -->
-
-
-
+            </div>
         </div>
     </div>
+
+[% RenderBlockEnd("FAQVoting") %]

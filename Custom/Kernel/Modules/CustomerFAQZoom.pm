@@ -22,10 +22,10 @@ use warnings;
 use Kernel::Language              qw(Translatable);
 use Kernel::System::VariableCheck qw(:all);
 
-# Rother OSS / FAQ Improvements Package
+# Rother OSS / FAQ Extended Navigation Package
 use MIME::Base64 qw(decode_base64 encode_base64);
 
-# EO Rother OSS / FAQ Improvements Package
+# EO Rother OSS / FAQ Extended Navigation Package
 
 our $ObjectManagerDisabled = 1;
 
@@ -64,6 +64,29 @@ sub Run {
 
     my $LayoutObject = $Kernel::OM->Get('Kernel::Output::HTML::Layout');
 
+    # Rother OSS / FAQ Extended Navigation Package
+    #Get default ItemID if it's defined
+    my $IsDefaultArticle  = 0;
+    my $HasDefaultArticle = 0;
+    my %Data              = %{ $Kernel::OM->Get('Kernel::Config')->Get('CustomerFAQSideBar::Articles') };
+    $Self->{UserLanguage} ||= 'en';
+
+    CONFIG:
+    for my $Config ( keys %Data ) {
+        next CONFIG if $Data{$Config}->{Language} ne $LayoutObject->{UserLanguage};
+
+        if ( $Data{$Config}->{DefaultItemID} ) {
+            if ( !$GetParam{ItemID} ) {
+                $GetParam{ItemID} = $Data{$Config}->{DefaultItemID};
+                $IsDefaultArticle = 1;
+            }
+            $HasDefaultArticle = 1;
+            last CONFIG;
+        }
+    }
+
+    # EO Rother OSS / FAQ Extended Navigation Package
+
     # save, if browser link message was closed
     if ( $Self->{Subaction} eq 'BrowserLinkMessage' ) {
 
@@ -81,11 +104,33 @@ sub Run {
         );
     }
 
+    # Rother OSS / FAQ Extended Navigation Package
+    # Show message and link to FAQ Explorer if no default item is set and no ItemID provided
+    my $Output;
+
     if ( !$GetParam{ItemID} ) {
-        return $LayoutObject->CustomerFatalError(
-            Message => Translatable('Need ItemID!'),
+        $Output = $LayoutObject->CustomerHeader();
+        $Output .= $LayoutObject->CustomerNavigationBar();
+
+        $Param{CssClassNoArticle} = 'Hidden';
+
+        $LayoutObject->Block(
+            Name => 'NoDefaultItem',
+            Data => {%Param},
         );
+
+        $Output .= $LayoutObject->Output(
+            TemplateFile => 'CustomerFAQZoom',
+            Data         => {
+                %GetParam,
+                %Param,
+            },
+        );
+
+        return $Output . $LayoutObject->CustomerFooter();
     }
+
+    # EO Rother OSS / FAQ Extended Navigation Package
 
     my $FAQObject = $Kernel::OM->Get('Kernel::System::FAQ');
 
@@ -99,10 +144,10 @@ sub Run {
         return $LayoutObject->CustomerFatalError();
     }
 
-    # Rother OSS / FAQ Improvements Package
+    # Rother OSS / FAQ Extended Navigation Package
     $FAQData{Icon} = $FAQData{Icon} ? decode_base64( $FAQData{Icon} ) : '';
 
-    # EO Rother OSS / FAQ Improvements Package
+    # EO Rother OSS / FAQ Extended Navigation Package
 
     # get the valid ids
     my @ValidIDs      = $Kernel::OM->Get('Kernel::System::Valid')->ValidIDsGet();
@@ -203,6 +248,14 @@ sub Run {
             String => $FieldContent,
         );
 
+        # Rother OSS / FAQ Extended Navigation Package
+        # set target="_parent" for links to other articles via mention
+        $FieldContent = $FAQObject->LinkQuoteMention(
+            String => $FieldContent,
+        );
+
+        # EO Rother OSS / FAQ Extended Navigation Package
+
         # Set target="_blank" attribute to all HTML <a> tags the LinkQuote function needs to be
         #   called again
         $FieldContent = $HTMLUtilsObject->LinkQuote(
@@ -218,11 +271,11 @@ sub Run {
             CustomerUIStyles  => 1,
         );
 
-        # Rother OSS / FAQ Improvements Package
+        # Rother OSS / FAQ Extended Navigation Package
         my $Count = 0;
         $FieldContent =~ s{(<h([1-6])>.*?</h\2>)}{ $Count++; "<a id=\"$Field-$Count\">&nbsp;</a>$1"}ge;
 
-        # EO FAQ Improvements Package
+        # EO FAQ Extended Navigation Package
 
         # return complete HTML as an attachment
         return $LayoutObject->Attachment(
@@ -263,7 +316,7 @@ sub Run {
         }
     }
 
-    my $Output = $LayoutObject->CustomerHeader(
+    $Output .= $LayoutObject->CustomerHeader(
         Value => $FAQData{Title},
     );
 
@@ -301,10 +354,10 @@ sub Run {
     # check if user already voted this FAQ item
     my $AlreadyVoted;
 
-    # Rother OSS / FAQ Improvements Package
+    # Rother OSS / FAQ Extended Navigation Package
     my $VoteMessage;
 
-    # EO Rother OSS / FAQ Improvements Package
+    # EO Rother OSS / FAQ Extended Navigation Package
 
     if ($VoteData) {
 
@@ -335,19 +388,19 @@ sub Run {
         # customer can't use this sub-action if is not enabled
         if ( !$Voting ) {
 
-            # Rother OSS / FAQ Improvements Package
+            # Rother OSS / FAQ Extended Navigation Package
             $VoteMessage = Translatable('The voting mechanism is not enabled!');
 
-            # EO Rother OSS / FAQ Improvements Package
+            # EO Rother OSS / FAQ Extended Navigation Package
         }
 
         # user can vote only once per FAQ revision
         if ($AlreadyVoted) {
 
-            # Rother OSS / FAQ Improvements Package
+            # Rother OSS / FAQ Extended Navigation Package
             $VoteMessage = Translatable('You have already voted!');
 
-            # EO Rother OSS / FAQ Improvements Package
+            # EO Rother OSS / FAQ Extended Navigation Package
         }
 
         # set the vote if any
@@ -360,10 +413,10 @@ sub Run {
             # send error if rate is not defined in config
             if ( !$VotingRates->{$Rate} ) {
 
-                # Rother OSS / FAQ Improvements Package
+                # Rother OSS / FAQ Extended Navigation Package
                 $VoteMessage = Translatable('The vote rate is not defined!');
 
-                # EO Rother OSS / FAQ Improvements Package
+                # EO Rother OSS / FAQ Extended Navigation Package
             }
 
             # otherwise add the vote
@@ -387,19 +440,19 @@ sub Run {
                     UserID     => $Self->{UserID},
                 );
 
-                # Rother OSS / FAQ Improvements Package
+                # Rother OSS / FAQ Extended Navigation Package
                 $FAQData{Icon} = $FAQData{Icon} ? decode_base64( $FAQData{Icon} ) : '';
 
-                # EO Rother OSS / FAQ Improvements Package
+                # EO Rother OSS / FAQ Extended Navigation Package
 
                 if ( !%FAQData ) {
                     return $LayoutObject->CustomerFatalError();
                 }
 
-                # Rother OSS / FAQ Improvements Package
+                # Rother OSS / FAQ Extended Navigation Package
                 $VoteMessage = Translatable('Thanks for your vote!');
 
-                # EO Rother OSS / FAQ Improvements Package
+                # EO Rother OSS / FAQ Extended Navigation Package
             }
         }
 
@@ -496,11 +549,16 @@ sub Run {
         InterfaceStates => $InterfaceStates,
         FAQData         => {%FAQData},
         UserID          => $Self->{UserID},
+
+        # Rother OSS / FAQ Extended Navigation Package
+        Zoom => 1
+
+        # EO Rother OSS / FAQ Extended Navigation Package
     );
 
     # log access to this FAQ item
     $FAQObject->FAQLogAdd(
-        ItemID    => $ParamObject->GetParam( Param => 'ItemID' ),
+        ItemID    => $GetParam{ItemID},
         Interface => $Interface->{Name},
         UserID    => $Self->{UserID},
     );
@@ -508,15 +566,17 @@ sub Run {
     # get config of frontend module
     my $Config = $ConfigObject->Get("FAQ::Frontend::$Self->{Action}");
 
-    #Rother OSS / FAQ Improvements package
+    #Rother OSS / FAQ Extended Navigation Package
     #Get Sidebar info
     $Param{SideBar} = $LayoutObject->FAQSideBar(
-        Mode      => 'Customer',
-        Language  => $Self->{UserLanguage},
-        UserID    => $Self->{UserID},
-        IsAllowed => 1,
-        ItemID    => $ParamObject->GetParam( Param => 'ItemID' ),
-        Action    => $Self->{Action}
+        Mode              => 'Customer',
+        Language          => $Self->{UserLanguage},
+        UserID            => $Self->{UserID},
+        IsAllowed         => 1,
+        ItemID            => $GetParam{ItemID},
+        Action            => $Self->{Action},
+        IsDefaultArticle  => $IsDefaultArticle,
+        HasDefaultArticle => $HasDefaultArticle
     );
 
     #Render Table of Contents
@@ -535,7 +595,7 @@ sub Run {
         Config      => $Config
     );
 
-    # EO FAQ Improvements package
+    # EO FAQ Extended Navigation Package
 
     $Output .= $LayoutObject->Output(
         TemplateFile => 'CustomerFAQZoom',

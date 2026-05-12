@@ -1,6 +1,6 @@
 /* OTOBO is a web-based ticketing system for service organisations.
 
-Copyright (C) 2019-2025 Rother OSS GmbH, https://otobo.io/
+Copyright (C) 2019-2026 Rother OSS GmbH, https://otobo.io/
 
 This program is free software: you can redistribute it and/or modify it under
 the terms of the GNU General Public License as published by the Free Software
@@ -70,7 +70,7 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
     }
 
     #oooSearchBox i.ooofo-search {
-        top: 88px !important;
+        top: 92px !important;
         left: 146px !important;
     }
 
@@ -96,6 +96,19 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 
     .FAQElement>#oooHeader {
         gap: 10px;
+    }
+
+    .WidgetArea-Top {
+        display: none;
+    }
+
+    .FAQElement>#oooHeader {
+        gap: 10px;
+    } 
+
+    #oooMainBox {
+        padding-left: 2% !important;
+        width: 95% !important;        
     }
 
 }
@@ -135,7 +148,7 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
     }    
 
     #oooSearchBox i.ooofo-search {
-        top: 83px;
+        top: 87px;
         left: 216px;
     }
 
@@ -187,6 +200,11 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
     .WidgetArea-Middle {
         width: 100%;
     }
+
+    #oooMainBox {
+        padding-left: 2% !important;
+        width: 95% !important;
+    }
 }
 
 @media only screen and (min-width: 768px ) and (max-width: 992px) {
@@ -225,8 +243,19 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
     }    
 
     #oooSearchBox i.ooofo-search {
-        top: 83px !important;
-        left: 216px !important;
+        position: absolute;
+        top: 84px;
+        left: 280px;
+    }
+
+    #oooSearch.oooFull, #oooSearch:focus {
+        padding-left: 40px;
+        width: 50vw !important;
+        left: 0px;
+    }
+
+    #oooSearchLabel {
+        padding-left: 40px;
     }
 
     .SidebarArea, .ArticleArea, .WidgetColumn {
@@ -254,10 +283,6 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
         display: none;
     }
 
-    .ArticleArea, .WidgetColumn {
-        width: 100%;
-    }
-
     .WidgetColumn {
         display: flex;
         flex-direction: column;
@@ -280,6 +305,11 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 
     #oooContent {
         padding-left: 23px !important;
+    }  
+    
+    #oooMainBox {
+        padding-left: 8% !important;
+        width: 90% !important;
     }    
 
 }
@@ -287,6 +317,10 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 @media only screen and (min-width: 993px ) {
     .FAQContent {
         padding-left: 5% !important;
+    }
+
+    .SidebarArea {
+        width: 21%;
     }
 
 }
@@ -350,6 +384,10 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
     .Header {
         max-width: 1016px;
     }
+
+    .FAQElement>#oooHeader {
+        column-gap: 20px;
+    }     
 
 /* SubCategories */
     .oooSubBox {
@@ -568,40 +606,4 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
     #FAQVoting .SpacingTop {
         height: 12px;
     }
-
-/*    .SpacingTop {
-        margin-top: 13px;
-    }
-    
-    .SpacingTopLarge {
-        margin-top: 26px;
-    }
-    
-    .RTL .VotingContainer {
-        text-align: center;
-    }
-    
-    .VotingQuestion {
-        margin-left: 10px;
-        margin-right:10px;
-        color: #000000;
-    }
-    
-    .VotingBox {
-        min-width: 20pc;
-        margin: 0 30px 21px;
-        color: #6A6A6A;
-        background: #F9F9F9;
-        border-left: 1px solid #D6D6D6;
-        border-right: 1px solid #D6D6D6;
-        display: inline-block;
-        position: relative;
-        border-bottom: 1px solid #D6D6D6;
-    }
-    
-    .VotingBox > #Messenger {
-        height: auto;
-        border-top: 1px solid #EEE;
-    }
-*/    
 }

@@ -1,0 +1,338 @@
+# --
+# OTOBO is a web-based ticketing system for service organisations.
+# --
+# Copyright (C) 2001-2019 OTRS AG, https://otrs.com/
+# Copyright (C) 2019-2026 Rother OSS GmbH, https://otobo.io/
+# --
+# This program is free software: you can redistribute it and/or modify it under
+# the terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+# This program is distributed in the hope that it will be useful, but WITHOUT
+# ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+# FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+# You should have received a copy of the GNU General Public License
+# along with this program. If not, see <https://www.gnu.org/licenses/>.
+# --
+
+[% RenderBlockStart("Overview") %]
+<div class="MainBox ARIARoleMain LayoutFixedSidebar SidebarFirst">
+    <h1 class="InvisibleText">[% Translate("FAQ Sidebar Settings") | html %]</h1>
+
+    [% BreadcrumbPath = [
+            {
+                Name => Translate('FAQ Sidebar Settings'),
+                Link => Env("Action"),
+            },
+        ]
+    %]
+
+    [% IF Data.Interface != "" %]
+        [% USE EditTitle = String(Translate("Settings for")) %]
+        [% BreadcrumbPath.push({ Name => EditTitle.append( ' ', Translate("Interface"), ' :', Data.Interface, ', ' , Translate("Language"), ': ',  Data.SidebarLanguage) }) %]
+    [% END %]
+
+    [% INCLUDE "Breadcrumb.tt" Path = BreadcrumbPath Type = "Agent" %]
+
+    <div class="SidebarColumn">
+[% RenderBlockStart("ActionList") %]
+        <div class="WidgetSimple">
+            <div class="Header">
+                <h2>[% Translate("Actions") | html %]</h2>
+            </div>
+            <div class="Content">
+                <ul class="ActionList">
+[% RenderBlockStart("ActionLanguage") %]
+                    <li>
+                        <form action="[% Env("CGIHandle") %]" method="post" id="LangSelection" class="Validate">
+                            <input type="hidden" name="Action" value="[% Env("Action") %]"/>
+                            <input type="hidden" name="Subaction" value="Change"/>
+                            <div>
+                                <label for="Interface">[% Translate("Interface") | html %]:</label>
+                            </div>
+                            <div class="DropdownSpacing">
+                                [% Data.InterfacesStrg %]
+                               <div id="InterfaceError" class="TooltipErrorMessage">
+                                    <p>[% Translate("This field is required.") | html %]</p>
+                                </div>
+                            </div>
+                            <div class="Clear"></div>
+
+                            <div>
+                                <label for="UserLanguages">[% Translate("Language") | html %]:</label>
+                            </div>
+                            <div class="DropdownSpacing">
+                                [% Data.SidebarLanguagesStrg %]
+                                <div id="SidebarLanguageError" class="TooltipErrorMessage">
+                                    <p>[% Translate("This field is required.") | html %]</p>
+                                </div>
+                            </div>
+                            <div class="Clear"></div>
+
+                            <div class="Field SpacingTop">
+                                <a class="CallForAction Fullsize Center BtnEdit">
+                                    <span><i class="fa fa-cog"></i>[% Translate("Load Settings") | html %]</span>
+                                </a>
+                            </div>
+                            <div class="Clear"></div>
+
+                        </form>
+                    </li>
+[% RenderBlockEnd("ActionLanguage") %]
+
+[% RenderBlockStart("ActionOverview") %]
+                    <li>
+                        <a href="[% Env("Baselink") %]Action=[% Env("Action") %]" class="CallForAction Fullsize Center"><span><i class="fa fa-caret-left"></i>[% Translate("Go to overview") | html %]</span></a>
+                    </li>
+[% RenderBlockEnd("ActionOverview") %]
+
+                </ul>
+            </div>
+        </div>
+[% RenderBlockEnd("ActionList") %]
+
+[% RenderBlockStart("Filter") %]
+        <div class="WidgetSimple">
+            <div class="Header">
+                <h2><label for="Filter">[% Translate("Filter for Settings") | html %]</label></h2>
+            </div>
+            <div class="Content">
+                <input type="text" id="Filter" class="FilterBox" placeholder="[% Translate("Just start typing to filter...") | html %]" name="Filter" value="" title="[% Translate("Filter for Settings") | html %]" />
+            </div>
+        </div>
+[% RenderBlockEnd("Filter") %]
+
+[% RenderBlockStart("HintOverview") %]
+        <div class="WidgetSimple">
+            <div class="Header">
+                <h2>[% Translate("Hint") | html %]</h2>
+            </div>
+            <div class="Content">
+
+                <p class="FieldExplanation">
+                    [% Translate("Launch the Add/Edit Sidebar Settings screen by selecting:") | html %]<br>
+                </p>
+                <p class="FieldExplanation">
+                    <ul class="FieldExplanation SideBarExplanation">
+                    <li><b>[% Translate("Interface") | html %]:</b> [% Translate("OTOBO interface where the sidebar will be displayed.") | html %]</li>
+                    <li><b>[% Translate("Language") | html %]:</b> [% Translate("User's language in the OTOBO interface.") | html %]</li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+[% RenderBlockEnd("HintOverview") %]
+
+[% RenderBlockStart("Hint") %]
+        <div class="WidgetSimple">
+            <div class="Header">
+                <h2>[% Translate("Hint") | html %]</h2>
+            </div>
+            <div class="Content">
+
+                <p class="FieldExplanation">
+                    [% Translate("Configure the sidebar parameters according to the OTOBO language and interface:") | html %]<br>
+                </p>
+                <p class="FieldExplanation">
+                    <ul class="FieldExplanation SideBarExplanation">
+                    <li><b>[% Translate("Interface") | html %]:</b> [% Translate("OTOBO interface where the sidebar will be displayed.") | html %]</li>
+                    <li><b>[% Translate("Language") | html %]:</b> [% Translate("User's language in the OTOBO interface.") | html %]</li>
+                    <li><b>[% Translate("Default FAQ Item") | html %]:</b> [% Translate("Select the default article that will be displayed in the zoom view when the FAQ loads.") | html %]</li>
+                    <li><b>[% Translate("Custom Group Order") | html %]:</b> [% Translate("Define the order in which the quick link groups in the FAQ will be displayed.") | html %]</li>
+                    <li><b>[% Translate("Quickstart Links") | html %]:</b> [% Translate("Definition of the links to the FAQ articles. They must be configured as follows:") | html %]
+                        <ul>
+                            <li>[% Translate("In the text field: Name of the group to consolidate the links. Up to two levels of depth can be defined. Use the syntax \"Group::Subgroup\" when defining subgroups.") | html %]</li>
+                            <li>[% Translate("FAQ Article: Select the FAQ article from the list that will be displayed in the sidebar.") | html %]</i></b></li>
+                        </ul>
+                    </li>
+                    </ul>
+                </p>
+                <p class="FieldExplanation">
+                    <br><b>[% Translate("Note") | html %]:</b> [% Translate("The \"Reset settings\" button only applies to the settings currently being edited.") | html %]
+                </p>
+            </div>
+        </div>
+[% RenderBlockEnd("Hint") %]
+
+</div>
+
+    <div class="ContentColumn">
+        <div class="WidgetSimple">
+
+[% RenderBlockStart("OverviewResult") %]
+            <div class="Header">
+                <h2>[% Translate("List") | html %]</h2>
+            </div>
+            <div class="Content">
+
+                <table class="DataTable" id="Settings">
+                    <thead>
+                        <tr>
+                            <th>[% Translate("Interface") | html %]</th>
+                            <th>[% Translate("Language") | html %]</th>
+                            <th>[% Translate("Default FAQ Item") | html %]</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+[% RenderBlockStart("NoDataFoundMsg") %]
+                        <tr>
+                            <td colspan="5">
+                                [% Translate("No data found.") | html %]
+                            </td>
+                        </tr>
+[% RenderBlockEnd("NoDataFoundMsg") %]
+[% RenderBlockStart("OverviewResultRow") %]
+                        <tr>
+                            <td title="[% Translate(Data.Interface) | html %]">[% Translate(Data.Interface) | html %]</td>
+                            <td title="[% Translate(Data.Language) | html %]"><a class="AsBlock" href="[% Env("Baselink") %]Action=[% Env("Action") %];Subaction=Change;Interface=[% Data.Interface | uri %];SidebarLanguage=[% Data.Language | uri %]">[% Translate(Data.LanguageDescription) | html %]</a></td>
+                            <td title="[% Data.FAQTitle | html %]"><a class="AsBlock" target="_blank" href="[% Env("Baselink") %]Action=AgentFAQZoom;ItemID=[% Data.DefaultItemID | uri %]">[% Data.FAQTitle | html %]</a></td>
+                        </tr>
+[% RenderBlockEnd("OverviewResultRow") %]
+                    </tbody>
+                </table>
+            </div>
+[% RenderBlockEnd("OverviewResult") %]
+
+[% RenderBlockStart("OverviewUpdate") %]
+            <div class="Header">
+[% RenderBlockStart("Header") %]
+
+            [% IF Data.Action == "Edit" %]
+                <h2>[% Translate("Edit") | html %]</h2>
+            [% ELSE %]
+                <h2>[% Translate("Add") | html %]</h2>
+            [% END %]
+[% RenderBlockEnd("Header") %]
+            </div>
+            <div class="Content" id="SidebarSettings">
+                <form action="[% Env("CGIHandle") %]" method="post" class="Validate" id="SidebarSettingsForm">
+                    <input type="hidden" name="Action" value="[% Env("Action") %]"/>
+                    <input type="hidden" name="Subaction" id="Subaction" value="ChangeAction"/>
+                    <input type="hidden" name="Interface" value="[% Data.Interface | uri %]"/>
+                    <input type="hidden" name="ConfigID"  value="[% Data.ConfigID | uri %]"/>
+                    <input type="hidden" name="ArticleCount" id="ArticleCount" value="[% Data.ArticleCount | uri %]"/>
+                    <input type="hidden" name="CustomGroupOrder" id="CustomGroupOrder" value="[% Data.CustomGroupOrder | html %]"/>
+
+                    <fieldset class="TableLike">
+                        <label class="Mandatory" for="Interface"><span class="Marker">*</span> [% Translate("Interface") | html %]:</label>
+                        <div class="Field">
+                            <input type="text" name="Interface" id="Interface" value="[% Data.Interface | html %]" class="W50pc Validate_Required" maxlength="50" readonly />
+                            <div id="InterfaceError" class="TooltipErrorMessage">
+                                <p>[% Translate("This field is required.") | html %]</p>
+                            </div>
+                        </div>
+                        <div class="Clear"></div>
+
+                        <label class="Mandatory" for="Language"><span class="Marker">*</span> [% Translate("Language") | html %]:</label>
+                        <div class="Field">
+                            <input type="text" name="Language" id="Language" value="[% Data.Language | html %]" class="W50pc Validate_Required" maxlength="50" readonly />
+                            <div id="LanguageError" class="TooltipErrorMessage">
+                                <p>[% Translate("This field is required.") | html %]</p>
+                            </div>
+                        </div>
+                        <div class="Clear"></div>
+
+                        <label class="Mandatory" for="DefaultItemID"><span class="Marker">*</span> [% Translate("Default FAQ Item") | html %]:</label>
+                        <div class="Field">
+                            [% Data.DefaultItemIDStrg %]
+                            <div id="DefaultItemIDError" class="TooltipErrorMessage">
+                                <p>[% Translate("This field is required.") | html %]</p>
+                            </div>
+                        </div>
+                        <div class="Clear"></div>
+
+                        <label for="CustomGroupOrder">[% Translate("Custom Group Order") | html %]:</label>
+                        <div class="Field">
+                            <div class="OptionList">
+                                <ul id="ItemList" class="ListContainer">
+[% RenderBlockStart("CustomGroupOrderItems") %]
+                                    <li class="ListItem" data-id="[% Data.Order | html %]">[% Data.Content | html %]</li>
+[% RenderBlockEnd("CustomGroupOrderItems") %]
+                                </ul>
+
+                                <div class="OrderButtons">
+                                    <a class="CallForAction" id="btnUp">
+                                        <span><i class="fa fa-caret-up"></i> [% Translate("Move Up") | html %]</span>
+                                    </a>
+
+                                    <a class="CallForAction" id="btnDown">
+                                        <span><i class="fa fa-caret-down"></i> [% Translate("Move Down") | html %]</span>
+                                    </a>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="Clear"></div>
+
+[% RenderBlockStart("OverviewRowArticle") %]
+                        [% IF Data.Count == "1" %]
+                            <label for="Article_[% Data.Count | html %]">[% Translate("Quickstart Links") | html %]:</label>
+                        [% ELSE %]
+                            <label for="Article_[% Data.Count | html %]"></label>
+                        [% END %]
+                        <div class="Field ArrayItem" id="Field_Article_[% Data.Count | html %]">
+                            <input type="text" name="Article_[% Data.Count | html %]" id="Article_[% Data.Count | html %]" value="[% Data.Content | html %]" class="W25pc Validate_Required"/>
+                            <div id="Article_[% Data.Count | html %]Error" class="TooltipErrorMessage">
+                                <p>[% Translate("This field is required.") | html %]</p>
+                            </div>
+
+                            [% Data.ItemIDStrg %]
+                            <div id="ItemID_[% Data.Count | html %]Error" class="TooltipErrorMessage">
+                                <p>[% Translate("This field is required.") | html %]</p>
+                            </div>
+
+                            [% IF Data.Count > 1 %]
+                            <button value="[% Translate("Remove this entry") | html %]" title="[% Translate("Remove this entry") | html %]" type="button" id="BtnArticle_[% Data.Count | html %]" class="RemoveButton" style="display: inline-block;">
+                                <i class="fa fa-minus-circle"></i>
+                                <span class="InvisibleText">[% Translate("Remove this entry") | html %]</span>
+                            </button>
+                            [% END %]
+                        </div>
+                        <div class="Clear"></div>
+[% RenderBlockEnd("OverviewRowArticle") %]
+
+                        <label for="BtnAddEntry"></label>
+                        <button value="[% Translate("Add new entry") | html %]" title="[% Translate("Add new entry") | html %]" type="button" id="BtnAddEntry" class="AddButton" style="display: inline-block;">
+                            <i class="fa fa-plus-circle"></i>
+                            <span class="InvisibleText">[% Translate("Add new entry") | html %]</span>
+                        </button>
+
+                        <div class="Field SpacingTop">
+                            <button class="Primary CallForAction" type="submit" value="[% Translate("Save") | html %]"><span>[% Translate("Save") | html %]</span></button>
+                            [% Translate("or") | html %]
+                            <button class="Primary CallForAction" type="button" id="BtnReset" value="[% Translate("Reset Setting") | html %]"><span>[% Translate("Reset Setting") | html %]</span></button>
+                            [% Translate("or") | html %]
+                            <a href="[% Env("CGIHandle") %]?Action=AgentFAQSidebar">[% Translate("Cancel") | html %]</a>
+                        </div>
+                        <div class="Clear"></div>
+                    </fieldset>
+                </form>
+            </div>
+
+            <div class="ArticleTemplate Hidden" id="ArticleTemplate">
+                <label for="Article_NextID"></label>
+                <div class="Field ArrayItem" id="Field_Article_NextID">
+                    <input type="text" name="Article_NextID" id="Article_NextID" value="" class="W25pc Validate_Required"/>
+                    <div id="Article_NextIDError" class="TooltipErrorMessage">
+                        <p>[% Translate("This field is required.") | html %]</p>
+                    </div>
+
+                    [% Data.ItemNextIDStrg %]
+                    <div id="ItemID_NextIDError" class="TooltipErrorMessage">
+                        <p>[% Translate("This field is required.") | html %]</p>
+                    </div>
+
+                    <button value="[% Translate("Remove this entry") | html %]" title="[% Translate("Remove this entry") | html %]" type="button" id="BtnArticle_NextID" class="RemoveButton" style="display: inline-block;">
+                        <i class="fa fa-minus-circle"></i>
+                        <span class="InvisibleText">[% Translate("Remove this entry") | html %]</span>
+                    </button>
+                </div>
+                <div class="Clear"></div>
+            </div>
+
+[% RenderBlockEnd("OverviewUpdate") %]
+        </div>
+
+        </div>
+    </div>
+    <div class="Clear"></div>
+</div>
+[% RenderBlockEnd("Overview") %]

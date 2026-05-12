@@ -130,7 +130,7 @@ Core.UI.RichTextEditor = (function (TargetNS) {
             removedPlugins = [ 'SimpleUploadAdapter' ];
         }
 
-        //Rother OSS / FAQ Improvements package
+        //Rother OSS / FAQ Extended Navigation Package
         var extraPlugins = [];
         var mentionsConfig = {};
 
@@ -143,7 +143,7 @@ Core.UI.RichTextEditor = (function (TargetNS) {
                 feeds: [
                     {
                         marker: '#',
-                        feed: FAQ.Improvements.FAQ.getFAQArticles,
+                        feed: FAQ.ExtendedNavigation.FAQ.getFAQArticles,
                         minimumCharacters: 1,
                         itemRenderer: (item) => {
                             //Remove marker from item list
@@ -155,7 +155,7 @@ Core.UI.RichTextEditor = (function (TargetNS) {
                 ]
             };
         }
-        //EO FAQ Improvements package
+        //EO FAQ Extended Navigation Package
 
         // if this is a RichText DF, disable Image Upload
         if($EditorArea.hasClass('DynamicFieldRichText')) {
@@ -460,9 +460,9 @@ Core.UI.RichTextEditor = (function (TargetNS) {
                     format: 'hex'
                 }
             },
-            //Rother OSS / FAQ Improvements package
+            //Rother OSS / FAQ Extended Navigation Package
             mention: mentionsConfig,
-            //EO Improvements package
+            //EO Rother OSS / FAQ Extended Navigation Package
             translations: [
                 CKEditor5CoreTranslations,
             ]            
@@ -645,7 +645,7 @@ Core.UI.RichTextEditor = (function (TargetNS) {
         });
     };
 
-    //Rother OSS / FAQ Improvements package
+    //Rother OSS / FAQ Extended Navigation Package
 
      /**
      * @name MentionCustomization
@@ -710,7 +710,7 @@ Core.UI.RichTextEditor = (function (TargetNS) {
         } );
     }  
 
-    //EO FAQ Improvements package
+    //EO FAQ Extended Navigation Package
 
     /**
      * @name InitAllEditors

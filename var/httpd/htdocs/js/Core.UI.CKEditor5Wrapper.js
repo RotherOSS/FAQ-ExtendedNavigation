@@ -56,7 +56,7 @@ let Plugins = [
     CKEditor5Wrapper.Italic,
     CKEditor5Wrapper.Link,
     CKEditor5Wrapper.List,
-    CKEditor5Wrapper.Mention,  /* Rother OSS / FAQ Improvements Package  */
+    CKEditor5Wrapper.Mention,  /* Rother OSS / FAQ Extended Navigation Package  */
     CKEditor5Wrapper.Paragraph,
     CKEditor5Wrapper.RemoveFormat,
     CKEditor5Wrapper.SelectAll,

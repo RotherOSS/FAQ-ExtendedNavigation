@@ -1,6 +1,6 @@
 /* OTOBO is a web-based ticketing system for service organisations.
 
-Copyright (C) 2019-2025 Rother OSS GmbH, https://otobo.io/
+Copyright (C) 2019-2026 Rother OSS GmbH, https://otobo.io/
 
 This program is free software: you can redistribute it and/or modify it under
 the terms of the GNU General Public License as published by the Free Software
@@ -42,32 +42,32 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 }
 
 .oooFAQSidebarSubHeader {
-    color: var(--colTextSideBarHeader);
-    font-size: 0.75rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    padding-left: 15px;
+    color: var(--colTextDark);
+    font-size: 13px;
+    padding-left: .2rem;
     margin-top: 10px;
     cursor: pointer;
 }
 
+.oooFAQSidebarSubHeader .fa-chevron-right {
+    margin-right: 9px;
+}
+
 .oooFAQSubHeaderSpacing {
-    padding-left: 23px !important;
+    padding-left: 20px !important;
 }
 
 .oooIconSubHeader {
-    color: var(--colTextSideBarHeader);
+    color: var(--colTextDark);
     font-size: 0.75rem;
-    font-weight: 600;
-    text-transform: uppercase;
     padding-right: 3px;
+    font-weight: 600;
 }
 
 .oooFAQSidebarHeader {
-    color: var(--colTextSideBarHeader);
+    color: var(--colTextDark);
     font-size: 0.75rem;
     font-weight: 600;
-    text-transform: uppercase;
 }
 
 .oooFAQSidebarHeader:first-child,
@@ -78,22 +78,30 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 
 .oooFAQLinks {
     display: flex;
-    gap: 5px;
-    flex-direction: column;    
+    gap: 8px;
+    flex-direction: column;  
 }
 
-.oooFAQLinks > li:first-child {
-    margin-top: 7px;
+.oooFAQLinkPosition {
+    margin-top: 14px;
+    margin-bottom: 0px !important;
+}
+
+.oooFAQLinks>li:first-child:has(a:not(.oooFAQLinkPosition))
+{
+    margin-top: 5px;
+}
+
+.oooFAQLinks>li:first-child:has(a:not(.oooFAQLinkFirst)) {
+    margin-top: 0;
+    margin-bottom: 4px;
 }
 
 .oooFAQSidebar {
     display: block;
     min-height: 50vh;
-    border-radius: 10px;
-    box-shadow: 0 1px 4px 0 rgba(4, 0, 71, .16);
-    box-shadow: 0 1px 4px 0 var(--colShadowDark);
     background-color: var(--colBGSideBar);
-    padding: 16px 16px 16px 16px;
+    padding: 0px 16px 16px 16px;
 }
 
 .oooFAQSidebarArticle {
@@ -141,7 +149,7 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 .oooFAQTOCArticle a {
     display: inline-block;
     color: var(--colTextFAQTOCList);
-    width: 85%;
+    width: 80%;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -179,13 +187,13 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 
 .oooFAQExplorer {
     display: flex;
-    justify-content: center;
+    justify-content: left;
     align-items: center;
     border-radius: 10px;
     box-shadow: 0 1px 4px 0 rgba(4, 0, 71, .16);
     box-shadow: 0 1px 4px 0 var(--colShadowDark);
     background-color: #ffffff;
-    padding: 10px;
+    padding: 16px;
 }
 
 .oooFAQTOC {
@@ -245,10 +253,13 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
     padding-left: 16px;
 }
 
+.LinkAnchorSingle {
+    left: 10px;
+}
+
 .LinkFAQExplorer {
     position: relative;
     display: inline-block;
-    left: -5px;
 }
 
 .Keyword > a { 
@@ -277,6 +288,14 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 
 .Headline h1 {
     display: inline-block;
+}
+
+.IconField {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 160px;
+    box-sizing: border-box;
 }
 
 .IconBox {

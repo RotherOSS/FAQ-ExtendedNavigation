@@ -21,6 +21,8 @@
                     <li class="oooFAQHeader">[% Translate("Table of Contents") | html %]</li>
 
 [% RenderBlockStart("ArticleField") %]
+
+[% RenderBlockStart("ArticleFieldParent") %]
                     <li class="oooFAQTOCArticle">
                         <i class="fa fa-angle-right TOCLevel1"></i>
                         <a href="#[% Data.Field %]" title="[% Translate(Data.Caption) | html %]" class="LinkLevel">[% Translate(Data.Caption) | html %]</a>
@@ -28,10 +30,19 @@
 [% RenderBlockStart("ArticleAnchor") %]
                     <li class="oooFAQTOCArticle" style="position: relative; left: [% Data.Padding | html %]px;">
                         <i class="fa fa-angle-right TOCLevel2"></i>
-                        <a href="javascript:void(0)" onclick="FAQ.Improvements.FAQ.anchorFrameScroll('IframeFAQ[% Data.Field %]','[% Data.ID %]');"
+                        <a href="javascript:void(0)" onclick="FAQ.ExtendedNavigation.FAQ.anchorFrameScroll('IframeFAQ[% Data.Field %]','[% Data.ID %]');"
                            title="[% Translate(Data.Caption) | html %]" class="LinkLevel2">[% Translate(Data.Caption) | html %]</a>
                     </li>
 [% RenderBlockEnd("ArticleAnchor") %]
+[% RenderBlockEnd("ArticleFieldParent") %]
+
+[% RenderBlockStart("ArticleAnchorSingle") %]
+                    <li class="oooFAQTOCArticle" style="position: relative; left: [% Data.Padding | html %]px;">
+                        <i class="fa fa-angle-right TOCLevel1"></i>
+                        <a href="javascript:void(0)" onclick="FAQ.ExtendedNavigation.FAQ.anchorFrameScroll('IframeFAQ[% Data.Field %]','[% Data.ID %]');"
+                           title="[% Translate(Data.Caption) | html %]" class="LinkLevel1 LinkAnchorSingle">[% Translate(Data.Caption) | html %]</a>
+                    </li>
+[% RenderBlockEnd("ArticleAnchorSingle") %]
 
 [% RenderBlockEnd("ArticleField") %]
 

@@ -76,6 +76,23 @@ sub Run {
         $CategoryID = 0;
     }
 
+    # Rother OSS / FAQ Extended Navigation Package
+    # Check if there is a default article defined for the current language
+    my $HasDefaultArticle = 0;
+    my %Data              = %{ $Kernel::OM->Get('Kernel::Config')->Get('AgentFAQSideBar::Articles') };
+
+    CONFIG:
+    for my $Config ( keys %Data ) {
+        next CONFIG if $Data{$Config}->{Language} ne $LayoutObject->{UserLanguage};
+
+        if ( $Data{$Config}->{DefaultItemID} ) {
+            $HasDefaultArticle = 1;
+            last CONFIG;
+        }
+    }
+
+    # EO Rother OSS / FAQ Extended Navigation Package
+
     my $Category = $ParamObject->GetParam( Param => 'Category' ) || '';
 
     my $FAQObject = $Kernel::OM->Get('Kernel::System::FAQ');
@@ -196,15 +213,19 @@ sub Run {
         UserID => $Self->{UserID},
     );
 
+    #Rother OSS / FAQ Extended Navigation Package
     #Get Sidebar info
     $Param{SideBar} = $LayoutObject->FAQSideBar(
-        Mode      => 'Agent',
-        Language  => $Self->{UserLanguage},
-        UserID    => $Self->{UserID},
-        IsAllowed => $IsAllowed,
-        ItemID    => 0,
-        Action    => $Self->{Action}
+        Mode              => 'Agent',
+        Language          => $Self->{UserLanguage},
+        UserID            => $Self->{UserID},
+        IsAllowed         => $IsAllowed,
+        ItemID            => 0,
+        Action            => $Self->{Action},
+        HasDefaultArticle => $HasDefaultArticle
     );
+
+    # EO Rother OSS / FAQ Extended Navigation Package
 
     # Get all items (valid and invalid) if SySConfig is set.
     my $ValidObject = $Kernel::OM->Get('Kernel::System::Valid');

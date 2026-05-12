@@ -1,6 +1,6 @@
 /* OTOBO is a web-based ticketing system for service organisations.
 
-Copyright (C) 2019-2025 Rother OSS GmbH, https://otobo.io/
+Copyright (C) 2019-2026 Rother OSS GmbH, https://otobo.io/
 
 This program is free software: you can redistribute it and/or modify it under
 the terms of the GNU General Public License as published by the Free Software
@@ -13,8 +13,9 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 .FAQHome {
-    color: var(--colTextFAQHome);
+    color: var(--colTextDark);
 }
+
 .FAQElement > #oooHeader {
     background-color: #fff;
     position: sticky;
@@ -74,6 +75,7 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 .ArticleArea {
     flex: 0 0 62%;
     padding: 8px;
+    margin-bottom: 40px;
 }
 
 .WidgetColumn {
@@ -99,6 +101,10 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
     margin-top: 0px;
 }
 
+.Rating>.WidgetSimple {
+    margin-top: 35px;
+}
+
 #RateSubmitButton {
     position: relative;
     top: 15px;
@@ -109,7 +115,7 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 }
 
 .Keyword {
-    color: var(--colTextKeyword)
+    color: var(--colTextLight)
 }
 
 .oooFAQIndex {
@@ -130,8 +136,8 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
     border-radius: 20px;
     box-shadow: 0 1px 4px 0 rgba(4, 0, 71, .16);
     box-shadow: 0 1px 4px 0 var(--colShadowDark);
-    background-color: var(--colBGFAQTOC);
-    padding: 16px 16px 16px 16px;
+    background-color: #fff;
+    padding: 16px 24px 16px 16px;
 }
 
 .TOCLevel1 {
@@ -158,8 +164,12 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
     padding-left: 16px;
 }
 
+.LinkAnchorSingle {
+    left: 10px;
+}
+
 .Keyword > a { 
-    background: var(--colBGKeyword);
+    background: var(--colMainDark);
     color: #fff;
     padding: 3px 6px 3px 6px;
     border-radius: 6px;
@@ -167,6 +177,16 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 }
 
 .oooFAQAdditionalData {
+    display: block;
+    min-height: 20vh;
+    border-radius: 20px;
+    box-shadow: 0 1px 4px 0 rgba(4, 0, 71, .16);
+    box-shadow: 0 1px 4px 0 var(--colShadowDark);
+    background-color: #ffffff;
+    padding: 16px 16px 16px 16px;
+}
+
+.oooFAQRating {
     display: block;
     min-height: 20vh;
     border-radius: 20px;
@@ -201,7 +221,7 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 
 .oooFAQExplorer {
     display: flex;
-    justify-content: center;
+    justify-content: left;
     align-items: center;
     border-radius: 20px;
     box-shadow: 0 1px 4px 0 rgba(4, 0, 71, .16);
@@ -252,7 +272,7 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
     border-radius: 20px;
     box-shadow: 0 1px 4px 0 rgba(4, 0, 71, .16);
     box-shadow: 0 1px 4px 0 var(--colShadowDark);
-    background-color: var(--colBGSideBar);
+    background-color: #ffffff;
     padding: 16px 16px 16px 16px;
 }
 
@@ -264,42 +284,38 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 }
 
 .oooFAQSidebarHeader {
-    color: var(--colTextSideBarHeader);
-    font-size: 0.75rem;
+    color: var(--colTextDark);
+    font-size: 13px;
     font-weight: 600;
-    text-transform: uppercase;
     padding: 25px 10px 10px 0px;
 }
 
 .oooFAQSidebarSubHeader {
-    color: var(--colTextSideBarHeader);
-    font-size: 0.75rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    padding-left: 15px;
+    color: var(--colTextDark);
+    font-size: 14px;
+    padding-left: .2rem;
     padding-top: 8px;
     cursor: pointer;
 }
 
+.oooFAQSidebarSubHeader .fa-chevron-right {
+    margin-right: 13px;
+}
+
 .oooFAQSubHeaderSpacing {
-    padding-left: 23px !important;
+    padding-left: 27px !important;
 }
 
 .oooIconSubHeader {
-    color: var(--colTextSideBarHeader);
-    font-size: 0.75rem;
+    font-size: 13px;
     font-weight: 600;
-    text-transform: uppercase;
     padding-right: 3px;
     transition: transform 0.2s ease;
     cursor: pointer;    
 }
 
 .oooFAQHeader {
-    color: var(--colTextFAQHeader);
-    font-size: 0.75rem;
-    font-weight: 600;
-    text-transform: uppercase;
+    font-size: 16px;
     padding: 25px 10px 10px 0px;
 }
 
@@ -310,7 +326,7 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 }
 
 .oooFAQLinks:first-child {
-    padding-top: 10px;
+    padding-top: 5px;
 }
 
 .oooFAQLinks > li {
@@ -337,7 +353,7 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
     vertical-align: top;
     margin-right: 4px;
     display: inline-block;
-    fill: var(--colTextSideBarList);
+    fill: var(--colTextDark);
 }
 
 .oooFAQSidebarList li:last-child {
@@ -360,8 +376,7 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 
 .oooFAQTOCArticle a {
     display: inline-block;
-    color: var(--colTextFAQTOCList);
-    width: 85%;
+    width: 80%;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -371,7 +386,7 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 
 .oooFAQSidebarArticle a {
     display: inline-block;
-    color: var(--colTextSideBarList);
+    color: var(--colTextDark);
     width: 85%;
     white-space: nowrap;
     overflow: hidden;
@@ -381,7 +396,7 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 }
 
 .oooFAQSidebarArticle:hover a {
-    color: var(--colHighlight);
+    color: var(--colMainHover);
 }
 
 .BackTop {
@@ -416,6 +431,4 @@ html {
     transition: transform 0.2s ease;
     position: relative;
     top: 2px;
-    left: -4px;
 }
-
