@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OTOBO Documentation dev\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-12 19:44+0000\n"
+"POT-Creation-Date: 2026-05-13 09:40+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -25,7 +25,7 @@ msgid "Description"
 msgstr ""
 
 #: ../content/index.rst:7
-msgid "Packages for greater experience of use in the FAQ module."
+msgid "Improves general navigation in the FAQ by providing a side bar with quick links within the FAQ, a table of contents for the articles, and improved linking capabilities between FAQ articles."
 msgstr ""
 
 #: ../content/index.rst:10
@@ -60,308 +60,248 @@ msgstr ""
 msgid "Usage"
 msgstr ""
 
-#: ../content/index.rst:28
-msgid "Setup"
+#: ../content/index.rst:27
+msgid "For each combination of interface (agent, customer, public) and language a side bar can be defined in the new side-bar settings screen in the FAQ. Accessing FAQZoom without a specific article selected, will default to the \"default article\" set in the same setting. When writing new FAQ articles, using the format \"#SomeWord\" will show a selection of FAQ articles which can be linked to."
 msgstr ""
 
-#: ../content/index.rst:31
+#: ../content/index.rst:30
 msgid "Configuration Reference"
 msgstr ""
 
-#: ../content/index.rst:34
+#: ../content/index.rst:33
 msgid "Frontend::Agent::ModuleRegistration"
 msgstr ""
 
-#: ../content/index.rst:37
+#: ../content/index.rst:36
 msgid "Frontend::Module###AgentFAQAutoComplete"
 msgstr ""
 
-#: ../content/index.rst:38
-#: ../content/index.rst:42
+#: ../content/index.rst:37
+#: ../content/index.rst:41
 msgid "Frontend module registration for the agent interface."
 msgstr ""
 
-#: ../content/index.rst:41
+#: ../content/index.rst:40
 msgid "Frontend::Module###AgentFAQSidebar"
 msgstr ""
 
-#: ../content/index.rst:45
+#: ../content/index.rst:44
 msgid "Frontend::Agent::ModuleRegistration::Loader"
 msgstr ""
 
-#: ../content/index.rst:48
+#: ../content/index.rst:47
 msgid "Loader::Module::AgentFAQAdd###003-FAQExtendedNavigation"
 msgstr ""
 
-#: ../content/index.rst:49
-#: ../content/index.rst:53
-#: ../content/index.rst:57
-#: ../content/index.rst:61
-#: ../content/index.rst:65
+#: ../content/index.rst:48
+#: ../content/index.rst:52
+#: ../content/index.rst:56
+#: ../content/index.rst:60
+#: ../content/index.rst:64
 msgid "Loader module registration for the agent interface."
 msgstr ""
 
-#: ../content/index.rst:52
+#: ../content/index.rst:51
 msgid "Loader::Module::AgentFAQEdit###003-FAQExtendedNavigation"
 msgstr ""
 
-#: ../content/index.rst:56
+#: ../content/index.rst:55
 msgid "Loader::Module::AgentFAQExplorer###003-FAQExtendedNavigation"
 msgstr ""
 
-#: ../content/index.rst:60
+#: ../content/index.rst:59
 msgid "Loader::Module::AgentFAQSidebar###002-FAQ"
 msgstr ""
 
-#: ../content/index.rst:64
+#: ../content/index.rst:63
 msgid "Loader::Module::AgentFAQZoom###003-FAQExtendedNavigation"
 msgstr ""
 
-#: ../content/index.rst:68
+#: ../content/index.rst:67
 msgid "Frontend::Agent::ModuleRegistration::MainMenu"
 msgstr ""
 
-#: ../content/index.rst:71
+#: ../content/index.rst:70
 msgid "Frontend::Navigation###AgentFAQSidebar###002-FAQ"
 msgstr ""
 
-#: ../content/index.rst:72
-#: ../content/index.rst:76
+#: ../content/index.rst:71
+#: ../content/index.rst:75
 msgid "Main menu item registration."
 msgstr ""
 
-#: ../content/index.rst:75
+#: ../content/index.rst:74
 msgid "Frontend::Navigation###AgentFAQZoom###002-FAQ"
 msgstr ""
 
-#: ../content/index.rst:79
+#: ../content/index.rst:78
 msgid "Frontend::Base::FAQSideBar"
 msgstr ""
 
-#: ../content/index.rst:82
+#: ../content/index.rst:81
 msgid "AgentFAQSideBar::Articles###001"
 msgstr ""
 
-#: ../content/index.rst:83
-#: ../content/index.rst:87
-#: ../content/index.rst:91
-#: ../content/index.rst:95
-#: ../content/index.rst:99
+#: ../content/index.rst:82
 msgid "Configure the articles for the agent interface sidebar, according to the language. Relevant fields: Language: Defines the language in which the sidebar will be displayed; DefaultItemID: ID of the FAQ article that will be displayed by default in the Zoom view; CustomGroupOrder: Custom order for displaying the article grouping categories; Articles: Definition of the grouping categories and the articles to display, up to 2 levels deep. For example: Service Desk::10 will display the link to the FAQ article with ID=10 for the \"Service Desk\" group, or Service Desk::Security::20 will display the \"Service Desk > Security\" group and within it the link to the FAQ article with ID=20."
 msgstr ""
 
-#: ../content/index.rst:86
-msgid "AgentFAQSideBar::Articles###002"
-msgstr ""
-
-#: ../content/index.rst:90
-msgid "AgentFAQSideBar::Articles###003"
-msgstr ""
-
-#: ../content/index.rst:94
-msgid "AgentFAQSideBar::Articles###004"
-msgstr ""
-
-#: ../content/index.rst:98
-msgid "AgentFAQSideBar::Articles###005"
-msgstr ""
-
-#: ../content/index.rst:102
+#: ../content/index.rst:85
 msgid "CustomerFAQSideBar::Articles###001"
 msgstr ""
 
-#: ../content/index.rst:103
-#: ../content/index.rst:107
-#: ../content/index.rst:111
-#: ../content/index.rst:115
-#: ../content/index.rst:119
+#: ../content/index.rst:86
 msgid "Configure the articles for the customer interface sidebar, according to the language. Relevant fields: Language: Defines the language in which the sidebar will be displayed; DefaultItemID: ID of the FAQ article that will be displayed by default in the Zoom view; CustomGroupOrder: Custom order for displaying the article grouping categories; Articles: Definition of the grouping categories and the articles to display, up to 2 levels deep. For example: Service Desk::10 will display the link to the FAQ article with ID=10 for the \"Service Desk\" group, or Service Desk::Security::20 will display the \"Service Desk > Security\" group and within it the link to the FAQ article with ID=20."
 msgstr ""
 
-#: ../content/index.rst:106
-msgid "CustomerFAQSideBar::Articles###002"
-msgstr ""
-
-#: ../content/index.rst:110
-msgid "CustomerFAQSideBar::Articles###003"
-msgstr ""
-
-#: ../content/index.rst:114
-msgid "CustomerFAQSideBar::Articles###004"
-msgstr ""
-
-#: ../content/index.rst:118
-msgid "CustomerFAQSideBar::Articles###005"
-msgstr ""
-
-#: ../content/index.rst:122
+#: ../content/index.rst:89
 msgid "FAQSideBar::Agent::Enabled"
 msgstr ""
 
-#: ../content/index.rst:123
+#: ../content/index.rst:90
 msgid "Determines if the sidebar is enabled for Agent Interface."
 msgstr ""
 
-#: ../content/index.rst:126
+#: ../content/index.rst:93
 msgid "FAQSideBar::Customer::Enabled"
 msgstr ""
 
-#: ../content/index.rst:127
+#: ../content/index.rst:94
 msgid "Determines if the sidebar is enabled for Customer Interface."
 msgstr ""
 
-#: ../content/index.rst:130
+#: ../content/index.rst:97
 msgid "FAQSideBar::ExpandSubcategories"
 msgstr ""
 
-#: ../content/index.rst:131
+#: ../content/index.rst:98
 msgid "Determines if the subcategories must be expandes on Sidebar init."
 msgstr ""
 
-#: ../content/index.rst:134
+#: ../content/index.rst:101
 msgid "FAQSideBar::Public::Enabled"
 msgstr ""
 
-#: ../content/index.rst:135
+#: ../content/index.rst:102
 msgid "Determines if the sidebar is enabled for Public Interface."
 msgstr ""
 
-#: ../content/index.rst:138
+#: ../content/index.rst:105
 msgid "PublicFAQSideBar::Articles###001"
 msgstr ""
 
-#: ../content/index.rst:139
-#: ../content/index.rst:143
-#: ../content/index.rst:147
-#: ../content/index.rst:151
-#: ../content/index.rst:155
+#: ../content/index.rst:106
 msgid "Configure the articles for the public interface sidebar, according to the language. Relevant fields: Language: Defines the language in which the sidebar will be displayed; DefaultItemID: ID of the FAQ article that will be displayed by default in the Zoom view; CustomGroupOrder: Custom order for displaying the article grouping categories; Articles: Definition of the grouping categories and the articles to display, up to 2 levels deep. For example: Service Desk::10 will display the link to the FAQ article with ID=10 for the \"Service Desk\" group, or Service Desk::Security::20 will display the \"Service Desk > Security\" group and within it the link to the FAQ article with ID=20."
 msgstr ""
 
-#: ../content/index.rst:142
-msgid "PublicFAQSideBar::Articles###002"
-msgstr ""
-
-#: ../content/index.rst:146
-msgid "PublicFAQSideBar::Articles###003"
-msgstr ""
-
-#: ../content/index.rst:150
-msgid "PublicFAQSideBar::Articles###004"
-msgstr ""
-
-#: ../content/index.rst:154
-msgid "PublicFAQSideBar::Articles###005"
-msgstr ""
-
-#: ../content/index.rst:158
+#: ../content/index.rst:109
 msgid "Frontend::Base::FAQTableOfContents"
 msgstr ""
 
-#: ../content/index.rst:161
+#: ../content/index.rst:112
 msgid "FAQTableOfContents::MaxDepth"
 msgstr ""
 
-#: ../content/index.rst:162
+#: ../content/index.rst:113
 msgid "Determines the maximum depth levels for each field in tht TOC."
 msgstr ""
 
-#: ../content/index.rst:165
+#: ../content/index.rst:116
 msgid "Frontend::Base::Loader"
 msgstr ""
 
-#: ../content/index.rst:168
+#: ../content/index.rst:119
 msgid "Loader::Agent::CommonCSS###210-FAQExtendedNavigation"
 msgstr ""
 
-#: ../content/index.rst:169
+#: ../content/index.rst:120
 msgid "List of CSS files to always be loaded for the agent interface."
 msgstr ""
 
-#: ../content/index.rst:172
+#: ../content/index.rst:123
 msgid "Loader::Agent::CommonJS###210-FAQExtendedNavigation"
 msgstr ""
 
-#: ../content/index.rst:173
+#: ../content/index.rst:124
 msgid "List of JS files to always be loaded for the agent interface for FAQ."
 msgstr ""
 
-#: ../content/index.rst:176
+#: ../content/index.rst:127
 msgid "Loader::Customer::CommonJS###210-FAQExtendedNavigation"
 msgstr ""
 
-#: ../content/index.rst:177
+#: ../content/index.rst:128
 msgid "List of JS files to always be loaded for the customer interface for FAQ."
 msgstr ""
 
-#: ../content/index.rst:180
+#: ../content/index.rst:131
 msgid "Frontend::Customer::ModuleRegistration::Loader"
 msgstr ""
 
-#: ../content/index.rst:183
+#: ../content/index.rst:134
 msgid "Loader::Module::CustomerFAQExplorer###003-FAQExtendedNavigation"
 msgstr ""
 
-#: ../content/index.rst:184
-#: ../content/index.rst:188
-#: ../content/index.rst:192
+#: ../content/index.rst:135
+#: ../content/index.rst:139
+#: ../content/index.rst:143
 msgid "Loader module registration for the customer interface."
 msgstr ""
 
-#: ../content/index.rst:187
+#: ../content/index.rst:138
 msgid "Loader::Module::CustomerFAQZoom###003-FAQExtendedNavigation"
 msgstr ""
 
-#: ../content/index.rst:191
+#: ../content/index.rst:142
 msgid "Loader::Module::CustomerTicketMessage###003-FAQExtendedNavigation"
 msgstr ""
 
-#: ../content/index.rst:195
+#: ../content/index.rst:146
 msgid "Frontend::Public::ModuleRegistration::Loader"
 msgstr ""
 
-#: ../content/index.rst:198
+#: ../content/index.rst:149
 msgid "Loader::Module::PublicFAQExplorer###003-FAQExtendedNavigation"
 msgstr ""
 
-#: ../content/index.rst:199
-#: ../content/index.rst:203
-#: ../content/index.rst:207
+#: ../content/index.rst:150
+#: ../content/index.rst:154
+#: ../content/index.rst:158
 msgid "Loader module registration for the public interface."
 msgstr ""
 
-#: ../content/index.rst:202
+#: ../content/index.rst:153
 msgid "Loader::Module::PublicFAQSearch###003-FAQExtendedNavigation"
 msgstr ""
 
-#: ../content/index.rst:206
+#: ../content/index.rst:157
 msgid "Loader::Module::PublicFAQZoom###003-FAQExtendedNavigation"
 msgstr ""
 
-#: ../content/index.rst:210
+#: ../content/index.rst:161
 msgid "About"
 msgstr ""
 
-#: ../content/index.rst:213
+#: ../content/index.rst:164
 msgid "Contact"
 msgstr ""
 
-#: ../content/index.rst:214
+#: ../content/index.rst:165
 msgid "Rother OSS GmbH"
 msgstr ""
 
-#: ../content/index.rst:215
+#: ../content/index.rst:166
 msgid "Email: hello@otobo.io"
 msgstr ""
 
-#: ../content/index.rst:216
+#: ../content/index.rst:167
 msgid "Web: https://otobo.io"
 msgstr ""
 
-#: ../content/index.rst:219
+#: ../content/index.rst:170
 msgid "Version"
 msgstr ""
 
-#: ../content/index.rst:220
+#: ../content/index.rst:171
 msgid "Author: |doc-vendor| / Version: |doc-version| / Date of release: |doc-datestamp|"
 msgstr ""
