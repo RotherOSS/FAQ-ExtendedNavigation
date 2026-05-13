@@ -7,7 +7,7 @@ Sacrifice to Sphinx
 
 Description
 ===========
-Packages for greater experience of use in the FAQ module.
+Improves general navigation in the FAQ by providing a side bar with quick links within the FAQ, a table of contents for the articles, and improved linking capabilities between FAQ articles.
 
 System requirements
 ===================
@@ -27,8 +27,7 @@ Third-party software
 Usage
 =====
 
-Setup
------
+For each combination of interface (agent, customer, public) and language a side bar can be defined in the new side-bar settings screen in the FAQ. Accessing FAQZoom without a specific article selected, will default to the "default article" set in the same setting. When writing new FAQ articles, using the format "#SomeWord" will show a selection of FAQ articles which can be linked to.
 
 Configuration Reference
 -----------------------
@@ -85,39 +84,7 @@ AgentFAQSideBar::Articles###001
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 Configure the articles for the agent interface sidebar, according to the language. Relevant fields: Language: Defines the language in which the sidebar will be displayed; DefaultItemID: ID of the FAQ article that will be displayed by default in the Zoom view; CustomGroupOrder: Custom order for displaying the article grouping categories; Articles: Definition of the grouping categories and the articles to display, up to 2 levels deep. For example: Service Desk::10 will display the link to the FAQ article with ID=10 for the "Service Desk" group, or Service Desk::Security::20 will display the "Service Desk > Security" group and within it the link to the FAQ article with ID=20.
 
-AgentFAQSideBar::Articles###002
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-Configure the articles for the agent interface sidebar, according to the language. Relevant fields: Language: Defines the language in which the sidebar will be displayed; DefaultItemID: ID of the FAQ article that will be displayed by default in the Zoom view; CustomGroupOrder: Custom order for displaying the article grouping categories; Articles: Definition of the grouping categories and the articles to display, up to 2 levels deep. For example: Service Desk::10 will display the link to the FAQ article with ID=10 for the "Service Desk" group, or Service Desk::Security::20 will display the "Service Desk > Security" group and within it the link to the FAQ article with ID=20.
-
-AgentFAQSideBar::Articles###003
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-Configure the articles for the agent interface sidebar, according to the language. Relevant fields: Language: Defines the language in which the sidebar will be displayed; DefaultItemID: ID of the FAQ article that will be displayed by default in the Zoom view; CustomGroupOrder: Custom order for displaying the article grouping categories; Articles: Definition of the grouping categories and the articles to display, up to 2 levels deep. For example: Service Desk::10 will display the link to the FAQ article with ID=10 for the "Service Desk" group, or Service Desk::Security::20 will display the "Service Desk > Security" group and within it the link to the FAQ article with ID=20.
-
-AgentFAQSideBar::Articles###004
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-Configure the articles for the agent interface sidebar, according to the language. Relevant fields: Language: Defines the language in which the sidebar will be displayed; DefaultItemID: ID of the FAQ article that will be displayed by default in the Zoom view; CustomGroupOrder: Custom order for displaying the article grouping categories; Articles: Definition of the grouping categories and the articles to display, up to 2 levels deep. For example: Service Desk::10 will display the link to the FAQ article with ID=10 for the "Service Desk" group, or Service Desk::Security::20 will display the "Service Desk > Security" group and within it the link to the FAQ article with ID=20.
-
-AgentFAQSideBar::Articles###005
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-Configure the articles for the agent interface sidebar, according to the language. Relevant fields: Language: Defines the language in which the sidebar will be displayed; DefaultItemID: ID of the FAQ article that will be displayed by default in the Zoom view; CustomGroupOrder: Custom order for displaying the article grouping categories; Articles: Definition of the grouping categories and the articles to display, up to 2 levels deep. For example: Service Desk::10 will display the link to the FAQ article with ID=10 for the "Service Desk" group, or Service Desk::Security::20 will display the "Service Desk > Security" group and within it the link to the FAQ article with ID=20.
-
 CustomerFAQSideBar::Articles###001
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-Configure the articles for the customer interface sidebar, according to the language. Relevant fields: Language: Defines the language in which the sidebar will be displayed; DefaultItemID: ID of the FAQ article that will be displayed by default in the Zoom view; CustomGroupOrder: Custom order for displaying the article grouping categories; Articles: Definition of the grouping categories and the articles to display, up to 2 levels deep. For example: Service Desk::10 will display the link to the FAQ article with ID=10 for the "Service Desk" group, or Service Desk::Security::20 will display the "Service Desk > Security" group and within it the link to the FAQ article with ID=20.
-
-CustomerFAQSideBar::Articles###002
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-Configure the articles for the customer interface sidebar, according to the language. Relevant fields: Language: Defines the language in which the sidebar will be displayed; DefaultItemID: ID of the FAQ article that will be displayed by default in the Zoom view; CustomGroupOrder: Custom order for displaying the article grouping categories; Articles: Definition of the grouping categories and the articles to display, up to 2 levels deep. For example: Service Desk::10 will display the link to the FAQ article with ID=10 for the "Service Desk" group, or Service Desk::Security::20 will display the "Service Desk > Security" group and within it the link to the FAQ article with ID=20.
-
-CustomerFAQSideBar::Articles###003
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-Configure the articles for the customer interface sidebar, according to the language. Relevant fields: Language: Defines the language in which the sidebar will be displayed; DefaultItemID: ID of the FAQ article that will be displayed by default in the Zoom view; CustomGroupOrder: Custom order for displaying the article grouping categories; Articles: Definition of the grouping categories and the articles to display, up to 2 levels deep. For example: Service Desk::10 will display the link to the FAQ article with ID=10 for the "Service Desk" group, or Service Desk::Security::20 will display the "Service Desk > Security" group and within it the link to the FAQ article with ID=20.
-
-CustomerFAQSideBar::Articles###004
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-Configure the articles for the customer interface sidebar, according to the language. Relevant fields: Language: Defines the language in which the sidebar will be displayed; DefaultItemID: ID of the FAQ article that will be displayed by default in the Zoom view; CustomGroupOrder: Custom order for displaying the article grouping categories; Articles: Definition of the grouping categories and the articles to display, up to 2 levels deep. For example: Service Desk::10 will display the link to the FAQ article with ID=10 for the "Service Desk" group, or Service Desk::Security::20 will display the "Service Desk > Security" group and within it the link to the FAQ article with ID=20.
-
-CustomerFAQSideBar::Articles###005
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 Configure the articles for the customer interface sidebar, according to the language. Relevant fields: Language: Defines the language in which the sidebar will be displayed; DefaultItemID: ID of the FAQ article that will be displayed by default in the Zoom view; CustomGroupOrder: Custom order for displaying the article grouping categories; Articles: Definition of the grouping categories and the articles to display, up to 2 levels deep. For example: Service Desk::10 will display the link to the FAQ article with ID=10 for the "Service Desk" group, or Service Desk::Security::20 will display the "Service Desk > Security" group and within it the link to the FAQ article with ID=20.
 
@@ -138,22 +105,6 @@ FAQSideBar::Public::Enabled
 Determines if the sidebar is enabled for Public Interface.
 
 PublicFAQSideBar::Articles###001
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-Configure the articles for the public interface sidebar, according to the language. Relevant fields: Language: Defines the language in which the sidebar will be displayed; DefaultItemID: ID of the FAQ article that will be displayed by default in the Zoom view; CustomGroupOrder: Custom order for displaying the article grouping categories; Articles: Definition of the grouping categories and the articles to display, up to 2 levels deep. For example: Service Desk::10 will display the link to the FAQ article with ID=10 for the "Service Desk" group, or Service Desk::Security::20 will display the "Service Desk > Security" group and within it the link to the FAQ article with ID=20.
-
-PublicFAQSideBar::Articles###002
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-Configure the articles for the public interface sidebar, according to the language. Relevant fields: Language: Defines the language in which the sidebar will be displayed; DefaultItemID: ID of the FAQ article that will be displayed by default in the Zoom view; CustomGroupOrder: Custom order for displaying the article grouping categories; Articles: Definition of the grouping categories and the articles to display, up to 2 levels deep. For example: Service Desk::10 will display the link to the FAQ article with ID=10 for the "Service Desk" group, or Service Desk::Security::20 will display the "Service Desk > Security" group and within it the link to the FAQ article with ID=20.
-
-PublicFAQSideBar::Articles###003
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-Configure the articles for the public interface sidebar, according to the language. Relevant fields: Language: Defines the language in which the sidebar will be displayed; DefaultItemID: ID of the FAQ article that will be displayed by default in the Zoom view; CustomGroupOrder: Custom order for displaying the article grouping categories; Articles: Definition of the grouping categories and the articles to display, up to 2 levels deep. For example: Service Desk::10 will display the link to the FAQ article with ID=10 for the "Service Desk" group, or Service Desk::Security::20 will display the "Service Desk > Security" group and within it the link to the FAQ article with ID=20.
-
-PublicFAQSideBar::Articles###004
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-Configure the articles for the public interface sidebar, according to the language. Relevant fields: Language: Defines the language in which the sidebar will be displayed; DefaultItemID: ID of the FAQ article that will be displayed by default in the Zoom view; CustomGroupOrder: Custom order for displaying the article grouping categories; Articles: Definition of the grouping categories and the articles to display, up to 2 levels deep. For example: Service Desk::10 will display the link to the FAQ article with ID=10 for the "Service Desk" group, or Service Desk::Security::20 will display the "Service Desk > Security" group and within it the link to the FAQ article with ID=20.
-
-PublicFAQSideBar::Articles###005
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 Configure the articles for the public interface sidebar, according to the language. Relevant fields: Language: Defines the language in which the sidebar will be displayed; DefaultItemID: ID of the FAQ article that will be displayed by default in the Zoom view; CustomGroupOrder: Custom order for displaying the article grouping categories; Articles: Definition of the grouping categories and the articles to display, up to 2 levels deep. For example: Service Desk::10 will display the link to the FAQ article with ID=10 for the "Service Desk" group, or Service Desk::Security::20 will display the "Service Desk > Security" group and within it the link to the FAQ article with ID=20.
 
