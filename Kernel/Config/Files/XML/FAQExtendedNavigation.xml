@@ -589,7 +589,7 @@
                         </Item>
                         <Item Key="Description" Translatable="1">FAQ</Item>
                         <Item Key="Name" Translatable="1">FAQ</Item>
-                        <Item Key="Link">Action=CustomerFAQExplorer</Item>
+                        <Item Key="Link">Action=CustomerFAQZoom</Item>
                         <Item Key="LinkOption"></Item>
                         <Item Key="NavBar">FAQ</Item>
                         <Item Key="Type">Menu</Item>
@@ -597,27 +597,6 @@
                         <Item Key="AccessKey"></Item>
                         <Item Key="Prio">700</Item>
                         <Item Key="svgIcon">var/httpd/htdocs/skins/Customer/default/img/faq.svg</Item>
-                    </Hash>
-                </Item>
-                <Item>
-                    <Hash>
-                        <Item Key="Group">
-                            <Array>
-                            </Array>
-                        </Item>
-                        <Item Key="GroupRo">
-                            <Array>
-                            </Array>
-                        </Item>
-                        <Item Key="Description" Translatable="1">FAQ Home</Item>
-                        <Item Key="Name" Translatable="1">FAQ Home</Item>
-                        <Item Key="Link">Action=CustomerFAQZoom</Item>
-                        <Item Key="LinkOption"></Item>
-                        <Item Key="NavBar">FAQ</Item>
-                        <Item Key="Type">Submenu</Item>
-                        <Item Key="Block"></Item>
-                        <Item Key="AccessKey">x</Item>
-                        <Item Key="Prio">710</Item>
                     </Hash>
                 </Item>
             </Array>
