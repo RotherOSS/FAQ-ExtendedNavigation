@@ -176,8 +176,8 @@ sub FAQSideBar {
                             Name => 'Header',
                             Data => {
                                 Header      => $Key,
-                                Class       => $Nested{$Key} ? 'oooFAQSidebarHeader' : 'oooFAQSidebarSubHeader',
-                                Arrow       => $Nested{$Key} ? ''                    : '<i class="fa fa-chevron-right oooIconSubHeader"></i>',
+                                Class       => $Nested{$Key} ? 'oooFAQSidebarHeader' : 'oooFAQSidebarSubHeader Collapsed',
+                                Arrow       => $Nested{$Key} ? ''                    : '<i class="fa fa-caret-right oooIconSubHeader"></i>',
                                 Subcategory => $Key
                             }
                         );

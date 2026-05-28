@@ -27,7 +27,7 @@ sub Data {
     $Self->{Translation}->{'Back to FAQ Home'} = 'Zurück zur FAQ-Startseite';
     $Self->{Translation}->{'Back to top'} = 'Zurück nach oben';
     $Self->{Translation}->{'Icon (svg)'} = 'Icon (svg)';
-    $Self->{Translation}->{'Upload Icon'} = 'Upload-Symbol';
+    $Self->{Translation}->{'Upload Icon'} = 'Icon hochladen';
     $Self->{Translation}->{'Select an icon in SVG format to upload it.'} = 'Wählen Sie ein Symbol im SVG-Format aus, um es hochzuladen.';
 
     $Self->{Translation}->{'Sidebar Settings'} = 'Seitenleistenkonfiguration';

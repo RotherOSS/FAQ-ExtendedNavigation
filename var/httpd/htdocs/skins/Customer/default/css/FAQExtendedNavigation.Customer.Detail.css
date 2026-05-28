@@ -17,321 +17,192 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
  * @section     Default Settings
  */
 
-@media only screen and (max-width: 484px) {
-
-    #FAQVoting .RateLabelBefore,
-    #FAQVoting .RateLabelAfter {
-        display: none;
+@media only screen and (max-width: 767px) {
+    #oooMainBox.FAQContent {
+        display: grid;
+        grid-row-gap: 8px;
+        width: calc( 100% - 16px );
+        padding: 8px;
+        grid-template-rows: auto auto;
     }
 
-    #FAQVoting .ActionRow {
-        text-align: right;
+    #oooHeader {
+        display: grid; 
+        grid-template-columns: 1fr; 
+        grid-template-rows: 45px 30px 36px;
+        grid-row-gap: 8px;
+        align-content: center;
     }
 
-    .FAQContent {
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-        margin-top: 1px !important;
-        margin-right: 1px !important;
-        padding: 0 15px !important;
-        width: 100% !important;
-        background-color: #fff !important;
-        padding-left: 9% !important;
+    #FAQSidebar {
+        grid-area: 2 / 1 / 3 / 2;
     }
 
-    .SidebarArea, .ArticleArea, .WidgetColumn {
-        width: 100%;
+    #oooMainBox > .ArticleArea {
+        grid-area: 1 / 1 / 2 / 2;
+    }
+
+    #oooMainBox > .WidgetColumn {
+        display: none
+    }
+
+    #Messages > li,
+    #ZoomSidebar {
+        margin-top: 8px;
     }
 
     .MainSideBar {
-        display: none;
+        margin-bottom: 8px;
     }
-
-    .WidgetColumn {
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-    }    
-
-    .HeaderRowTitle,
-    .PublicHeaderRowTitle
-    {
-        padding-left: 10px !important;
-        padding-right: 10px !important;
-    } 
-
-    .HeaderRowTitle > h1 {
-        font-size: 18px;
-    }    
-
-    .oooFAQExplorer {
-        margin-top: 20px;
-    }
-
-    #oooSearchBox i.ooofo-search {
-        top: 92px !important;
-        left: 146px !important;
-    }
-
-    .FAQSearchBox,
-    .oooSearchFAQ:focus
-    {
-        width: 50vw !important;
-    }
-
-    .BreadCrumb {
-        white-space: wrap !important;
-    }
-
-    .BreadCrumb > h3,
-    .BreadCrumb > a > h3
-    {
-        font-size: 12px;
-    }
-
-    .WidgetArea-Top {
-        display: none;
-    }
-
-    .FAQElement>#oooHeader {
-        gap: 10px;
-    }
-
-    .WidgetArea-Top {
-        display: none;
-    }
-
-    .FAQElement>#oooHeader {
-        gap: 10px;
-    } 
-
-    #oooMainBox {
-        padding-left: 2% !important;
-        width: 95% !important;        
-    }
-
 }
 
-@media only screen and (min-width: 485px) and (max-width: 767px) {
-
-    /* #oooHeader {
-        height: 129px;
-        padding: 0px 16px 16px 16px;
-        border-bottom: 0.6px solid #e5e5eb;
-        border-radius: 20px 20px 0px 0px;
-
-
-        grid-template-columns: calc( 100% - 32px );
-        grid-template-rows: 84px 45px;
-        align-items: end;
-
-        overflow: hidden;
-    }  */
-
-    .HeaderRowTitle,
-    .PublicHeaderRowTitle
-    {
-        padding-left: 10px !important;
-        font-size: 16px;
-        padding-right: 10px !important;
-    }
-
-    #oooMainBox {
-        background-color: #f7f7f9;
-        background-color: var(--colBGLight);
-        min-height: calc( 100vh - 265px );
-    }
-
-    .oooFAQExplorer {
-        margin-top: 20px;
-    }    
-
-    #oooSearchBox i.ooofo-search {
-        top: 87px;
-        left: 216px;
-    }
-
-    .SidebarArea, .ArticleArea, .WidgetColumn {
-        width: 100%;
-    }
-
-    .WidgetSimple {
+@media only screen and (min-width: 768px) {
+    #Messages > li,
+    #ZoomSidebar {
         margin-top: 24px;
     }
 
-    .oooSub {
-        padding: 24px 24px 24px 24px;
-    }
-
-    .FAQContent {
-        display: flex;
-        flex-direction: column;
-        width: 100% !important;
-        padding-left: 9% !important;
-        gap: 20px;
-        margin-top: 0px !important;
-    }
-
     .MainSideBar {
-        display: none;
+        margin-bottom: 24px;
     }
 
-    .ArticleArea, .WidgetColumn {
-        width: 100%;
+
+    .HeaderRowTitle {
+      grid-row: span 2;
     }
 
-    .WidgetColumn {
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-    }  
-
-    .WidgetArea-Top {
-        display: none;
-    }    
-    
-    .FAQSearchBox,
-    .oooSearchFAQ:focus
-    {
-        width: 70vw;
-    }
-
-    .WidgetArea-Middle {
-        width: 100%;
-    }
-
-    #oooMainBox {
-        padding-left: 2% !important;
-        width: 95% !important;
+    .PublicHeaderRowTitle {
+      grid-row: span 2;
+      padding-left: 190px;
     }
 }
 
-@media only screen and (min-width: 768px ) and (max-width: 992px) {
-
-    /* #oooHeader {
-        position: sticky;
-        top: 0;
-        height: 145px;
-        border-bottom: 1.2px solid #e5e5eb;
-
-        grid-template-columns: 1fr auto;
-        grid-template-rows: 100%;
-        align-items: center;
-    }  */
-
-    .HeaderRowTitle,
-    .PublicHeaderRowTitle
-    {
-        padding-left: 75px !important;
-        font-size: 16px;
-        padding-right: 15px !important;
-    }
-
-    .HeaderRowTitle > h1 {
-        font-size: 20px;
-    }
-
-    #oooMainBox {
-        background-color: #f7f7f9;
-        background-color: var(--colBGLight);
-        min-height: calc( 100vh - 265px );
-    }
-
-    .oooFAQExplorer {
-        margin-top: 20px;
-    }    
-
-    #oooSearchBox i.ooofo-search {
-        position: absolute;
-        top: 84px;
-        left: 280px;
-    }
-
-    #oooSearch.oooFull, #oooSearch:focus {
-        padding-left: 40px;
-        width: 50vw !important;
-        left: 0px;
-    }
-
-    #oooSearchLabel {
-        padding-left: 40px;
-    }
-
-    .SidebarArea, .ArticleArea, .WidgetColumn {
-        width: 100%;
-    }
-
-    .WidgetSimple {
+@media only screen and (min-width: 768px) and (max-width: 1175px) {
+    #oooMainBox.FAQContent {
+        display: grid;
         margin-top: 24px;
+        grid-row-gap: 24px;
+        width: calc( 100% - 104px );
+        padding-left: 80px;
+        padding-right: 24px;
+        grid-template-rows: auto auto;
     }
 
-    .oooSub {
-        padding: 24px 24px 24px 24px;
+    #oooHeader {
+        width: calc( 100% - 104px ) !important;
+        padding-left: 80px !important;
+        padding-right: 24px !important;
+        display: grid; 
+        grid-template-columns: 332px 1fr; 
+        grid-column-gap: 24px;
+        grid-template-rows: 48px 48px;
+        align-content: center;
     }
 
-    .FAQContent {
-        display: flex;
-        flex-direction: column;
-        width: 100% !important;
-        padding-left: 8% !important;
-        gap: 20px;
-        margin-top: 0px !important;
+    #FAQSidebar {
+        grid-area: 2 / 1 / 3 / 2;
     }
 
-    .MainSideBar {
-        display: none;
+    #oooMainBox > .ArticleArea {
+        grid-area: 1 / 1 / 2 / 2;
     }
 
-    .WidgetColumn {
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-    }  
-
-    .WidgetArea-Top {
-        display: none;
-    }    
-    
-    .FAQSearchBox,
-    .oooSearchFAQ:focus
-    {
-        width: 70vw !important;
+    #oooMainBox > .WidgetColumn {
+        display: none
     }
-
-    .WidgetArea-Middle {
-        width: 100%;
-    }    
-
-    #oooContent {
-        padding-left: 23px !important;
-    }  
-    
-    #oooMainBox {
-        padding-left: 8% !important;
-        width: 90% !important;
-    }    
-
 }
 
-@media only screen and (min-width: 993px ) {
-    .FAQContent {
-        padding-left: 5% !important;
+@media only screen and (min-width: 1176px ) and (max-width: 1439px) {
+    #oooMainBox.FAQContent {
+        display: grid;
+        margin-top: 24px;
+        grid-column-gap: 24px;
+        width: calc( 100% - 104px );
+        padding-left: 80px;
+        padding-right: 24px;
+        grid-template-columns: calc( 100% - 344px ) 320px;
+        grid-template-rows: auto 1fr;
     }
 
-    .SidebarArea {
-        width: 21%;
+    #oooHeader {
+        width: calc( 100% - 104px ) !important;
+        padding-left: 80px !important;
+        padding-right: 24px !important;
+        display: grid; 
+        grid-template-columns: 332px calc( 100% - 432px ); 
+        grid-column-gap: 24px;
+        grid-template-rows: 48px 48px;
+        align-content: center;
     }
 
+    #FAQSidebar {
+        grid-area: 2 / 2 / 3 / 3;
+    }
+
+    #oooMainBox > .ArticleArea {
+        grid-area: 1 / 1 / 3 / 2;
+    }
+
+    #oooMainBox > .WidgetColumn {
+        grid-area: 1 / 2 / 2 / 3;
+    }
+}
+
+@media only screen and (min-width: 1440px ) and (max-width: 1727px) {
+    #oooMainBox.FAQContent {
+        display: grid;
+        margin-top: 24px;
+        grid-column-gap: 24px;
+        width: calc( 100% - 104px );
+        padding-left: 80px;
+        padding-right: 24px;
+        grid-template-columns: 240px calc( 100% - 608px ) 320px;
+    }
+
+    #oooHeader {
+        width: calc( 100% - 104px ) !important;
+        padding-left: 80px !important;
+        padding-right: 24px !important;
+        display: grid; 
+        grid-template-columns: 332px calc( 100% - 792px ); 
+        grid-column-gap: 24px;
+        grid-template-rows: 48px 48px;
+        align-content: center;
+    }
+
+    .oooFAQSidebar {
+        min-height: 50vh;
+    }
+}
+
+@media only screen and (min-width: 1728px ) {
+    #oooMainBox.FAQContent {
+        display: grid;
+        margin-top: 24px;
+        grid-column-gap: 24px;
+        width: 1624px;
+        padding-left: calc( 50% - 784px );
+        padding-right: calc( 50% - 840px );
+        grid-template-columns: 240px 1016px 320px;
+    }
+
+    #oooHeader {
+        width: 1624px !important;
+        padding-left: calc( 50% - 784px ) !important;
+        padding-right: calc( 50% - 840px ) !important;
+        display: grid; 
+        grid-template-columns: 332px 832px; 
+        grid-column-gap: 24px;
+        grid-template-rows: 48px 48px;
+        align-content: center;
+    }
+
+    .oooFAQSidebar {
+        min-height: 50vh;
+    }
 }
 
 @media screen,projection,tv,handheld {
-
-    #oooHeader {
-        background-color: #ffffff;
-
-        display: grid;
-    }
 
     #oooHeader i {
         display: inline-block;
@@ -377,17 +248,9 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
         background-color: var(--colBGLight);
     }
 
-    .WidgetSimple {
-        max-width: 1050px;
-    }
-
     .Header {
         max-width: 1016px;
     }
-
-    .FAQElement>#oooHeader {
-        column-gap: 20px;
-    }     
 
 /* SubCategories */
     .oooSubBox {
@@ -455,12 +318,12 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
         display: block;
         height: 24px;
         width: calc( 100% - 72px );
-        max-width: 944px;
+        max-width: 1048px; /* consider removing when merging with FAQ */
         border-radius: 15px;
         box-shadow: 0 1px 4px 0 rgba(4, 0, 71, 0.16);
         box-shadow: 0 1px 4px 0 var(--colShadowDark);
         background-color: #ffffff;
-        padding: 16px 36px 16px 36px;
+        padding: 24px 36px 24px 36px;
         margin-top: 16px;
     }
 
@@ -483,12 +346,11 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
     #ZoomSidebar {
         display: block;
         width: calc( 100% - 72px );
-        max-width: 944px;
+        max-width: 978px; /* consider removing when merging with FAQ */
         border-radius: 15px;
         box-shadow: 0 1px 4px 0 rgba(4, 0, 71, 0.16);
         background-color: #ffffff;
         padding: 24px 36px 24px 36px;
-        margin-top: 24px;
     }
 
     #Messages .MessageBody {

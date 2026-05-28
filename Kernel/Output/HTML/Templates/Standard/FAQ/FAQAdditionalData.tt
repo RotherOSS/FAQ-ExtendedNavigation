@@ -77,12 +77,13 @@
                     <li><span class="Key">[% Translate("Votes") | html %]:</span> <span title="[% Data.Votes | html %]">[% Data.Votes | html %]</span></li>
 [% RenderBlockEnd("ViewVotes") %]
 
-        [% IF Data.VoteMessage != "" %]
-            <li class="Center"><h3>[% Translate(Data.VoteMessage) | html %]</h3></li>
-        [% END %]
-            </ul>
+[% IF Data.VoteMessage != "" %]
+                    <li class="Center"><h3>[% Translate(Data.VoteMessage) | html %]</h3></li>
+[% END %]
+                </ul>
+            </div>
         </div>
-        </div>
+    </div>
 
 [% RenderBlockStart("FAQVoting") %]
     <div class="Rating">
@@ -138,5 +139,4 @@
             </div>
         </div>
     </div>
-
 [% RenderBlockEnd("FAQVoting") %]

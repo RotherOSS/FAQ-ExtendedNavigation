@@ -15,13 +15,18 @@
 # --
 ## nofilter(TidyAll::Plugin::OTOBO::TT::ScriptUsage)
 
-<div id="oooContent" class="FAQElement">
+<div id="oooContent">
 
     <div id="oooHeader">
+# Rother OSS / FAQ-ExtendedNavigation
+#       <div>
         <div class="HeaderRowTitle">
+# EO FAQ-ExtendedNavigation
             <h1>[% Translate("FAQ Explorer") | html %]</h1>
+# Rother OSS / FAQ-ExtendedNavigation
         </div>
         <div class="HeaderRow">
+# EO FAQ-ExtendedNavigation
             <div class="BreadCrumb">
 [% RenderBlockStart("FAQPathCategoryElement") %]
                 <a href="[% Env("Baselink") %]Action=CustomerFAQExplorer;CategoryID=[% Data.CategoryID | uri %]">
@@ -33,25 +38,40 @@
 [% RenderBlockEnd("FAQPathItemElement") %]
             </div>
         </div>
+# Rother OSS / FAQ-ExtendedNavigation
+#        <div id="oooSearchBox">
         <div id="oooSearchBox" class="HeaderRow FAQSearchBox">
+# EO FAQ-ExtendedNavigation
             <form action="[% Env("CGIHandle") %]" method="post" name="compose">
                 <input type="hidden" name="Action" value="CustomerFAQExplorer"/>
                 <input type="hidden" name="Subaction" value="Search"/>
 
                 <h3 class='ooog'>
-                    <i class="ooofo ooofo-search"></i>
+# Rother OSS / FAQ-ExtendedNavigation
+#                    <i class="ooofo ooofo-search"></i>
+# EO FAQ-ExtendedNavigation
                     <input type="text" name="What" id="oooSearch" title="[% Translate('FAQ Search') | html %]"  class="oooSearchFAQ"/>
-                    <span id='oooSearchLabel'>[% Translate('FAQ Search') | html %]</span>
+# Rother OSS / FAQ-ExtendedNavigation
+#                    <span id='oooSearchLabel'>[% Translate('FAQ Search') | html %]</span>
+                    <span id='oooSearchLabel'><i class="ooofo ooofo-search"></i> [% Translate('FAQ Search') | html %]</span>
+# EO FAQ-ExtendedNavigation
                 </h3>
             </form>
         </div>
     </div>
 
+# Rother OSS / FAQ-ExtendedNavigation
+#    <div id="oooMainBox">
+#
+#        <div class='WidgetSimple'>
+#            <h2 title="[% Data.Title | html %]">
+#                [% Data.Title | html %]
+#            </h2>
     <div id="oooMainBox" class="FAQContent">
 
     [% Data.SideBar %]
 
-    <div class="ArticleArea">
+      <div class="ArticleArea">
 
 [% RenderBlockStart("NoDefaultItem") %]
 
@@ -72,10 +92,14 @@
          </div>
 
         <div class="WidgetSimple [% Data.CssClassNoArticle | html %]">
+# EO FAQ-ExtendedNavigation
 
             <ul id="Messages">
 [% RenderBlockStart("AttachmentHeader") %]
+# Rother OSS / FAQ-ExtendedNavigation
+#                <li class="Customer Visible">
                 <li class="Customer Visible ContentIndex">
+# EO FAQ-ExtendedNavigation
                     <div class="MessageHeader">
                         <h3>[% Translate("Attachments") | html %]:</h3>
                         <div class="Clear"></div>
@@ -108,14 +132,21 @@
 #            </li>
 #[% RenderBlockEnd("BrowserLinkMessage") %]
 
+# Rother OSS / FAQ-ExtendedNavigation
                 <li class="Customer Visible ContentIndex">
+# EO FAQ-ExtendedNavigation
 [% RenderBlockStart("FAQContent") %]
+# Rother OSS / FAQ-ExtendedNavigation
+#                <li class="Customer Visible">
+#                    <div class="MessageHeader">
+#                        <h3>[% Translate(Data.Caption) | html %]:</h3>
                     <a id="[% Data.Field %]"></a>
                     <div class="MessageHeader">
                         <h3 class="CaptionLabel">[% Translate(Data.Caption) | html %]:</h3>
                         <a class="BackTop" title="[% Translate("Back to top") | html %]">
                             <i class="fa fa-chevron-up"></i>
                         </a>
+# EO FAQ-ExtendedNavigation
                         <div class="Clear"></div>
                     </div>
                     <input type="hidden" value="true" name="FieldState">
@@ -139,9 +170,10 @@ function CheckIFrameHeight(IFrameID) {
 # Append session info to URL because IE will not send cookies.
 # Set 'allow-popups' to allow IE10+ to open links. ref: http://www.w3.org/html/wg/wiki/ChangeProposals/sandbox_allow_popups
 
-# Rother OSS / Allowing top navigation for FAQ Extended Navigation Package
+# Rother OSS / FAQ-ExtendedNavigation - Allowing top navigation for FAQ Extended Navigation Package
+#                        <iframe sandbox="allow-same-origin allow-popups ms-allow-popups allow-popups-to-escape-sandbox" class="FAQField" id="IframeFAQ[% Data.Field | html %]" onload="window.setTimeout( function (){ CheckIFrameHeight('IframeFAQ[% Data.Field | html %]'); }, 500);" src="[% Env("Baselink") %]Action=CustomerFAQZoom;Subaction=HTMLView;ItemID=[% Data.ItemID | html %];Field=[% Data.Field | html %];[% Env("SessionName") | html %]=[% Env("SessionID") | html %]"></iframe>
                         <iframe sandbox="allow-same-origin allow-popups ms-allow-popups allow-popups-to-escape-sandbox allow-top-navigation" class="FAQField" id="IframeFAQ[% Data.Field | html %]" onload="window.setTimeout( function (){ CheckIFrameHeight('IframeFAQ[% Data.Field | html %]'); }, 500);" src="[% Env("Baselink") %]Action=CustomerFAQZoom;Subaction=HTMLView;ItemID=[% Data.ItemID | html %];Field=[% Data.Field | html %];[% Env("SessionName") | html %]=[% Env("SessionID") | html %]"></iframe>
-# EO FAQ Extended Navigation Package
+# EO FAQ-ExtendedNavigation
                     </div>
 [% RenderBlockEnd("FAQContentHTML") %]
 [% RenderBlockStart("FAQContentPlain") %]
@@ -151,14 +183,19 @@ function CheckIFrameHeight(IFrameID) {
                         </div>
                     </div>
 [% RenderBlockEnd("FAQContentPlain") %]
-
+# Rother OSS / FAQ-ExtendedNavigation
+#                </li>
+# EO FAQ-ExtendedNavigation
 [% RenderBlockEnd("FAQContent") %]
+# Rother OSS / FAQ-ExtendedNavigation
                 </li>
+# EO FAQ-ExtendedNavigation
             </ul>
         </div>
 
-        </div> <!-- ArticleArea -->
-
+# Rother OSS / FAQ-ExtendedNavigation
+      </div> <!-- ArticleArea -->
+# Old sidebar HTML was completely removed
         <div class="WidgetColumn">
             <div class="WidgetArea-Top">
                 [% Data.TOC %]
@@ -168,5 +205,7 @@ function CheckIFrameHeight(IFrameID) {
             </div>
             <div class="WidgetArea-Bottom"></div>
         </div>
+# EO FAQ-ExtendedNavigation
+
     </div>
 </div>

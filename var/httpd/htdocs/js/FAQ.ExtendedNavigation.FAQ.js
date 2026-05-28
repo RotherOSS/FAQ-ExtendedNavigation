@@ -105,7 +105,9 @@ FAQ.ExtendedNavigation.FAQ = (function (TargetNS) {
 
         document.querySelectorAll('.oooFAQSidebarSubHeader').forEach(header => {
             header.addEventListener('click', () => {
-                header.classList.toggle('is-expanded');
+                header.classList.toggle('Expanded');
+                header.classList.toggle('Collapsed');
+                $("i.oooIconSubHeader", $(header)).toggleClass('fa-caret-right fa-caret-down');
                 
                 let next = header.nextElementSibling;
                 while (next && next.classList.contains('oooFAQSidebarArticle')) {
@@ -117,7 +119,7 @@ FAQ.ExtendedNavigation.FAQ = (function (TargetNS) {
 
         $( document ).ready(function() {
             if ( Core.Config.Get('ExpandSubcategories') == "Yes" ) {
-                $(".fa-chevron-right").trigger("click");
+                $("oooFAQSidebar .fa-chevron-right").trigger("click");
             } else if ( Core.Config.Get('LevelName') != "" ) {
                 $('[data-name="'+ escapeString(Core.Config.Get('LevelName')) + '"]').trigger("click");
             }

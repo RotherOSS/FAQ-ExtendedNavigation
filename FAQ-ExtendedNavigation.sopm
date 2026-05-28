@@ -49,8 +49,10 @@
         <File Permission="660" Location="var/httpd/htdocs/skins/Agent/default/css/FAQExtendedNavigation.Agent.Default.css" />
         <File Permission="660" Location="var/httpd/htdocs/skins/Agent/default/css/FAQExtendedNavigation.Agent.Detail.css" />
         <File Permission="660" Location="var/httpd/htdocs/skins/Agent/default/css/FAQ.Agent.Sidebar.css" />
+        <File Permission="660" Location="var/httpd/htdocs/skins/Agent/default/css/RichTextArticleContent.css" />
         <File Permission="660" Location="var/httpd/htdocs/skins/Customer/default/css/FAQExtendedNavigation.Customer.Default.css" />
         <File Permission="660" Location="var/httpd/htdocs/skins/Customer/default/css/FAQExtendedNavigation.Customer.Detail.css" />
+        <File Permission="660" Location="var/httpd/htdocs/skins/Customer/default/css/RichTextArticleContent.css" />
         <File Permission="660" Location="var/httpd/htdocs/skins/Customer/default/img/home.svg" />
         <File Permission="660" Location="var/httpd/htdocs/skins/Agent/default/img/faq.svg" />
     </Filelist>

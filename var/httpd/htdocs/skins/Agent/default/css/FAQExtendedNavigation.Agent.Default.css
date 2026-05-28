@@ -19,49 +19,25 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 
 @media screen,projection,tv,handheld {
 
+:root {
+    --FAQSidebarIconSize: 20px;
+    --FAQSidebarIconMargin: 4px;
+    --FAQSidebarUnexplainedWhitespace: 4px;
+}
+
 .MainSideBar {
     margin-bottom: 15px;
 }
 
+.oooSideBarIconHome,
 .oooSideBarIconExplorer {
-    width: 20px;
-    height: 20px;
-    vertical-align: top;
-    margin-right: 4px;
-    display: inline-block;
-    content: url( '../img/faq.svg' );
+    font-size: var(--FAQSidebarIconSize) !important;
+    width: var(--FAQSidebarIconSize);
     position: relative;
-    top: -5px;
 }
 
-.oooSideBarIconHome {
-    font-size: 20px !important;
-    position: relative;
-    top: 1px;
-    margin-right: 4px;
-}
-
-.oooFAQSidebarSubHeader {
-    color: var(--colTextDark);
-    font-size: 13px;
-    padding-left: .2rem;
-    margin-top: 10px;
-    cursor: pointer;
-}
-
-.oooFAQSidebarSubHeader .fa-chevron-right {
-    margin-right: 9px;
-}
-
-.oooFAQSubHeaderSpacing {
-    padding-left: 20px !important;
-}
-
-.oooIconSubHeader {
-    color: var(--colTextDark);
-    font-size: 0.75rem;
-    padding-right: 3px;
-    font-weight: 600;
+.oooSideBarIconExplorer {
+    fill: var(--colTextDark);
 }
 
 .oooFAQSidebarHeader {
@@ -104,10 +80,17 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
     padding: 0px 16px 16px 16px;
 }
 
-.oooFAQSidebarArticle {
+.oooFAQSidebarArticle,
+.oooFAQSidebarSubHeader {
+    display: grid;
+    grid-template-areas: "icon text";
+    grid-template-columns: var(--FAQSidebarIconSize) auto;
+    align-items: center;
+    gap: var(--FAQSidebarIconMargin);
     list-style: none;
     padding-top: 0.25rem;
     padding-left: 0.1rem;
+    min-height: var(--FAQSidebarIconSize);
 }
 
 .oooFAQBox svg {
@@ -116,15 +99,6 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
     margin-right: 5px;
     top: -2px;
     filter: brightness(0) opacity(0.5);
-}
-
-.oooFAQSidebarArticle svg {
-    width: 20px;
-    height: 20px;
-    vertical-align: top;
-    margin-right: 4px;
-    display: inline-block;
-    fill: var(--colTextMedium);
 }
 
 .oooFAQSidebarList li:last-child {
@@ -138,12 +112,26 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
     padding-bottom: 5px;
 }
 
-.oooSideBarIcon {
-    width: 20px;
-    height: 20px;
+.oooSideBarIcon,
+.oooFAQSidebar .oooIconSubHeader,
+.oooFAQSidebarArticle svg {
+    width: var(--FAQSidebarIconSize);
+    height: var(--FAQSidebarIconSize);
     vertical-align: top;
-    margin-right: 4px;
+    margin-right: var(--FAQSidebarIconMargin);
     display: inline-block;
+}
+
+.oooFAQSidebar .oooIconSubHeader {
+    grid-area: icon;
+    font-size: 17px;
+    cursor: pointer;
+    color: var(--colTextDark);
+    text-align: center;
+}
+
+.oooFAQSidebarArticle svg {
+    fill: var(--colTextMedium);
 }
 
 .oooFAQTOCArticle a {
@@ -157,17 +145,19 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
     position: relative;
 }
 
-.oooFAQSidebarArticle a {
-    display: inline-block;
-    position: relative;
+.oooFAQSidebarArticle a,
+.oooFAQSidebarSubHeader span {
+    grid-area: text;
     top: 5px;
-    color: var(--colTextLink);
     width: 85%;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     font-weight: 400;
-    position: relative;
+}
+
+.oooFAQSidebarArticle a {
+    color: var(--colTextLink);
 }
 
 .oooFAQSidebarArticle:hover a {
@@ -259,15 +249,9 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 
 .LinkFAQExplorer {
     position: relative;
-    display: inline-block;
-}
-
-.Keyword > a { 
-    background: var(--colMainLight);
-    color: #fff;
-    padding: 2px 5px 2px 5px;
-    border-radius: 6px;
-    font-size: 11px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
 }
 
 .ArticleArea>.WidgetSimple,
@@ -291,10 +275,6 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 }
 
 .IconField {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 160px;
     box-sizing: border-box;
 }
 
@@ -302,30 +282,39 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
     height: 32px; 
     width: 32px; 
     border: 1px solid #dddddd; 
-    margin-bottom: 5px;  
+    margin-bottom: 1px;  
     background-size:cover;
     background-repeat: no-repeat; 
     background-position: center; 
     position: relative;
+    display: inline-block;
+    border-radius: 4px;
+    vertical-align: middle;
+}
+
+#BtnUploadIcon {
+    width: auto;
+    line-break: unset;
+    white-space: nowrap;
+    margin-left: 12px;
+    display: inline-block;
+    vertical-align: middle;
 }
 
 .oooFAQSidebarArticle.oooFAQSubHeaderSpacing {
     display: none;
     opacity: 0;
     transition: opacity 0.3s ease;
+    padding-left: calc( 
+        var(--FAQSidebarIconSize) + 
+        var(--FAQSidebarIconMargin) +
+        16px
+    ); 
 }
 
 .oooFAQSidebarArticle.ooo-is-visible {
     display: flex;
     opacity: 1;
-}
-
-.oooFAQSidebarSubHeader.is-expanded .fa-chevron-right {
-    transform: rotate(90deg);
-    transition: transform 0.2s ease;
-    position: relative;
-    top: 2px;
-    left: -4px;
 }
 
 }

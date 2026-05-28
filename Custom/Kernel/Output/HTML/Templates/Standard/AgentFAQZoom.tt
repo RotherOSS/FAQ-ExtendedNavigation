@@ -65,7 +65,7 @@
                     </fieldset>
                     <fieldset class="TableLike FixedLabelSmall">
                         <label>[% Translate("Keywords") | html %]:</label>
-                        <p class="Value Keyword">
+                        <p class="Value">
 [% RenderBlockStart("Keywords") %]
                             <a href="[% Env("Baselink") %]Action=AgentFAQSearch;Subaction=Search;Keyword=[% Data.Keyword | uri %]" title="[% Data.Keyword | html %]">[% Data.Keyword | html %]</a>
 [% RenderBlockEnd("Keywords") %]

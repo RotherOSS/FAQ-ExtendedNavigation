@@ -21,13 +21,19 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 
 @media screen,projection,tv,handheld {
 
-.ZoomTitle {
-    overflow: hidden !important;
-}
+    .ZoomTitle {
+        overflow: hidden !important;
+    }
 
-/* override the standard of FAQ */
-span.FAQStateName {
-    right: 30px;
-    top: 9px;
-}
+    .RateButtons > li {
+        max-width: 72px;
+        overflow: hidden;
+    }
+
+    /* override the standard of FAQ */
+    span.FAQStateName {
+        right: 30px;
+        top: 9px;
+    }
+
 }

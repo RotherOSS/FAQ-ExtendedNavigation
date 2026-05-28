@@ -12,81 +12,39 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
+:root {
+    --FAQSidebarIconSize: 20px;
+    --FAQSidebarIconMargin: 4px;
+    --FAQSidebarUnexplainedWhitespace: 4px;
+}
+
 .FAQHome {
     color: var(--colTextDark);
 }
 
-.FAQElement > #oooHeader {
-    background-color: #fff;
-    position: sticky;
-    top: 0;
-    height: 145px;
-    border-bottom: 1.2px solid #e5e5eb;  
-    padding-left: 0px !important;
-    padding-right: 0px !important;
-    width: 100% !important;
-    display: grid; 
-    grid-template-columns: 27% auto; 
-    grid-template-rows: repeat(2, 40px);
-    align-content: center;
+#oooSearchBox.FAQSearchBox {
+    padding-right: 0;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
-.HeaderRowTitle {
-  grid-row: span 2;
-  padding-left: 100px;
+#oooSearch.oooSearchFAQ {
+    display: inline-block;
+    left: 0;
+    width: calc( 100% - 36px);
+    background: var(--colBGLight);
 }
 
-.PublicHeaderRowTitle {
-  grid-row: span 2;
-  padding-left: 190px;
-}
-
-.HeaderRow {
-  width: 100%; 
-  display: flex;
-  align-items: baseline;
-  justify-content: left;
-}
-
-.FAQSearchBox {
-    padding-right: 0 !important;
-}
-
-.oooSearchFAQ:focus {
-    width: 40vw !important;
-}
-
-.FAQContent {
-    display: flex;
-    flex-wrap: nowrap;
-    gap: 15px;
-    margin-top: 10px;
-    padding-left: 8%;
-    padding-right: 8% !important;
-    width: 83vw !important;
-    align-items: flex-start;
-}
-
-.SidebarArea {
-    flex: 0 0 18%;
-    padding: 6px;
-}
-
-.ArticleArea {
-    flex: 0 0 62%;
-    padding: 8px;
-    margin-bottom: 40px;
+.oooSearchFAQ + #oooSearchLabel {
+    display: inline-block;
+    position: relative;
+    left: calc( -100% + 28px );
 }
 
 .WidgetColumn {
-    flex: 0 0 20%;
     display: flex;
     flex-direction: column;
-    gap: 20px;
-}
-
-.WidgetArea-Top, .WidgetArea-Middle, .WidgetArea-Bottom {
-    padding: 8px;
+    gap: 24px;
 }
 
 .ArticleArea>.WidgetSimple,
@@ -102,7 +60,7 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 }
 
 .Rating>.WidgetSimple {
-    margin-top: 35px;
+    margin-top: 24px;
 }
 
 #RateSubmitButton {
@@ -120,10 +78,6 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 
 .oooFAQIndex {
     margin-top: 0px !important;
-}
-
-.ContentIndex {
-    margin-top: 15px !important;
 }
 
 .ContentIndex > a {
@@ -169,16 +123,11 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 }
 
 .Keyword > a { 
-    background: var(--colMainDark);
-    color: #fff;
-    padding: 3px 6px 3px 6px;
-    border-radius: 6px;
-    font-size: 11px;
+    color: #001bff;
 }
 
 .oooFAQAdditionalData {
     display: block;
-    min-height: 20vh;
     border-radius: 20px;
     box-shadow: 0 1px 4px 0 rgba(4, 0, 71, .16);
     box-shadow: 0 1px 4px 0 var(--colShadowDark);
@@ -188,7 +137,6 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 
 .oooFAQRating {
     display: block;
-    min-height: 20vh;
     border-radius: 20px;
     box-shadow: 0 1px 4px 0 rgba(4, 0, 71, .16);
     box-shadow: 0 1px 4px 0 var(--colShadowDark);
@@ -230,18 +178,14 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
     padding: 16px 16px 16px 16px;
 }
 
-.MainSideBar {
-    margin-bottom: 30px;
-}
-
 .oooSideBarIconExplorer {
     width: 20px;
     height: 20px;
     vertical-align: top;
     margin-right: 4px;
     display: inline-block;
-    content: url( '../img/faq.svg' );
     position: relative;
+    fill: var(--colTextDark);
 }
 
 .oooSideBarIconHome {
@@ -268,7 +212,6 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 
 .oooFAQSidebar {
     display: block;
-    min-height: 50vh;
     border-radius: 20px;
     box-shadow: 0 1px 4px 0 rgba(4, 0, 71, .16);
     box-shadow: 0 1px 4px 0 var(--colShadowDark);
@@ -306,23 +249,15 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
     padding-left: 27px !important;
 }
 
-.oooIconSubHeader {
-    font-size: 13px;
-    font-weight: 600;
-    padding-right: 3px;
-    transition: transform 0.2s ease;
-    cursor: pointer;    
-}
-
 .oooFAQHeader {
     font-size: 16px;
-    padding: 25px 10px 10px 0px;
+    padding: 8px 0 12px 0;
 }
 
 .oooFAQSidebarHeader:first-child,
 .oooFAQTOCHeader:first-child
 {
-    padding-top: 20px;
+    padding-top: 8px;
 }
 
 .oooFAQLinks:first-child {
@@ -333,10 +268,17 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
     margin-bottom: 5px;
 }
 
-.oooFAQSidebarArticle {
+.oooFAQSidebarArticle,
+.oooFAQSidebarSubHeader {
+    display: grid;
+    grid-template-areas: "icon text";
+    grid-template-columns: var(--FAQSidebarIconSize) auto;
+    align-items: center;
+    gap: var(--FAQSidebarIconMargin);
     list-style: none;
     padding-top: 0.25rem;
     padding-left: 0.1rem;
+    min-height: var(--FAQSidebarIconSize);
 }
 
 .oooFAQBox svg {
@@ -362,16 +304,26 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 
 .oooFAQSidebarArticle+.oooFAQSidebarHeader {
     border-top: 1px solid #e9e8e88c;
-    margin-top: 15px;
-    padding-top: 25px;
+    margin-top: 16px;
+    padding-top: 20px;
 }
 
-.oooSideBarIcon {
-    width: 20px;
-    height: 20px;
+.oooSideBarIcon,
+.oooFAQSidebar .oooIconSubHeader,
+.oooFAQSidebarArticle svg {
+    width: var(--FAQSidebarIconSize);
+    height: var(--FAQSidebarIconSize);
     vertical-align: top;
-    margin-right: 4px;
+    margin-right: var(--FAQSidebarIconMargin);
     display: inline-block;
+}
+
+.oooFAQSidebar .oooIconSubHeader {
+    grid-area: icon;
+    font-size: 17px;
+    cursor: pointer;
+    color: var(--colTextDark);
+    text-align: center;
 }
 
 .oooFAQTOCArticle a {
@@ -384,15 +336,15 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
     position: relative;
 }
 
-.oooFAQSidebarArticle a {
-    display: inline-block;
-    color: var(--colTextDark);
+.oooFAQSidebarArticle a,
+.oooFAQSidebarSubHeader span {
+    grid-area: text;
+    top: 5px;
     width: 85%;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     font-weight: 400;
-    position: relative;
 }
 
 .oooFAQSidebarArticle:hover a {
@@ -419,6 +371,11 @@ html {
     display: none;
     opacity: 0;
     transition: opacity 0.3s ease;
+    padding-left: calc( 
+        var(--FAQSidebarIconSize) + 
+        var(--FAQSidebarIconMargin) +
+        16px
+    ); 
 }
 
 .oooFAQSidebarArticle.ooo-is-visible {
