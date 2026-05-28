@@ -4,6 +4,8 @@
 # Copyright (C) 2001-2019 OTRS AG, https://otrs.com/
 # Copyright (C) 2019-2026 Rother OSS GmbH, https://otobo.io/
 # --
+# $origin:  - 306163bdf5127c26811ff1e5063db884ff8bf94e - Kernel/Output/HTML/Layout/FAQ.pm
+# --
 # This program is free software: you can redistribute it and/or modify it under
 # the terms of the GNU General Public License as published by the Free Software
 # Foundation, either version 3 of the License, or (at your option) any later version.
@@ -417,7 +419,9 @@ sub FAQContentShow {
 
     # store FAQ object locally
     my $FAQObject = $Param{FAQObject};
+# Rother OSS / FAQ Extended Navigation Package
     my %FAQData   = %{ $Param{FAQData} };
+# EO Rother OSS / FAQ Extended Navigation Package
 
     my $ConfigObject = $Kernel::OM->Get('Kernel::Config');
 
@@ -431,11 +435,11 @@ sub FAQContentShow {
 
         next FIELD if !$Config->{Show};
 
-        # Rother OSS / FAQ Extended Navigation Package
+# Rother OSS / FAQ Extended Navigation Package
         # skip over fields without content
         next FIELD if $Param{Zoom} && $FAQData{"Field$Number"} eq '';
 
-        # EO Rother OSS / FAQ Extended Navigation Package
+# EO Rother OSS / FAQ Extended Navigation Package
 
         # store only the config of fields that should be shown
         $Fields{"Field$Number"} = $Config;

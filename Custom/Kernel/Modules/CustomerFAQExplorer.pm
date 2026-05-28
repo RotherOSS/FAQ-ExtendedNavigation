@@ -4,6 +4,8 @@
 # Copyright (C) 2001-2019 OTRS AG, https://otrs.com/
 # Copyright (C) 2019-2026 Rother OSS GmbH, https://otobo.io/
 # --
+# $origin:  - 5dff3dfe9cea7e33c474fe0e3c617607b37726c1 - Kernel/Modules/CustomerFAQExplorer.pm
+# --
 # This program is free software: you can redistribute it and/or modify it under
 # the terms of the GNU General Public License as published by the Free Software
 # Foundation, either version 3 of the License, or (at your option) any later version.

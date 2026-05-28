@@ -3,7 +3,9 @@
 // --
 // Copyright (C) 2001-2020 OTRS AG, https://otrs.com/
 // Copyright (C) 2021-2024 Znuny GmbH, https://znuny.org/
-// Copyright (C) 2019-2025 Rother OSS GmbH, https://otobo.io/
+// Copyright (C) 2019-2026 Rother OSS GmbH, https://otobo.io/
+// --
+// $origin: otobo - 40f86f5574c18aa845fce606d4217242311575df - var/httpd/htdocs/js/Core.UI.CKEditor5Wrapper.js
 // --
 // This program is free software: you can redistribute it and/or modify it under
 // the terms of the GNU General Public License as published by the Free Software

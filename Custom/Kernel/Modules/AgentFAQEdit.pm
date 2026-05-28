@@ -4,6 +4,8 @@
 # Copyright (C) 2001-2019 OTRS AG, https://otrs.com/
 # Copyright (C) 2019-2026 Rother OSS GmbH, https://otobo.io/
 # --
+# $origin:  - a452be7585741f648bb95adcb21a2376c0789db3 - Kernel/Modules/AgentFAQEdit.pm
+# --
 # This program is free software: you can redistribute it and/or modify it under
 # the terms of the GNU General Public License as published by the Free Software
 # Foundation, either version 3 of the License, or (at your option) any later version.

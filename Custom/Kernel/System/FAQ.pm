@@ -4,6 +4,8 @@
 # Copyright (C) 2001-2019 OTRS AG, https://otrs.com/
 # Copyright (C) 2019-2026 Rother OSS GmbH, https://otobo.io/
 # --
+# $origin:  - a41f505f8ce600f8835e9078226026c9589500b9 - Kernel/System/FAQ.pm
+# --
 # This program is free software: you can redistribute it and/or modify it under
 # the terms of the GNU General Public License as published by the Free Software
 # Foundation, either version 3 of the License, or (at your option) any later version.

@@ -4,6 +4,8 @@
 # Copyright (C) 2001-2019 OTRS AG, https://otrs.com/
 # Copyright (C) 2019-2026 Rother OSS GmbH, https://otobo.io/
 # --
+# $origin:  - 306163bdf5127c26811ff1e5063db884ff8bf94e - Kernel/Modules/AgentFAQZoom.pm
+# --
 # This program is free software: you can redistribute it and/or modify it under
 # the terms of the GNU General Public License as published by the Free Software
 # Foundation, either version 3 of the License, or (at your option) any later version.
