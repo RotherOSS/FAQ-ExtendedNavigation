@@ -49,6 +49,7 @@
                            <input type="hidden" name="Icon" id="Icon" value="[% Data.Icon | html %]"/>
                            <input type="file" name="IconUpload" id="IconUpload" class="Hidden" accept=".svg, image/svg+xml"/>
                            <button class="Primary CallForAction" id="BtnUploadIcon" type="button" value="[% Translate("Upload Icon") | html %]" title="[% Translate("Select an icon in SVG format to upload it.") | html %]"><span><i class="fa fa-upload"></i> [% Translate("Upload Icon") | html %]</span></button>
+                           <button class="Primary CallForAction" id="BtnDeleteIcon" type="button" value="[% Translate("Delete Icon") | html %]" title="[% Translate("Delete the current icon.") | html %]"><span><i class="fa fa-trash"></i> [% Translate("Delete Icon") | html %]</span></button>                           
                     </div>
                     <div class="Clear"></div>
 

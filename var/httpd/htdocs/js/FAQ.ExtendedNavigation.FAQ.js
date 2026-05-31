@@ -46,6 +46,11 @@ FAQ.ExtendedNavigation.FAQ = (function (TargetNS) {
                 $("#BtnUploadIcon").trigger("blur");
             });
 
+            $("#BtnDeleteIcon").bind("click", function() {
+                $("#Icon").val("");
+                $("#IconPreview").css("background-image", "none");
+            });
+
             FileInput.addEventListener('change', function(e) {
                 const File = e.target.files[0];
 

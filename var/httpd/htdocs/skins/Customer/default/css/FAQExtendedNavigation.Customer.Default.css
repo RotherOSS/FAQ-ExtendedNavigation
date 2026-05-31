@@ -389,3 +389,9 @@ html {
     position: relative;
     top: 2px;
 }
+
+.WidgetSimple > a.oooFAQNoItems {
+    position: relative;
+    width: 600px;
+    z-index: 1000;
+}

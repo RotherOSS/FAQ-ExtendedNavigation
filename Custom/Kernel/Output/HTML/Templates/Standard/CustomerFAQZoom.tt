@@ -78,7 +78,7 @@
 [% RenderBlockStart("NoDefaultItem") %]
 
          <div class="WidgetSimple">
-            <a class="oooFAQ" href="[% Env("Baselink") %]Action=CustomerFAQExplorer" title="[% Translate("FAQ Explorer") | html %]">
+            <a class="oooFAQ oooFAQNoItems" href="[% Env("Baselink") %]Action=CustomerFAQExplorer" title="[% Translate("FAQ Explorer") | html %]">
                 <h4>[% Translate("No default item has been set yet! Start browsing articles in the") | html %] <b>[% Translate("FAQ Explorer") | html %]</b></h4>
             </a>
          </div>
