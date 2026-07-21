@@ -325,6 +325,7 @@ sub _Edit {
 
     my $LayoutObject = $Kernel::OM->Get('Kernel::Output::HTML::Layout');
     my $ConfigObject = $Kernel::OM->Get('Kernel::Config');
+    my $FAQObject    = $Kernel::OM->Get('Kernel::System::FAQ');
 
     my %AgentData    = %{ $ConfigObject->Get('AgentFAQSideBar::Articles') };
     my %CustomerData = %{ $ConfigObject->Get('CustomerFAQSideBar::Articles') };
@@ -405,7 +406,7 @@ sub _Edit {
     for my $LanguageName (@Languages) {
         next LANGUAGENAME if !$LanguageName;
 
-        my $LanguageID = $Kernel::OM->Get('Kernel::System::FAQ')->LanguageLookup(
+        my $LanguageID = $FAQObject->LanguageLookup(
             Name => $LanguageName,
         );
 
@@ -417,8 +418,32 @@ sub _Edit {
         $FAQSearchParameter{LanguageIDs} = \@LanguageIDs;
     }
 
+    # restrict selectable FAQ articles by interface
+    my %FAQStateList = $FAQObject->StateList(
+        UserID => 1,
+    );
+    my %FAQStateIDLookup = reverse %FAQStateList;
+    if ( $Param{Interface} eq 'Agent' ) {
+        $FAQSearchParameter{States} = {
+            $FAQStateIDLookup{'internal (agent)'}    => 'internal (agent)',
+            $FAQStateIDLookup{'external (customer)'} => 'external (customer)',
+            $FAQStateIDLookup{'public (all)'}        => 'public (all)',
+        };
+    }
+    elsif ( $Param{Interface} eq 'Customer' ) {
+        $FAQSearchParameter{States} = {
+            $FAQStateIDLookup{'external (customer)'} => 'external (customer)',
+            $FAQStateIDLookup{'public (all)'}        => 'public (all)',
+        };
+    }
+    elsif ( $Param{Interface} eq 'Public' ) {
+        $FAQSearchParameter{States} = {
+            $FAQStateIDLookup{'public (all)'} => 'public (all)',
+        };
+    }
+
     # Get the relevant FAQ articles.
-    my @FAQArticleIDs = $Kernel::OM->Get('Kernel::System::FAQ')->FAQSearch(
+    my @FAQArticleIDs = $FAQObject->FAQSearch(
         %FAQSearchParameter,
         OrderBy          => ['FAQID'],
         OrderByDirection => ['Down'],
@@ -427,7 +452,7 @@ sub _Edit {
     );
 
     for my $ItemID (@FAQArticleIDs) {
-        my %FAQ = $Kernel::OM->Get('Kernel::System::FAQ')->FAQGet(
+        my %FAQ = $FAQObject->FAQGet(
             ItemID        => $ItemID,
             ItemFields    => 0,
             DynamicFields => 0,
@@ -560,6 +585,7 @@ sub _Overview {
 
     my $LayoutObject = $Kernel::OM->Get('Kernel::Output::HTML::Layout');
     my $ConfigObject = $Kernel::OM->Get('Kernel::Config');
+    my $FAQObject    = $Kernel::OM->Get('Kernel::System::FAQ');
 
     my %AgentData    = %{ $ConfigObject->Get('AgentFAQSideBar::Articles') };
     my %CustomerData = %{ $ConfigObject->Get('CustomerFAQSideBar::Articles') };
@@ -582,7 +608,7 @@ sub _Overview {
             my %FAQ;
 
             if ( $SelectedData{$Config}->{DefaultItemID} ) {
-                %FAQ = $Kernel::OM->Get('Kernel::System::FAQ')->FAQGet(
+                %FAQ = $FAQObject->FAQGet(
                     ItemID        => $SelectedData{$Config}->{DefaultItemID},
                     ItemFields    => 0,
                     DynamicFields => 0,
