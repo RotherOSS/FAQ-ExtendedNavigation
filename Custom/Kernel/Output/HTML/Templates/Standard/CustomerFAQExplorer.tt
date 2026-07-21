@@ -4,7 +4,7 @@
 # Copyright (C) 2001-2019 OTRS AG, https://otrs.com/
 # Copyright (C) 2019-2026 Rother OSS GmbH, https://otobo.io/
 # --
-# $origin:  - 0fdf36c689c6957c1e4b90cf72e5196719fdf4b2 - Kernel/Output/HTML/Templates/Standard/CustomerFAQExplorer.tt
+# $origin: otobo -  - Kernel/Output/HTML/Templates/Standard/CustomerFAQExplorer.tt
 # --
 # This program is free software: you can redistribute it and/or modify it under
 # the terms of the GNU General Public License as published by the Free Software
@@ -18,11 +18,15 @@
 
 <div id="oooContent">
     <div id="oooHeader">
-# Rother OSS - a lot of unmarked changes here...
+# Rother OSS / FAQ-ExtendedNavigation
+#         <div>
         <div class="HeaderRowTitle">
+# EO FAQ-ExtendedNavigation
             <h1>[% Translate("FAQ Explorer") | html %]</h1>
+# Rother OSS / FAQ-ExtendedNavigation
         </div>
         <div class="HeaderRow">
+# EO FAQ-ExtendedNavigation
             <div class="BreadCrumb">
 [% RenderBlockStart("FAQPathCategoryElement") %]
                 <a href="[% Env("Baselink") %]Action=CustomerFAQExplorer;CategoryID=[% Data.CategoryID | uri %]">
@@ -34,7 +38,10 @@
 [% RenderBlockEnd("FAQPathCategoryElementNoLink") %]
             </div>
         </div>
+# Rother OSS / FAQ-ExtendedNavigation
+#         <div id="oooSearchBox">
         <div id="oooSearchBox" class="HeaderRow FAQSearchBox">
+# EO FAQ-ExtendedNavigation
             <form action="[% Env("CGIHandle") %]" method="post" name="compose">
                 <input type="hidden" name="Action" value="CustomerFAQExplorer"/>
                 <input type="hidden" name="Subaction" value="Search"/>
@@ -42,10 +49,9 @@
                 <h3 class='ooog'>
 # Rother OSS / FAQ-ExtendedNavigation
 #                    <i class="ooofo ooofo-search"></i>
-# EO FAQ-ExtendedNavigation
-                    <input type="text" name="What" id="oooSearch" title="[% Translate('FAQ Search') | html %]"  class="oooSearchFAQ"/>
-# Rother OSS / FAQ-ExtendedNavigation
+#                    <input type="text" name="What" id="oooSearch" title="[% Translate('FAQ Search') | html %]"/>
 #                    <span id='oooSearchLabel'>[% Translate('FAQ Search') | html %]</span>
+                    <input type="text" name="What" id="oooSearch" title="[% Translate('FAQ Search') | html %]"  class="oooSearchFAQ"/>
                     <span id='oooSearchLabel'><i class="ooofo ooofo-search"></i> [% Translate('FAQ Search') | html %]</span>
 # EO FAQ-ExtendedNavigation
                 </h3>
@@ -53,11 +59,14 @@
         </div>
     </div>
 
+# Rother OSS / FAQ-ExtendedNavigation
+#     <div id="oooMainBox">
     <div id="oooMainBox" class="FAQContent">
 
     [% Data.SideBar %]
 
     <div class="ArticleArea">
+# EO FAQ-ExtendedNavigation
 
 [% RenderBlockStart("Subcategories") %]
         <div class="WidgetSimple">
@@ -108,7 +117,9 @@
 [% RenderBlockEnd("NoFAQDataFoundMsg") %]
 [% RenderBlockStart("Record") %]
                 <a class="oooFAQ" href="[% Env("Baselink") %]Action=CustomerFAQZoom;ItemID=[% Data.FAQID | uri %]">
+# Rother OSS / FAQ-ExtendedNavigation
                     [% Data.Icon %]
+# EO FAQ-ExtendedNavigation
                     <h3 class="Title" title="[% Data.Title | html %]">[% Data.Title | html %]</h3>
 [% RenderBlockStart("RecordLanguage") %]
                     <p class="Language ooog" title="[% Data.Language | html %]">[% Data.Language | truncate(5) | html %]</p>
@@ -125,7 +136,9 @@
             </div>
         </div>
 [% RenderBlockEnd("FAQItemList") %]
+# Rother OSS / FAQ-ExtendedNavigation
         </div> <!-- ArticleArea -->
+# EO FAQ-ExtendedNavigation
 
     </div>
 </div>

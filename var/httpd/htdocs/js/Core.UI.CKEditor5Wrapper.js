@@ -5,7 +5,7 @@
 // Copyright (C) 2021-2024 Znuny GmbH, https://znuny.org/
 // Copyright (C) 2019-2026 Rother OSS GmbH, https://otobo.io/
 // --
-// $origin: otobo - 40f86f5574c18aa845fce606d4217242311575df - var/httpd/htdocs/js/Core.UI.CKEditor5Wrapper.js
+// $origin: otobo - 731e26cc3f604b5eb6354ffba51663f11e394e65 - var/httpd/htdocs/js/Core.UI.CKEditor5Wrapper.js
 // --
 // This program is free software: you can redistribute it and/or modify it under
 // the terms of the GNU General Public License as published by the Free Software
@@ -55,10 +55,13 @@ let Plugins = [
     CKEditor5Wrapper.ImageToolbar,
     CKEditor5Wrapper.ImageInsert,
     CKEditor5Wrapper.Indent,
+    CKEditor5Wrapper.IndentBlock,
     CKEditor5Wrapper.Italic,
     CKEditor5Wrapper.Link,
     CKEditor5Wrapper.List,
-    CKEditor5Wrapper.Mention,  /* Rother OSS / FAQ Extended Navigation Package  */
+// Rother OSS / FAQ-ExtendedNavigation
+    CKEditor5Wrapper.Mention,
+// EO FAQ-ExtendedNavigation
     CKEditor5Wrapper.Paragraph,
     CKEditor5Wrapper.RemoveFormat,
     CKEditor5Wrapper.SelectAll,

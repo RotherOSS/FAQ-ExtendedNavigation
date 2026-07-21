@@ -4,7 +4,7 @@
 # Copyright (C) 2001-2019 OTRS AG, https://otrs.com/
 # Copyright (C) 2019-2026 Rother OSS GmbH, https://otobo.io/
 # --
-# $origin:  - 306163bdf5127c26811ff1e5063db884ff8bf94e - Kernel/Modules/AgentFAQExplorer.pm
+# $origin: otobo -  - Kernel/Modules/AgentFAQExplorer.pm
 # --
 # This program is free software: you can redistribute it and/or modify it under
 # the terms of the GNU General Public License as published by the Free Software
@@ -55,8 +55,10 @@ sub Run {
 
     my $ParamObject = $Kernel::OM->Get('Kernel::System::Web::Request');
 
+# Rother OSS / FAQ-ExtendedNavigation
     my $IsAllowed = 0;
     $Self->{UserLanguage} = $LayoutObject->{UserLanguage};
+# EO FAQ-ExtendedNavigation
 
     # Get config data.
     my $StartHit    = int( $ParamObject->GetParam( Param => 'StartHit' ) || 1 );
@@ -78,7 +80,7 @@ sub Run {
         $CategoryID = 0;
     }
 
-    # Rother OSS / FAQ Extended Navigation Package
+# Rother OSS / FAQ-ExtendedNavigation
     # Check if there is a default article defined for the current language
     my $HasDefaultArticle = 0;
     my %Data              = %{ $Kernel::OM->Get('Kernel::Config')->Get('AgentFAQSideBar::Articles') };
@@ -92,8 +94,7 @@ sub Run {
             last CONFIG;
         }
     }
-
-    # EO Rother OSS / FAQ Extended Navigation Package
+# EO FAQ-ExtendedNavigation
 
     my $Category = $ParamObject->GetParam( Param => 'Category' ) || '';
 
@@ -215,8 +216,8 @@ sub Run {
         UserID => $Self->{UserID},
     );
 
-    #Rother OSS / FAQ Extended Navigation Package
-    #Get Sidebar info
+# Rother OSS / FAQ-ExtendedNavigation
+    # Get Sidebar info
     $Param{SideBar} = $LayoutObject->FAQSideBar(
         Mode              => 'Agent',
         Language          => $Self->{UserLanguage},
@@ -226,8 +227,7 @@ sub Run {
         Action            => $Self->{Action},
         HasDefaultArticle => $HasDefaultArticle
     );
-
-    # EO Rother OSS / FAQ Extended Navigation Package
+# EO FAQ-ExtendedNavigation
 
     # Get all items (valid and invalid) if SySConfig is set.
     my $ValidObject = $Kernel::OM->Get('Kernel::System::Valid');

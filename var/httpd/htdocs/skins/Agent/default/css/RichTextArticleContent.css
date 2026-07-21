@@ -56,27 +56,35 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
     margin-bottom: 0px;
 }
 
-/* Rother OSS / Add mention and transparent */
+/* Rother OSS / FAQ-ExtendedNavigation */
 .ck-content a,
 .ck-content a.mention {
+/* EO FAQ-ExtendedNavigation */
     text-decoration: none;
+/* Rother OSS / FAQ-ExtendedNavigation */
     background-color: transparent;
+/* EO FAQ-ExtendedNavigation */
     color: #001bff;
 }
 
 .ck-content a:hover,
+/* Rother OSS / FAQ-ExtendedNavigation */
 .ck-content a.mention:hover,
 .ck-content a:focus,
 .ck-content a.mention:focus {
+/* EO FAQ-ExtendedNavigation */
     color: #00023c;
+/* Rother OSS / FAQ-ExtendedNavigation */
     background-color: transparent;
+/* EO FAQ-ExtendedNavigation */
 }
 
 .ck-content *:visited {
     color: #001bff;
+/* Rother OSS / FAQ-ExtendedNavigation */
     background-color: transparent;
+/* EO FAQ-ExtendedNavigation */
 }
-/* EO Add mention and transparent */
 
 .ck-content strong {
     font-weight: bold;

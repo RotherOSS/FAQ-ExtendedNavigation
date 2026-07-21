@@ -168,11 +168,11 @@ FAQ.ExtendedNavigation.FAQ = (function (TargetNS) {
      * @memberof FAQ.ExtendedNavigation.FAQ
      * @function
      * @description
-     *      This function return FAQ articles allowed to be metioned for the current user.
+     *      This function return FAQ articles allowed to be mentioned for the current user.
      */
     TargetNS.getFAQArticles = function(queryText) {
         
-        return new Promise((resolve, reject) => {
+        return new Promise((resolve) => {
             const Data = { 
                 Action:    'AgentFAQAutoComplete',
                 Subaction: 'GetFAQItems',
@@ -199,7 +199,7 @@ FAQ.ExtendedNavigation.FAQ = (function (TargetNS) {
                 ValueData.push({
                     id:      this.id,
                     text:    this.text,
-                    item_id: this.item_id,
+                    item_id: this.item_id,  // eslint-disable-line camelcase
                     link:    this.link
                 });
             });

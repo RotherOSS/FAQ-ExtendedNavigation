@@ -4,7 +4,7 @@
 # Copyright (C) 2001-2019 OTRS AG, https://otrs.com/
 # Copyright (C) 2019-2026 Rother OSS GmbH, https://otobo.io/
 # --
-# $origin:  - 5dff3dfe9cea7e33c474fe0e3c617607b37726c1 - Kernel/Modules/CustomerFAQExplorer.pm
+# $origin: otobo -  - Kernel/Modules/CustomerFAQExplorer.pm
 # --
 # This program is free software: you can redistribute it and/or modify it under
 # the terms of the GNU General Public License as published by the Free Software
@@ -22,10 +22,9 @@ use strict;
 use warnings;
 use Kernel::Language qw(Translatable);
 
-# Rother OSS / FAQ Extended Navigation Package
+# Rother OSS / FAQ-ExtendedNavigation
 use MIME::Base64 qw(decode_base64 encode_base64);
-
-# EO Rother OSS / FAQ Extended Navigation Package
+# EO FAQ-ExtendedNavigation
 
 our $ObjectManagerDisabled = 1;
 
@@ -47,8 +46,10 @@ sub Run {
     # get config of frontend module
     my $Config = $ConfigObject->Get("FAQ::Frontend::$Self->{Action}");
 
-    my $ParamObject  = $Kernel::OM->Get('Kernel::System::Web::Request');
+    my $ParamObject = $Kernel::OM->Get('Kernel::System::Web::Request');
+# Rother OSS / FAQ-ExtendedNavigation
     my $LayoutObject = $Kernel::OM->Get('Kernel::Output::HTML::Layout');
+# EO FAQ-ExtendedNavigation
 
     # get config data
     my $StartHit        = int( $ParamObject->GetParam( Param => 'StartHit' ) || 1 );
@@ -70,7 +71,7 @@ sub Run {
         $CategoryID = 0;
     }
 
-    # Rother OSS / FAQ Extended Navigation Package
+# Rother OSS / FAQ-ExtendedNavigation
     # Check if there is a default article defined for the current language
     my $HasDefaultArticle = 0;
     my %Data              = %{ $Kernel::OM->Get('Kernel::Config')->Get('CustomerFAQSideBar::Articles') };
@@ -84,8 +85,7 @@ sub Run {
             last CONFIG;
         }
     }
-
-    # EO Rother OSS / FAQ Extended Navigation Package
+# EO FAQ-ExtendedNavigation
 
     # get category by name
     my $Category = $ParamObject->GetParam( Param => 'Category' ) || '';
@@ -103,6 +103,10 @@ sub Run {
 
         $CategoryID = $ReverseCategoryTree{$Category} || 0;
     }
+
+# Rother OSS / FAQ-ExtendedNavigation
+#     my $LayoutObject = $Kernel::OM->Get('Kernel::Output::HTML::Layout');
+# EO FAQ-ExtendedNavigation
 
     # try to get the category data
     my %CategoryData;
@@ -159,14 +163,14 @@ sub Run {
 
     # show search results
     if ( $Self->{Subaction} && $Self->{Subaction} eq 'Search' ) {
-        my $SearchName = Translatable("Search") . ":";
+        my $SearchName = $LayoutObject->{LanguageObject}->Translate("Search") . ":";
         for my $Mode (qw/Keyword What/) {
             my $String = $ParamObject->GetParam( Param => $Mode );
             if ($String) {
                 $Search{$Mode}    = $String;
                 $FAQSearch{$Mode} = "*$String*";
                 my $ModeName = $Mode eq 'What' ? 'Fulltext' : $Mode;
-                $SearchName .= " " . Translatable($ModeName) . " \"$String\";";
+                $SearchName .= " " . $LayoutObject->{LanguageObject}->Translate($ModeName) . " \"$String\";";
             }
         }
 
@@ -353,10 +357,9 @@ sub Run {
                     UserID     => $Self->{UserID},
                 );
 
-                # Rother OSS / FAQ Extended Navigation Package
+# Rother OSS / FAQ-ExtendedNavigation
                 $FAQData{Icon} = $FAQData{Icon} ? decode_base64( $FAQData{Icon} ) : '';
-
-                # EO Rother OSS / FAQ Extended Navigation Package
+# EO FAQ-ExtendedNavigation
 
                 $FAQData{CleanTitle} = $FAQObject->FAQArticleTitleClean(
                     Title => $FAQData{Title},
@@ -475,9 +478,8 @@ sub Run {
         return $LayoutObject->ErrorScreen();
     }
 
-    #Rother OSS / FAQ Extended Navigation Package
-    #Get Sidebar info
-
+# Rother OSS / FAQ-ExtendedNavigation
+    # Get Sidebar info
     $Param{SideBar} = $LayoutObject->FAQSideBar(
         Mode              => 'Customer',
         Language          => $Self->{UserLanguage} || 'en',
@@ -487,8 +489,7 @@ sub Run {
         Action            => $Self->{Action},
         HasDefaultArticle => $HasDefaultArticle,
     );
-
-    # EO FAQ Extended Navigation Package
+# EO FAQ-ExtendedNavigation
 
     $Output .= $LayoutObject->Output(
         TemplateFile => 'CustomerFAQExplorer',

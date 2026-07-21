@@ -44,7 +44,7 @@ FAQ.Agent.Sidebar = (function (TargetNS) {
 
         Core.UI.Table.InitTableFilter($('#Filter'), $('#Settings'));        
 
-        $('.BtnEdit').bind('click', function (Event) {
+        $('.BtnEdit').bind('click', function () {
             $("#LangSelection").submit();
             return false;
         });
@@ -197,7 +197,6 @@ FAQ.Agent.Sidebar = (function (TargetNS) {
         
         const validArticles = Array.from(allArticles).filter(el => {
             return !el.id.includes('Error'); 
-            return !el.id.includes('NextID'); 
         });
 
         const currentNames = validArticles

@@ -4,7 +4,7 @@
 # Copyright (C) 2001-2019 OTRS AG, https://otrs.com/
 # Copyright (C) 2019-2026 Rother OSS GmbH, https://otobo.io/
 # --
-# $origin:  - a41f505f8ce600f8835e9078226026c9589500b9 - Kernel/System/FAQ.pm
+# $origin: otobo -  - Kernel/System/FAQ.pm
 # --
 # This program is free software: you can redistribute it and/or modify it under
 # the terms of the GNU General Public License as published by the Free Software
@@ -106,6 +106,8 @@ sub new {
 
 =head2 FAQGet()
 
+=for stopwords svg
+
 get an FAQ item
 
     my %FAQ = $FAQObject->FAQGet(
@@ -148,7 +150,10 @@ Returns:
         Name              => '1294286030-31.1697297104732',  # FAQ Article name or
                                                              # systemtime + '-' + random number
         ServiceList       => { '1' => 'Computer' },           # Hash of related services
+
+# Rother OSS / FAQ-ExtendedNavigation
         Icon              => 'svg text'
+# EO FAQ-ExtendedNavigation
     );
 
     my %FAQ = $FAQObject->FAQGet(
@@ -199,7 +204,9 @@ Returns:
         Name              => '1294286030-31.1697297104732',  # FAQ Article name or
                                                              # systemtime + '-' + random number
         ServiceList       => { '1' => 'Computer' },           # Hash of related services
+# Rother OSS / FAQ-ExtendedNavigation
         Icon              => 'svg text'
+# EO FAQ-ExtendedNavigation
     );
 
 =cut
@@ -247,7 +254,21 @@ sub FAQGet {
     # otherwise get %Data from the DB
     else {
 
-        # Rother OSS / FAQ Extended Navigation Package
+# Rother OSS / FAQ-ExtendedNavigation
+#         return if !$DBObject->Prepare(
+#             SQL => '
+#                 SELECT i.f_name, i.f_language_id, i.f_subject, i.created, i.created_by, i.changed,
+#                     i.changed_by, i.category_id, i.state_id, c.name, s.name, l.name, i.f_keywords,
+#                     i.approved, i.valid_id, i.content_type, i.f_number, st.id, st.name
+#                 FROM faq_item i, faq_category c, faq_state s, faq_state_type st, faq_language l
+#                 WHERE i.state_id = s.id
+#                     AND s.type_id = st.id
+#                     AND i.category_id = c.id
+#                     AND i.f_language_id = l.id
+#                     AND i.id = ?',
+#             Bind  => [ \$Param{ItemID} ],
+#             Limit => 1,
+#         );
         return if !$DBObject->Prepare(
             SQL => '
                 SELECT i.f_name, i.f_language_id, i.f_subject, i.created, i.created_by, i.changed,
@@ -262,8 +283,7 @@ sub FAQGet {
             Bind  => [ \$Param{ItemID} ],
             Limit => 1,
         );
-
-        # EO FAQ Extended Navigation Package
+# EO FAQ-ExtendedNavigation
 
         while ( my @Row = $DBObject->FetchrowArray() ) {
 
@@ -294,11 +314,9 @@ sub FAQGet {
                 Number        => $Row[16],
                 StateTypeID   => $Row[17],
                 StateTypeName => $Row[18],
-
-                # Rother OSS / FAQ Extended Navigation Package
+# Rother OSS / FAQ-ExtendedNavigation
                 Icon => $Row[19],
-
-                #EO Rother OSS / FAQ Extended Navigation Package
+# EO FAQ-ExtendedNavigation
             );
         }
         if ( !%Data ) {
@@ -353,8 +371,7 @@ sub FAQGet {
         # get valid list
         my %ValidList = $Kernel::OM->Get('Kernel::System::Valid')->ValidList();
         $Data{Valid} = $ValidList{ $Data{ValidID} };
-
-        # FAQ Service
+# FAQ Service
 
         # get related services
         my $ServicesRelated = $Self->FAQServiceGet(
@@ -365,8 +382,7 @@ sub FAQGet {
                 $Data{ServiceList}->{ $Service->{'ServiceID'} } = $Service->{'Name'};
             }
         }
-
-        # eo FAQ Service
+# eo FAQ Service
 
         # cache result
         $CacheObject->Set(
@@ -536,7 +552,9 @@ add an article
         ValidID     => 1,
         ContentType => 'text/plain',     # or 'text/html'
         UserID      => 1,
+# Rother OSS / FAQ-ExtendedNavigation
         Icon        => 'svg text',        # (optional)
+# EO FAQ-ExtendedNavigation
     );
 
 Returns:
@@ -607,7 +625,28 @@ sub FAQAdd {
         $Param{Approved} = 1;
     }
 
-    # Rother OSS / FAQ Extended Navigation Package
+# Rother OSS / FAQ-ExtendedNavigation
+#     return if !$Kernel::OM->Get('Kernel::System::DB')->Do(
+#         SQL => '
+#             INSERT INTO faq_item
+#                 (f_number, f_name, f_language_id, f_subject,
+#                 category_id, state_id, f_keywords, approved, valid_id, content_type,
+#                 f_field1, f_field2, f_field3, f_field4, f_field5, f_field6,
+#                 created, created_by, changed, changed_by)
+#             VALUES
+#                 (?, ?, ?, ?,
+#                 ?, ?, ?, ?, ?, ?,
+#                 ?, ?, ?, ?, ?, ?,
+#                 current_timestamp, ?, current_timestamp, ?)',
+#         Bind => [
+#             \$Param{Number},     \$Param{Name},    \$Param{LanguageID}, \$Param{Title},
+#             \$Param{CategoryID}, \$Param{StateID}, \$Param{Keywords},   \$Param{Approved},
+#             \$Param{ValidID},    \$Param{ContentType},
+#             \$Param{Field1},     \$Param{Field2}, \$Param{Field3},
+#             \$Param{Field4},     \$Param{Field5}, \$Param{Field6},
+#             \$Param{UserID},     \$Param{UserID},
+#         ],
+#     );
     return if !$Kernel::OM->Get('Kernel::System::DB')->Do(
         SQL => '
             INSERT INTO faq_item
@@ -629,8 +668,7 @@ sub FAQAdd {
             \$Param{UserID},     \$Param{UserID},
         ],
     );
-
-    # EO Rother OSS / FAQ Extended Navigation Package
+# EO FAQ-ExtendedNavigation
 
     # build SQL to get the id of the newly inserted FAQ article
     my $SQL = '
@@ -710,8 +748,7 @@ sub FAQAdd {
         ItemID => $ID,
         UserID => $Param{UserID},
     );
-
-    # FAQ Service
+# FAQ Service
 
     # add services
 
@@ -724,8 +761,7 @@ sub FAQAdd {
             );
         }
     }
-
-    # EO FAQ Service
+# EO FAQ Service
 
     # check if approval feature is enabled
     if ( $ConfigObject->Get('FAQ::ApprovalRequired') && !$Param{Approved} ) {
@@ -745,7 +781,7 @@ sub FAQAdd {
         }
 
         # create new approval ticket
-        if ($ApprovalRequired) {
+        if ( $ApprovalRequired ) {
             my $Success = $Self->_FAQApprovalTicketCreate(
                 ItemID     => $ID,
                 CategoryID => $Param{CategoryID},
@@ -793,7 +829,9 @@ update an article
         UserID      => 1,
         ApprovalOff => 1,               # optional, (if set to 1 approval is ignored. This is
                                         #   important when called from FAQInlineAttachmentURLUpdate)
+# Rother OSS / FAQ-ExtendedNavigation
         Icon        => 'svg text',      # (optional)
+# EO FAQ-ExtendedNavigation
     );
 
 Returns:
@@ -831,8 +869,7 @@ sub FAQUpdate {
     if ( !defined $Param{ValidID} ) {
         $Param{ValidID} = $FAQData{ValidID};
     }
-
-    # FAQ Services
+# FAQ Services
 
     my $ServicesInDB = $Self->FAQServiceGet(
         ItemID => $Param{ItemID},
@@ -870,11 +907,30 @@ sub FAQUpdate {
     if ($ServicesChanged) {
         $Self->_DeleteFromFAQCache(%Param);
     }
+# eo FAQ Services
 
-    # eo FAQ Services
-
-    # Rother OSS / FAQ Extended Navigation Package
-
+# Rother OSS / FAQ-ExtendedNavigation
+#     return if !$Kernel::OM->Get('Kernel::System::DB')->Do(
+#         SQL => '
+#             UPDATE faq_item SET
+#                 f_name = ?, f_language_id = ?, f_subject = ?, category_id = ?,
+#                 state_id = ?, f_keywords = ?, valid_id = ?, content_type = ?,
+#                 f_field1 = ?, f_field2 = ?,
+#                 f_field3 = ?, f_field4 = ?,
+#                 f_field5 = ?, f_field6 = ?,
+#                 changed = current_timestamp,
+#                 changed_by = ?
+#             WHERE id = ?',
+#         Bind => [
+#             \$Param{Name},    \$Param{LanguageID}, \$Param{Title},   \$Param{CategoryID},
+#             \$Param{StateID}, \$Param{Keywords},   \$Param{ValidID}, \$Param{ContentType},
+#             \$Param{Field1},  \$Param{Field2},
+#             \$Param{Field3},  \$Param{Field4},
+#             \$Param{Field5},  \$Param{Field6},
+#             \$Param{UserID},
+#             \$Param{ItemID},
+#         ],
+#     );
     return if !$Kernel::OM->Get('Kernel::System::DB')->Do(
         SQL => '
             UPDATE faq_item SET
@@ -896,8 +952,7 @@ sub FAQUpdate {
             \$Param{ItemID},
         ],
     );
-
-    # EO Rother OSS / FAQ Extended Navigation Package
+# EO FAQ-ExtendedNavigation
 
     # delete cache
     $Self->_DeleteFromFAQCache(%Param);
@@ -1470,8 +1525,7 @@ sub FAQDelete {
         ItemID => $Param{ItemID},
         UserID => $Param{UserID},
     );
-
-    # FAQ Service
+# FAQ Service
 
     # delete all related services
     my $ServiceDataArrayRef = $Self->FAQServiceGet(
@@ -1486,8 +1540,7 @@ sub FAQDelete {
 
         return if !$DeleteSuccess;
     }
-
-    # eo FAQ Service
+# eo FAQ Service
 
     # delete article
     return if !$Kernel::OM->Get('Kernel::System::DB')->Do(
@@ -1500,7 +1553,6 @@ sub FAQDelete {
 
     return 1;
 }
-
 # FAQ Service
 
 =head2 FAQServiceAdd()
@@ -1698,7 +1750,6 @@ sub FAQServiceDelete {
 
     return 1;
 }
-
 # eo FAQ Service
 
 =head2 FAQHistoryAdd()
@@ -2161,11 +2212,9 @@ sub FAQKeywordArticleList {
         OrderByDirection => ['Down'],
         Limit            => $SearchLimit,
         UserID           => 1,
-
-        # FAQ Service TODO
+# FAQ Service TODO
         ServiceID => $Param{ServiceID},
-
-        # eo FAQ Service
+# eo FAQ Service
     );
 
     my %KeywordArticeList;
@@ -2872,8 +2921,7 @@ sub _FAQApprovalUpdate {
             }
         }
 
-        if ($ApprovalRequired) {
-
+        if ( $ApprovalRequired ) {
             # create new approval ticket
             my $Success = $Self->_FAQApprovalTicketCreate(
                 ItemID     => $Param{ItemID},
@@ -3101,7 +3149,6 @@ sub _DeleteFromFAQCache {
 }
 
 # Rother OSS / FAQ-ExtendedNavigation
-
 =head2 LinkQuoteMention()
 
 creates an approval ticket
@@ -3137,7 +3184,6 @@ sub LinkQuoteMention {
 
     return $String;
 }
-
 # EO FAQ-ExtendedNavigation
 
 1;

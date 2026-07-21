@@ -146,7 +146,7 @@ sub Run {
             CustomGroupOrder => $GetParam{CustomGroupOrder}
         );
 
-        for ( my $ArticleCount = 1; $ArticleCount <= $GetParam{ArticleCount}; $ArticleCount++ ) {
+        for my $ArticleCount ( 1 .. $GetParam{ArticleCount} ) {
             my $ArticleGroup  = $ParamObject->GetParam( Param => "Article_" . $ArticleCount ) || '';
             my $ArticleItemID = $ParamObject->GetParam( Param => "ItemID_" . $ArticleCount )  || '';
 

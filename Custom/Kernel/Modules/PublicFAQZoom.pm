@@ -4,7 +4,7 @@
 # Copyright (C) 2001-2019 OTRS AG, https://otrs.com/
 # Copyright (C) 2019-2026 Rother OSS GmbH, https://otobo.io/
 # --
-# $origin:  - 7bda7744dd75c7d23bc72d469a63b9990e2ea49b - Kernel/Modules/PublicFAQZoom.pm
+# $origin: otobo -  - Kernel/Modules/PublicFAQZoom.pm
 # --
 # This program is free software: you can redistribute it and/or modify it under
 # the terms of the GNU General Public License as published by the Free Software
@@ -25,10 +25,9 @@ use MIME::Base64                  qw();
 use Kernel::Language              qw(Translatable);
 use Kernel::System::VariableCheck qw(:all);
 
-# Rother OSS / FAQ Extended Navigation Package
+# Rother OSS / FAQ-ExtendedNavigation
 use MIME::Base64 qw(decode_base64 encode_base64);
-
-# EO Rother OSS / FAQ Extended Navigation Package
+# EO FAQ-ExtendedNavigation
 
 our $ObjectManagerDisabled = 1;
 
@@ -56,7 +55,7 @@ sub Run {
 
     my $LayoutObject = $Kernel::OM->Get('Kernel::Output::HTML::Layout');
 
-    # Rother OSS / FAQ Extended Navigation Package
+# Rother OSS / FAQ-ExtendedNavigation
     # Get default ItemID if it's defined
     my $IsDefaultArticle  = 0;
     my $HasDefaultArticle = 0;
@@ -76,10 +75,14 @@ sub Run {
             last CONFIG;
         }
     }
+# EO FAQ-ExtendedNavigation
 
-    # EO Rother OSS / FAQ Extended Navigation Package
-
-    # Rother OSS / FAQ Extended Navigation Package
+# Rother OSS / FAQ-ExtendedNavigation
+#     if ( !$GetParam{ItemID} ) {
+#         return $LayoutObject->CustomerFatalError(
+#             Message => Translatable('Need ItemID!'),
+#         );
+#     }
     # Show message and link to FAQ Explorer if no default item is set and no ItemID provided
     my $Output;
 
@@ -103,8 +106,7 @@ sub Run {
 
         return $Output . $LayoutObject->CustomerFooter();
     }
-
-    # EO Rother OSS / FAQ Extended Navigation Package
+# EO FAQ-ExtendedNavigation
 
     # get back link
     $GetParam{ZoomBackLink} = $ParamObject->GetParam( Param => 'ZoomBackLink' ) || '';
@@ -123,10 +125,9 @@ sub Run {
         return $LayoutObject->CustomerFatalError();
     }
 
-    # Rother OSS / FAQ Extended Navigation Package
+# Rother OSS / FAQ-ExtendedNavigation
     $FAQData{Icon} = $FAQData{Icon} ? decode_base64( $FAQData{Icon} ) : '';
-
-    # EO Rother OSS / FAQ Extended Navigation Package
+# EO FAQ-ExtendedNavigation
 
     # get the valid ids
     my @ValidIDs      = $Kernel::OM->Get('Kernel::System::Valid')->ValidIDsGet();
@@ -205,13 +206,12 @@ sub Run {
             String => $FieldContent,
         );
 
-        # Rother OSS / FAQ Extended Navigation Package
+# Rother OSS / FAQ-ExtendedNavigation
         # set target="_parent" for links to other articles via mention
         $FieldContent = $FAQObject->LinkQuoteMention(
             String => $FieldContent,
         );
-
-        # EO Rother OSS / FAQ Extended Navigation Package
+# EO FAQ-ExtendedNavigation
 
         # Set target="_blank" attribute to all HTML <a> tags the LinkQuote function needs to be
         #   called again
@@ -237,11 +237,10 @@ sub Run {
             }{$1$SessionID}gmsx;
         }
 
-        # Rother OSS / FAQ Extended Navigation Package
+# Rother OSS / FAQ-ExtendedNavigation
         my $Count = 0;
         $FieldContent =~ s{(<h([1-6])>.*?</h\2>)}{ $Count++; "<a id=\"$Field-$Count\">&nbsp;</a>$1"}ge;
-
-        # EO FAQ Extended Navigation Package
+# EO FAQ-ExtendedNavigation
 
         # return complete HTML as an attachment
         return $LayoutObject->Attachment(
@@ -284,7 +283,10 @@ sub Run {
         }
     }
 
+# Rother OSS / FAQ-ExtendedNavigation
+#     my $Output = $LayoutObject->CustomerHeader(
     $Output .= $LayoutObject->CustomerHeader(
+# EO FAQ-ExtendedNavigation
         Value => $FAQData{Title},
     );
 
@@ -355,6 +357,21 @@ sub Run {
         );
     }
 
+# Rother OSS / FAQ-ExtendedNavigation
+#     # get voting default option
+#     my $Voting = $ConfigObject->Get('FAQ::Voting');
+#
+#     # show votes
+#     if ($Voting) {
+#
+#         # always displays Votes result even if its 0
+#         $LayoutObject->Block(
+#             Name => 'ViewVotes',
+#             Data => {%FAQData},
+#         );
+#     }
+# EO FAQ-ExtendedNavigation
+
     # show FAQ path
     my $ShowFAQPath = $LayoutObject->FAQPathShow(
         FAQObject   => $FAQObject,
@@ -369,31 +386,131 @@ sub Run {
         );
     }
 
+# Rother OSS / FAQ-ExtendedNavigation
+#     # show keywords as search links
+#     if ( $FAQData{Keywords} ) {
+#
+#         # replace commas and semicolons
+#         $FAQData{Keywords} =~ s/,/ /g;
+#         $FAQData{Keywords} =~ s/;/ /g;
+#
+#         my @Keywords = split /\s+/, $FAQData{Keywords};
+#         for my $Keyword (@Keywords) {
+#             $LayoutObject->Block(
+#                 Name => 'Keywords',
+#                 Data => {
+#                     Keyword => $Keyword,
+#                 },
+#             );
+#         }
+#     }
+#
+#     # output rating stars
+#     if ($Voting) {
+#         $LayoutObject->FAQRatingStarsShow(
+#             VoteResult => $FAQData{VoteResult},
+#             Votes      => $FAQData{Votes},
+#         );
+#     }
+#
+#     # output attachments if any
+#     my @AttachmentIndex = $FAQObject->AttachmentIndex(
+#         ItemID     => $GetParam{ItemID},
+#         ShowInline => 0,
+#         UserID     => $Self->{UserID},
+#     );
+#
+#     # output attachments
+#     if (@AttachmentIndex) {
+#         $LayoutObject->Block(
+#             Name => 'AttachmentHeader',
+#         );
+#         for my $Attachment (@AttachmentIndex) {
+#             $LayoutObject->Block(
+#                 Name => 'AttachmentRow',
+#                 Data => {
+#                     %FAQData,
+#                     %{$Attachment},
+#                 },
+#             );
+#         }
+#     }
+# EO FAQ-ExtendedNavigation
+
     # show FAQ Content
     $LayoutObject->FAQContentShow(
         FAQObject       => $FAQObject,
         InterfaceStates => $InterfaceStates,
         FAQData         => {%FAQData},
         UserID          => $Self->{UserID},
-
-        # Rother OSS / FAQ Extended Navigation Package
+# Rother OSS / FAQ-ExtendedNavigation
         Zoom => 1
-
-        # EO Rother OSS / FAQ Extended Navigation Package
-    );
-
-    # log access to this FAQ item
-    $FAQObject->FAQLogAdd(
-        ItemID    => $GetParam{ItemID},
-        Interface => $Interface->{Name},
-        UserID    => $Self->{UserID},
+# EO FAQ-ExtendedNavigation
     );
 
     # get config of frontend module
     my $Config = $ConfigObject->Get("FAQ::Frontend::$Self->{Action}");
 
-    #Rother OSS / FAQ Extended Navigation Package
-    #Get Sidebar info
+    # get the dynamic fields for this screen
+    my $DynamicField = $Kernel::OM->Get('Kernel::System::DynamicField')->DynamicFieldListGet(
+        Valid       => 1,
+        ObjectType  => 'FAQ',
+        FieldFilter => $Config->{DynamicField} || {},
+    );
+
+    my $DynamicFieldBackendObject = $Kernel::OM->Get('Kernel::System::DynamicField::Backend');
+
+    DYNAMICFIELDCONFIG:
+    for my $DynamicFieldConfig ( @{$DynamicField} ) {
+        next DYNAMICFIELDCONFIG if !IsHashRefWithData($DynamicFieldConfig);
+
+        my $Value = $DynamicFieldBackendObject->ValueGet(
+            DynamicFieldConfig => $DynamicFieldConfig,
+            ObjectID           => $GetParam{ItemID},
+        );
+
+        # get print string for this dynamic field
+        my $ValueStrg = $DynamicFieldBackendObject->DisplayValueRender(
+            DynamicFieldConfig => $DynamicFieldConfig,
+            Value              => $Value,
+            ValueMaxChars      => 250,
+            LayoutObject       => $LayoutObject,
+        );
+
+        my $Label = $DynamicFieldConfig->{Label};
+
+        $LayoutObject->Block(
+            Name => 'FAQDynamicField',
+            Data => {
+                Label => $Label,
+                Value => $ValueStrg->{Value},
+                Title => $ValueStrg->{Title},
+            },
+        );
+
+        # example of dynamic fields order customization
+        $LayoutObject->Block(
+            Name => 'FAQDynamicField_' . $DynamicFieldConfig->{Name},
+            Data => {
+                Label => $Label,
+                Value => $ValueStrg->{Value},
+                Title => $ValueStrg->{Title},
+            },
+        );
+    }
+
+    # log access to this FAQ item
+    $FAQObject->FAQLogAdd(
+# Rother OSS / FAQ-ExtendedNavigation
+#         ItemID    => $ParamObject->GetParam( Param => 'ItemID' ),
+        ItemID    => $GetParam{ItemID},
+# EO FAQ-ExtendedNavigation
+        Interface => $Interface->{Name},
+        UserID    => $Self->{UserID},
+    );
+
+# Rother OSS / FAQ-ExtendedNavigation
+    # Get Sidebar info
     $Param{SideBar} = $LayoutObject->FAQSideBar(
         Mode              => 'Public',
         Language          => $LayoutObject->{UserLanguage},
@@ -405,13 +522,13 @@ sub Run {
         HasDefaultArticle => $HasDefaultArticle
     );
 
-    #Render Table of Contents
+    # Render Table of Contents
     $Param{TOC} = $LayoutObject->FAQTableOfContents(
         Mode    => 'Public',
         FAQData => \%FAQData
     );
 
-    #Render Addional data widget
+    # Render Addional data widget
     $Param{AdditionalData} = $LayoutObject->FAQAdditionalData(
         Mode    => 'Public',
         FAQData => \%FAQData,
@@ -419,8 +536,7 @@ sub Run {
         Action  => $Self->{Action},
         Config  => $Config
     );
-
-    # EO FAQ Extended Navigation Package
+# EO FAQ-ExtendedNavigation
 
     # start template output
     $Output .= $LayoutObject->Output(

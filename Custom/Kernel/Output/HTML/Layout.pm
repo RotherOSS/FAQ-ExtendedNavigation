@@ -4,7 +4,7 @@
 # Copyright (C) 2001-2020 OTRS AG, https://otrs.com/
 # Copyright (C) 2019-2026 Rother OSS GmbH, https://otobo.io/
 # --
-# $origin: otobo - 30c87ca95699a47933466f8c664803f1b3ebd537 - Kernel/Output/HTML/Layout.pm
+# $origin: otobo - 731e26cc3f604b5eb6354ffba51663f11e394e65 - Kernel/Output/HTML/Layout.pm
 # --
 # This program is free software: you can redistribute it and/or modify it under
 # the terms of the GNU General Public License as published by the Free Software
@@ -6541,16 +6541,17 @@ sub SetRichTextParameters {
         );
     }
 
-# Rother OSS / FAQ Extended Navigation Package
     my @Plugins = (
         'Alignment',    'Autoformat', 'BlockQuote', 'Bold', 'CodeBlock', 'DataFilter', 'DataSchema', 'FindAndReplace', 'FontColor',
         'FontFamily',   'FontSize',   'FontBackgroundColor', 'GeneralHtmlSupport', 'Heading', 'HorizontalLine', 'Image', 'ImageResize', 'ImageStyle', 'ImageUpload',
         'ImageToolbar', 'ImageInsert',
-        'Indent',       'Italic', 'Link', 'Mention', 'List', 'Paragraph', 'RemoveFormat', 'SelectAll', 'SimpleUploadAdapter', 'SourceEditing', 'SpecialCharacters',
+# Rother OSS / FAQ-ExtendedNavigation
+#         'Indent', 'IndentBlock', 'Italic', 'Link', 'List', 'Paragraph', 'RemoveFormat', 'SelectAll', 'SimpleUploadAdapter', 'SourceEditing', 'SpecialCharacters',
+        'Indent', 'IndentBlock', 'Italic', 'Link', 'Mention', 'List', 'Paragraph', 'RemoveFormat', 'SelectAll', 'SimpleUploadAdapter', 'SourceEditing', 'SpecialCharacters',
+# EO FAQ-ExtendedNavigation
         'SpecialCharactersEssentials',
         'Strikethrough', 'Table', 'TableCellProperties', 'TableColumnResize', 'TableProperties', 'TableToolbar', 'Underline', 'Undo', 'PasteFromOffice'
     );
-# EO Rother OSS / FAQ Extended Navigation Package
 
     # set data with AddJSData()
     $Self->AddJSData(
@@ -6717,16 +6718,17 @@ sub CustomerSetRichTextParameters {
         );
     }
 
-# Rother OSS / FAQ Extended Navigation Package
     my @Plugins = (
         'Alignment',    'Autoformat', 'BlockQuote', 'Bold', 'CodeBlock', 'DataFilter', 'DataSchema', 'FindAndReplace', 'FontColor',
         'FontFamily',   'FontSize',   'FontBackgroundColor', 'GeneralHtmlSupport', 'Heading', 'HorizontalLine', 'Image', 'ImageResize', 'ImageStyle', 'ImageUpload',
         'ImageToolbar', 'ImageInsert',
-        'Indent',       'Italic', 'Link', 'List', 'Mention', 'Paragraph', 'RemoveFormat', 'SelectAll', 'SimpleUploadAdapter', 'SourceEditing', 'SpecialCharacters',
+# Rother OSS / FAQ-ExtendedNavigation
+#         'Indent', 'IndentBlock','Italic', 'Link', 'List', 'Paragraph', 'RemoveFormat', 'SelectAll', 'SimpleUploadAdapter', 'SourceEditing', 'SpecialCharacters',
+        'Indent', 'IndentBlock','Italic', 'Link', 'List', 'Mention', 'Paragraph', 'RemoveFormat', 'SelectAll', 'SimpleUploadAdapter', 'SourceEditing', 'SpecialCharacters',
+# EO FAQ-ExtendedNavigation
         'SpecialCharactersEssentials',
         'Strikethrough', 'Table', 'TableCellProperties', 'TableColumnResize', 'TableProperties', 'TableToolbar', 'Underline', 'Undo', 'PasteFromOffice'
     );
-# EO Rother OSS / FAQ Extended Navigation Package
 
     # set data with AddJSData()
     $Self->AddJSData(

@@ -5,7 +5,7 @@
 // Copyright (C) 2021-2024 Znuny GmbH, https://znuny.org/
 // Copyright (C) 2019-2026 Rother OSS GmbH, https://otobo.io/
 // --
-// $origin:  - c9e25fee8473012a8829261ded860c2ae2920135 - var/httpd/htdocs/js/Core.UI.RichTextEditor.js
+// $origin: otobo - da5c3de7f28bfb51e31d2cf453d286562f1f1a54 - var/httpd/htdocs/js/Core.UI.RichTextEditor.js
 // --
 // This program is free software: you can redistribute it and/or modify it under
 // the terms of the GNU General Public License as published by the Free Software
@@ -133,7 +133,7 @@ Core.UI.RichTextEditor = (function (TargetNS) {
             removedPlugins = [ 'SimpleUploadAdapter' ];
         }
 
-// Rother OSS / FAQ Extended Navigation Package
+// Rother OSS / FAQ-ExtendedNavigation
         var extraPlugins = [];
         var mentionsConfig = {};
 
@@ -158,7 +158,7 @@ Core.UI.RichTextEditor = (function (TargetNS) {
                 ]
             };
         }
-// EO FAQ Extended Navigation Package
+// EO FAQ-ExtendedNavigation
 
         // if this is a RichText DF, disable Image Upload
         if($EditorArea.hasClass('DynamicFieldRichText')) {
@@ -216,9 +216,9 @@ Core.UI.RichTextEditor = (function (TargetNS) {
             },
             plugins: EnabledPlugins,
             removePlugins: removedPlugins,
-// Rother OSS / FAQ Extended Navigation Package
+// Rother OSS / FAQ-ExtendedNavigation
             extraPlugins: extraPlugins,
-// EO FAQ Extended Navigation Package
+// EO FAQ-ExtendedNavigation
             language: {
                 ui: UserLanguage,
                 content: UserLanguage
@@ -472,9 +472,9 @@ Core.UI.RichTextEditor = (function (TargetNS) {
                     format: 'hex'
                 }
             },
-// Rother OSS / FAQ Extended Navigation Package
+// Rother OSS / FAQ-ExtendedNavigation
             mention: mentionsConfig,
-// EO Rother OSS / FAQ Extended Navigation Package
+// EO FAQ-ExtendedNavigation
             translations: [
                 CKEditor5CoreTranslations,
             ]
@@ -657,8 +657,7 @@ Core.UI.RichTextEditor = (function (TargetNS) {
         });
     };
 
-    //Rother OSS / FAQ Extended Navigation Package
-
+// Rother OSS / FAQ-ExtendedNavigation
      /**
      * @name MentionCustomization
      * @memberof Core.UI.RichTextEditor
@@ -721,8 +720,7 @@ Core.UI.RichTextEditor = (function (TargetNS) {
             converterPriority: 'high'
         } );
     }  
-
-    //EO FAQ Extended Navigation Package
+// EO FAQ-ExtendedNavigation
 
     /**
      * @name InitAllEditors

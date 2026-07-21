@@ -4,7 +4,7 @@
 # Copyright (C) 2001-2019 OTRS AG, https://otrs.com/
 # Copyright (C) 2019-2026 Rother OSS GmbH, https://otobo.io/
 # --
-# $origin:  - 306163bdf5127c26811ff1e5063db884ff8bf94e - Kernel/Output/HTML/Templates/Standard/PublicFAQZoom.tt
+# $origin: otobo -  - Kernel/Output/HTML/Templates/Standard/PublicFAQZoom.tt
 # --
 # This program is free software: you can redistribute it and/or modify it under
 # the terms of the GNU General Public License as published by the Free Software
@@ -20,11 +20,15 @@
 <div id="oooContent">
 
     <div id="oooHeader">
-# Rother OSS - a lot of unmarked changes here...
+# Rother OSS / FAQ-ExtendedNavigation
+#         <div>
         <div class="HeaderRowTitle">
+# EO FAQ-ExtendedNavigation
             <h1>[% Translate("FAQ Explorer") | html %]</h1>
+# Rother OSS / FAQ-ExtendedNavigation
         </div>
         <div class="HeaderRow">
+# EO FAQ-ExtendedNavigation
             <div class="BreadCrumb">
 [% RenderBlockStart("FAQPathCategoryElement") %]
                 <a href="[% Env("Baselink") %]Action=PublicFAQExplorer;CategoryID=[% Data.CategoryID | uri %]">
@@ -36,7 +40,10 @@
 [% RenderBlockEnd("FAQPathItemElement") %]
             </div>
         </div>
+# Rother OSS / FAQ-ExtendedNavigation
+#         <div id="oooSearchBox">
         <div id="oooSearchBox" class="HeaderRow FAQSearchBox">
+# EO FAQ-ExtendedNavigation
             <form action="[% Env("CGIHandle") %]" method="post" name="compose">
                 <input type="hidden" name="Action" value="PublicFAQExplorer"/>
                 <input type="hidden" name="Subaction" value="Search"/>
@@ -44,24 +51,38 @@
                 <h3 class='ooog'>
 # Rother OSS / FAQ-ExtendedNavigation
 #                    <i class="ooofo ooofo-search"></i>
-# EO FAQ-ExtendedNavigation
-                    <input type="text" name="What" id="oooSearch" title="[% Translate('FAQ Search') | html %]"  class="oooSearchFAQ"/>
-# Rother OSS / FAQ-ExtendedNavigation
+#                    <input type="text" name="What" id="oooSearch" title="[% Translate('FAQ Search') | html %]"/>
 #                    <span id='oooSearchLabel'>[% Translate('FAQ Search') | html %]</span>
+                    <input type="text" name="What" id="oooSearch" title="[% Translate('FAQ Search') | html %]"  class="oooSearchFAQ"/>
                     <span id='oooSearchLabel'><i class="ooofo ooofo-search"></i> [% Translate('FAQ Search') | html %]</span>
 # EO FAQ-ExtendedNavigation
                 </h3>
             </form>
         </div>
+#            <ul id="FAQOptions">
+#                <li>
+#                    <a href="[% Env("Baselink") %]Action=PublicFAQPrint;ItemID=[% Data.ItemID | uri %]" class="Print AsPopup" title="[% Translate("Print") | html %]">
+#                        <i class="fa fa-print"></i>
+#                        <span>[% Translate("Print") | html %]</span>
+#                    </a>
+#                </li>
+#            </ul>
     </div>
 
-
+# Rother OSS / FAQ-ExtendedNavigation
+#     <div id="oooMainBox">
     <div id="oooMainBox"  class="FAQContent">
 
     [% Data.SideBar %]
 
     <div class="ArticleArea">
+# EO FAQ-ExtendedNavigation
 
+# Rother OSS / FAQ-ExtendedNavigation
+#         <div class='WidgetSimple'>
+#             <h2 title="[% Data.Title | html %]">
+#                 [% Data.Title | html %]
+#             </h2>
 [% RenderBlockStart("NoDefaultItem") %]
 
          <div class="WidgetSimple">
@@ -82,9 +103,13 @@
 
         <div class="WidgetSimple [% Data.CssClassNoArticle | html %]">
          <a id="top"></a>
+# EO FAQ-ExtendedNavigation
             <ul id="Messages">
 [% RenderBlockStart("AttachmentHeader") %]
+# Rother OSS / FAQ-ExtendedNavigation
+#                 <li class="Public Visible">
                 <li class="Public Visible ContentIndex">
+# EO FAQ-ExtendedNavigation
                     <div class="MessageHeader">
                         <h3>[% Translate("Attachments") | html %]:</h3>
                         <div class="Clear"></div>
@@ -117,14 +142,22 @@
 #            </li>
 #[% RenderBlockEnd("BrowserLinkMessage") %]
 
+# Rother OSS / FAQ-ExtendedNavigation
                 <li class="Public Visible ContentIndex">
+# EO FAQ-ExtendedNavigation
 [% RenderBlockStart("FAQContent") %]
+# Rother OSS / FAQ-ExtendedNavigation
+#                 <li class="Public Visible">
                     <a id="[% Data.Field %]"></a>
+# EO FAQ-ExtendedNavigation
                     <div class="MessageHeader">
+# Rother OSS / FAQ-ExtendedNavigation
+#                         <h3>[% Translate(Data.Caption) | html %]:</h3>
                         <h3 class="CaptionLabel">[% Translate(Data.Caption) | html %]:</h3>
                         <a class="BackTop" title="[% Translate("Back to top") | html %]">
                             <i class="fa fa-chevron-up"></i>
                         </a>
+# EO FAQ-ExtendedNavigation
                         <div class="Clear"></div>
                     </div>
                     <input type="hidden" value="true" name="FieldState">
@@ -149,6 +182,7 @@ function CheckIFrameHeight(IFrameID) {
 # Set 'allow-popups' to allow IE10+ to open links. ref: http://www.w3.org/html/wg/wiki/ChangeProposals/sandbox_allow_popups
 
 # Rother OSS / Allowing top navigation for FAQ Extended Navigation Package
+#                         <iframe sandbox="allow-same-origin allow-popups ms-allow-popups allow-popups-to-escape-sandbox" class="FAQField" id="IframeFAQ[% Data.Field | html %]" onload="window.setTimeout( function (){ CheckIFrameHeight('IframeFAQ[% Data.Field | html %]'); }, 500);" src="[% Env("Baselink") %]Action=PublicFAQZoom;Subaction=HTMLView;ItemID=[% Data.ItemID | html %];Field=[% Data.Field | html %]"></iframe>
                         <iframe sandbox="allow-same-origin allow-popups ms-allow-popups allow-popups-to-escape-sandbox allow-top-navigation" class="FAQField" id="IframeFAQ[% Data.Field | html %]" onload="window.setTimeout( function (){ CheckIFrameHeight('IframeFAQ[% Data.Field | html %]'); }, 500);" src="[% Env("Baselink") %]Action=PublicFAQZoom;Subaction=HTMLView;ItemID=[% Data.ItemID | html %];Field=[% Data.Field | html %]"></iframe>
 # EO FAQ Extended Navigation Package
                     </div>
@@ -160,13 +194,18 @@ function CheckIFrameHeight(IFrameID) {
                         </div>
                     </div>
 [% RenderBlockEnd("FAQContentPlain") %]
-
+# Rother OSS / FAQ-ExtendedNavigation
+#                 </li>
+# EO FAQ-ExtendedNavigation
 [% RenderBlockEnd("FAQContent") %]
+# Rother OSS / FAQ-ExtendedNavigation
                 </li>
+# EO FAQ-ExtendedNavigation
 
             </ul>
         </div>
 
+# Rother OSS / FAQ-ExtendedNavigation
         </div> <!-- ArticleArea -->
 
         <div class="WidgetColumn">
@@ -179,6 +218,7 @@ function CheckIFrameHeight(IFrameID) {
             <div class="WidgetArea-Bottom"></div>
         </div>
 <!--
+# EO FAQ-ExtendedNavigation
             <div id="ZoomSidebar">
                 <div class="MessageHeader">
                     <h3>[% Translate("FAQ Information") | html %]</h3>
@@ -243,6 +283,8 @@ function CheckIFrameHeight(IFrameID) {
 [% RenderBlockEnd("ViewVotes") %]
                 </ul>
             </div>
+# Rother OSS / FAQ-ExtendedNavigation
 -->
+# EO FAQ-ExtendedNavigation
     </div>
 </div>

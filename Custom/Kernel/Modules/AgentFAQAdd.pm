@@ -4,7 +4,7 @@
 # Copyright (C) 2001-2019 OTRS AG, https://otrs.com/
 # Copyright (C) 2019-2026 Rother OSS GmbH, https://otobo.io/
 # --
-# $origin:  - a452be7585741f648bb95adcb21a2376c0789db3 - Kernel/Modules/AgentFAQAdd.pm
+# $origin: otobo -  - Kernel/Modules/AgentFAQAdd.pm
 # --
 # This program is free software: you can redistribute it and/or modify it under
 # the terms of the GNU General Public License as published by the Free Software
@@ -82,17 +82,15 @@ sub Run {
 
     # Get parameters from web request.
     my %GetParam;
-
-    # Rother OSS / FAQ Extended Navigation Package
-
     for my $ParamName (
+# Rother OSS / FAQ-ExtendedNavigation
+#         qw(Title CategoryID StateID LanguageID ValidID Keywords Approved Field1 Field2 Field3 Field4 Field5 Field6)
         qw(Title CategoryID StateID LanguageID ValidID Keywords Approved Field1 Field2 Field3 Field4 Field5 Field6 Icon)
+# EO FAQ-ExtendedNavigation
         )
     {
         $GetParam{$ParamName} = $ParamObject->GetParam( Param => $ParamName );
     }
-
-    # EO Rother OSS / FAQ Extended Navigation Package
 
     my $FAQObject = $Kernel::OM->Get('Kernel::System::FAQ');
 
@@ -669,7 +667,7 @@ sub _MaskNew {
             }
         }
 
-        if ($ApprovalRequired) {
+        if ( $ApprovalRequired ) {
 
             # Check permission.
             my %Groups = reverse $Kernel::OM->Get('Kernel::System::Group')->GroupMemberList(

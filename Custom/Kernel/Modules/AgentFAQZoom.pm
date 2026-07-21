@@ -4,7 +4,7 @@
 # Copyright (C) 2001-2019 OTRS AG, https://otrs.com/
 # Copyright (C) 2019-2026 Rother OSS GmbH, https://otobo.io/
 # --
-# $origin:  - 306163bdf5127c26811ff1e5063db884ff8bf94e - Kernel/Modules/AgentFAQZoom.pm
+# $origin: otobo -  - Kernel/Modules/AgentFAQZoom.pm
 # --
 # This program is free software: you can redistribute it and/or modify it under
 # the terms of the GNU General Public License as published by the Free Software
@@ -24,10 +24,9 @@ use warnings;
 use Kernel::Language              qw(Translatable);
 use Kernel::System::VariableCheck qw(:all);
 
-# Rother OSS / FAQ Extended Navigation Package
+# Rother OSS / FAQ-ExtendedNavigation
 use MIME::Base64 qw(decode_base64 encode_base64);
-
-# EO Rother OSS / FAQ Extended Navigation Package
+# EO FAQ-ExtendedNavigation
 
 our $ObjectManagerDisabled = 1;
 
@@ -69,16 +68,18 @@ sub Run {
 
     my $ParamObject = $Kernel::OM->Get('Kernel::System::Web::Request');
 
+# Rother OSS / FAQ-ExtendedNavigation
     my $IsAllowed = 0;
     $Self->{UserLanguage} = $LayoutObject->{UserLanguage} || 'en';
+# EO FAQ-ExtendedNavigation
 
     # Get parameters from web request.
     my %GetParam;
     $GetParam{ItemID} = $ParamObject->GetParam( Param => 'ItemID' );
     $GetParam{Rate}   = $ParamObject->GetParam( Param => 'Rate' );
 
-    # Rother OSS / FAQ Extended Navigation Package
-    #Get default ItemID if it's defined
+# Rother OSS / FAQ-ExtendedNavigation
+    # Get default ItemID if it's defined
     my $IsDefaultArticle  = 0;
     my $HasDefaultArticle = 0;
     my %Data              = %{ $Kernel::OM->Get('Kernel::Config')->Get('AgentFAQSideBar::Articles') };
@@ -96,13 +97,18 @@ sub Run {
             last CONFIG;
         }
     }
-
-    # EO Rother OSS / FAQ Extended Navigation Package
+# EO FAQ-ExtendedNavigation
 
     # Get navigation bar option.
     my $Nav = $ParamObject->GetParam( Param => 'Nav' ) || '';
 
-    # Rother OSS / FAQ Extended Navigation Package
+# Rother OSS / FAQ-ExtendedNavigation
+#     if ( !$GetParam{ItemID} ) {
+#         return $LayoutObject->ErrorScreen(
+#             Message => Translatable('No ItemID is given!'),
+#             Comment => Translatable('Please contact the administrator.'),
+#         );
+#     }
     # Show message and link to FAQ Explorer if no default item is set and no ItemID provided
     my $Output;
 
@@ -127,8 +133,7 @@ sub Run {
 
         return $Output . $LayoutObject->Footer();
     }
-
-    # EO Rother OSS / FAQ Extended Navigation Package
+# EO FAQ-ExtendedNavigation
 
     my $FAQObject = $Kernel::OM->Get('Kernel::System::FAQ');
 
@@ -142,10 +147,9 @@ sub Run {
         return $LayoutObject->ErrorScreen();
     }
 
-    # Rother OSS / FAQ Extended Navigation Package
+# Rother OSS / FAQ-ExtendedNavigation
     $FAQData{Icon} = $FAQData{Icon} ? decode_base64( $FAQData{Icon} ) : '';
-
-    # EO Rother OSS / FAQ Extended Navigation Package
+# EO FAQ-ExtendedNavigation
 
     # Check user permission.
     my $Permission = $FAQObject->CheckCategoryUserPermission(
@@ -159,9 +163,11 @@ sub Run {
             WithHeader => 'yes',
         );
     }
+# Rother OSS / FAQ-ExtendedNavigation
     else {
         $IsAllowed = 1;
     }
+# EO FAQ-ExtendedNavigation
 
     my $HTMLUtilsObject = $Kernel::OM->Get('Kernel::System::HTMLUtils');
 
@@ -221,13 +227,12 @@ sub Run {
             String => $FieldContent,
         );
 
-        # Rother OSS / FAQ Extended Navigation Package
+# Rother OSS / FAQ-ExtendedNavigation
         # set target="_parent" for links to other articles via mention
         $FieldContent = $FAQObject->LinkQuoteMention(
             String => $FieldContent,
         );
-
-        # EO Rother OSS / FAQ Extended Navigation Package
+# EO FAQ-ExtendedNavigation
 
         # Set target="_blank" attribute to all HTML <a> tags the LinkQuote function needs to be
         #   called again
@@ -242,11 +247,10 @@ sub Run {
             Charset => 'utf-8',
         );
 
-        # Rother OSS / FAQ Extended Navigation Package
+# Rother OSS / FAQ-ExtendedNavigation
         my $Count = 0;
         $FieldContent =~ s{(<h([1-6])>.*?</h\2>)}{ $Count++; "<a id=\"$Field-$Count\">&nbsp;</a>$1"}ge;
-
-        # EO Rother OSS / FAQ Extended Navigation Package
+# EO FAQ-ExtendedNavigation
 
         # return complete HTML as an attachment
         return $LayoutObject->Attachment(
@@ -290,6 +294,9 @@ sub Run {
     # ---------------------------------------------------------- #
     # Other sub-actions continues here
     # ---------------------------------------------------------- #
+# Rother OSS / FAQ-ExtendedNavigation
+#     my $Output;
+# EO FAQ-ExtendedNavigation
     if ( $Nav eq 'None' ) {
         $Output = $LayoutObject->Header( Type => 'Small' );
     }
@@ -456,8 +463,8 @@ sub Run {
         }
     }
 
-    # Rother OSS / FAQ Extended Navigation Package
-    #Get Sidebar info
+# Rother OSS / FAQ-ExtendedNavigation
+    # Get Sidebar info
     $Param{SideBar} = $LayoutObject->FAQSideBar(
         Mode              => 'Agent',
         Language          => $Self->{UserLanguage},
@@ -468,8 +475,7 @@ sub Run {
         IsDefaultArticle  => $IsDefaultArticle,
         HasDefaultArticle => $HasDefaultArticle
     );
-
-    # EO Rother OSS / FAQ Extended Navigation Package
+# EO FAQ-ExtendedNavigation
 
     # Prepare fields data (Still needed for PlainText).
     FIELD:
@@ -678,11 +684,9 @@ sub Run {
         FAQData         => {%FAQData},
         UserID          => $Self->{UserID},
         ReturnContent   => 1,
-
-        # Rother OSS / FAQ Extended Navigation Package
+# Rother OSS / FAQ-ExtendedNavigation
         Zoom => 1
-
-        # EO Rother OSS / FAQ Extended Navigation Package
+# EO FAQ-ExtendedNavigation
     );
 
     # Get config of frontend module.
@@ -801,7 +805,10 @@ sub Run {
 
     # Log access to this FAQ item.
     $FAQObject->FAQLogAdd(
+# Rother OSS / FAQ-ExtendedNavigation
+#         ItemID    => $ParamObject->GetParam( Param => 'ItemID' ),
         ItemID    => $GetParam{ItemID},
+# EO FAQ-ExtendedNavigation
         Interface => $Interface->{Name},
         UserID    => $Self->{UserID},
     );
@@ -945,14 +952,13 @@ sub Run {
         );
     }
     else {
-        # Rother OSS / FAQ Extended Navigation Package
-        #Render Table of Contents
+# Rother OSS / FAQ-ExtendedNavigation
+        # Render Table of Contents
         $Param{TOC} = $LayoutObject->FAQTableOfContents(
             Mode    => 'Agent',
             FAQData => \%FAQData
         );
-
-        # EO Rother OSS / FAQ Extended Navigation Package
+# EO FAQ-ExtendedNavigation
 
         $Output .= $LayoutObject->Output(
             TemplateFile => 'AgentFAQZoom',

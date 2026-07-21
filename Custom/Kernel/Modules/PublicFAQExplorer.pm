@@ -4,7 +4,7 @@
 # Copyright (C) 2001-2019 OTRS AG, https://otrs.com/
 # Copyright (C) 2019-2026 Rother OSS GmbH, https://otobo.io/
 # --
-# $origin:  - 306163bdf5127c26811ff1e5063db884ff8bf94e - Kernel/Modules/PublicFAQExplorer.pm
+# $origin: otobo -  - Kernel/Modules/PublicFAQExplorer.pm
 # --
 # This program is free software: you can redistribute it and/or modify it under
 # the terms of the GNU General Public License as published by the Free Software
@@ -22,10 +22,9 @@ use strict;
 use warnings;
 use Kernel::Language qw(Translatable);
 
-# Rother OSS / FAQ Extended Navigation Package
+# Rother OSS / FAQ-ExtendedNavigation
 use MIME::Base64 qw(decode_base64 encode_base64);
-
-# EO Rother OSS / FAQ Extended Navigation Package
+# EO FAQ-ExtendedNavigation
 
 use MIME::Base64 qw();
 
@@ -77,7 +76,7 @@ sub Run {
         return $LayoutObject->Redirect( OP => 'Action=PublicFAQZoom;ItemID=' . $ItemID );
     }
 
-    # Rother OSS / FAQ Extended Navigation Package
+# Rother OSS / FAQ-ExtendedNavigation
     # Check if there is a default article defined for the current language
     my $HasDefaultArticle = 0;
     my %Data              = %{ $Kernel::OM->Get('Kernel::Config')->Get('PublicFAQSideBar::Articles') };
@@ -91,8 +90,7 @@ sub Run {
             last CONFIG;
         }
     }
-
-    # EO Rother OSS / FAQ Extended Navigation Package
+# EO FAQ-ExtendedNavigation
 
     my $CategoryID = $ParamObject->GetParam( Param => 'CategoryID' ) || 0;
 
@@ -386,10 +384,9 @@ sub Run {
                     Size  => $Config->{TitleSize},
                 );
 
-                # Rother OSS / FAQ Extended Navigation Package
+# Rother OSS / FAQ-ExtendedNavigation
                 $FAQData{Icon} = $FAQData{Icon} ? decode_base64( $FAQData{Icon} ) : '';
-
-                # EO Rother OSS / FAQ Extended Navigation Package
+# EO FAQ-ExtendedNavigation
 
                 # add blocks to template
                 $LayoutObject->Block(
@@ -503,9 +500,8 @@ sub Run {
         return $LayoutObject->ErrorScreen();
     }
 
-    # Rother OSS / FAQ Extended Navigation Package
-    #Get Sidebar info
-
+# Rother OSS / FAQ-ExtendedNavigation
+    # Get Sidebar info
     $Param{SideBar} = $LayoutObject->FAQSideBar(
         Mode              => 'Public',
         Language          => $LayoutObject->{UserLanguage} || 'en',
@@ -515,8 +511,7 @@ sub Run {
         Action            => $Self->{Action},
         HasDefaultArticle => $HasDefaultArticle
     );
-
-    # EO Rother OSS / FAQ Extended Navigation Package
+# EO FAQ-ExtendedNavigation
 
     $Output .= $LayoutObject->Output(
         TemplateFile => 'PublicFAQExplorer',
