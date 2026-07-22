@@ -211,9 +211,11 @@ function CheckIFrameHeight(IFrameID) {
         </div> <!-- ArticleArea -->
 
         <div class="WidgetColumn">
+            [% IF Data.TOC %]
             <div class="WidgetArea-Top">
                 [% Data.TOC %]
             </div>
+            [% END %]
             <div class="WidgetArea-Middle">
                 [% Data.AdditionalData %]
             </div>

@@ -474,7 +474,7 @@ sub Run {
         Action            => $Self->{Action},
         IsDefaultArticle  => $IsDefaultArticle,
         HasDefaultArticle => $HasDefaultArticle
-    );
+    ) || '';
 # EO FAQ-ExtendedNavigation
 
     # Prepare fields data (Still needed for PlainText).

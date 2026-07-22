@@ -522,7 +522,7 @@ sub Run {
         Action            => $Self->{Action},
         IsDefaultArticle  => $IsDefaultArticle,
         HasDefaultArticle => $HasDefaultArticle
-    );
+    ) || '';
 
     # Render Table of Contents
     $Param{TOC} = $LayoutObject->FAQTableOfContents(

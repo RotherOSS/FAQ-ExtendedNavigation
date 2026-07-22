@@ -367,7 +367,10 @@ sub FAQTableOfContents {
     my $MaxDepth = $ConfigObject->Get('FAQTableOfContents::MaxDepth') || 3;
     my %Data     = %{ $Param{FAQData} };
 
-    my @TOCFields       = grep { $Data{$_} =~ /\S/ } qw(Field1 Field2 Field3 Field4 Field5 Field6);
+    my @TOCFields = grep { $Data{$_} =~ /\S/ } qw(Field1 Field2 Field3 Field4 Field5 Field6);
+
+    return unless @TOCFields;
+
     my $SingleFieldMode = 0;
 
     # Identify if we are in single field mode

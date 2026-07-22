@@ -60,9 +60,11 @@
         <div class="SidebarColumn">
 # Rother OSS / FAQ-ExtendedNavigation
 #             <div class="WidgetSimple">
+            [% IF Data.TOC %]
             <div class="Content [% Data.CssClassNoArticle | html %]">
                 [% Data.TOC %]
             </div>
+            [% END %]
 
             <div class="WidgetSimple [% Data.CssClassNoArticle | html %]">
 # EO FAQ-ExtendedNavigation
