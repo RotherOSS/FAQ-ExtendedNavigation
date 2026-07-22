@@ -1,0 +1,471 @@
+/* OTOBO is a web-based ticketing system for service organisations.
+
+Copyright (C) 2019-2026 Rother OSS GmbH, https://otobo.io/
+
+This program is free software: you can redistribute it and/or modify it under
+the terms of the GNU General Public License as published by the Free Software
+Foundation, either version 3 of the License, or (at your option) any later version.
+This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+You should have received a copy of the GNU General Public License
+along with this program. If not, see <https://www.gnu.org/licenses/>.
+*/
+
+/**
+ * @package     Skin "Default"
+ * @section     Default Settings
+ */
+
+@media only screen and (max-width: 767px) {
+    #oooMainBox.FAQContent {
+        display: grid;
+        grid-row-gap: 8px;
+        width: calc( 100% - 16px );
+        padding: 8px;
+        grid-template-rows: auto auto;
+    }
+
+    #oooHeader {
+        display: grid; 
+        grid-template-columns: 1fr; 
+        grid-template-rows: 45px 30px 36px;
+        grid-row-gap: 8px;
+        align-content: center;
+    }
+
+    #FAQSidebar {
+        grid-area: 2 / 1 / 3 / 2;
+    }
+
+    #oooMainBox > .ArticleArea {
+        grid-area: 1 / 1 / 2 / 2;
+    }
+
+    #oooMainBox > .WidgetColumn {
+        display: none
+    }
+
+    #Messages > li,
+    #ZoomSidebar {
+        margin-top: 8px;
+    }
+
+    .MainSideBar {
+        margin-bottom: 8px;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    #Messages > li,
+    #ZoomSidebar {
+        margin-top: 24px;
+    }
+
+    .MainSideBar {
+        margin-bottom: 24px;
+    }
+
+
+    .HeaderRowTitle {
+      grid-row: span 2;
+    }
+
+    .PublicHeaderRowTitle {
+      grid-row: span 2;
+      padding-left: 190px;
+    }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1175px) {
+    #oooMainBox.FAQContent {
+        display: grid;
+        margin-top: 24px;
+        grid-row-gap: 24px;
+        width: calc( 100% - 104px );
+        padding-left: 80px;
+        padding-right: 24px;
+        grid-template-rows: auto auto;
+    }
+
+    #oooHeader {
+        width: calc( 100% - 104px ) !important;
+        padding-left: 80px !important;
+        padding-right: 24px !important;
+        display: grid; 
+        grid-template-columns: 332px 1fr; 
+        grid-column-gap: 24px;
+        grid-template-rows: 48px 48px;
+        align-content: center;
+    }
+
+    #FAQSidebar {
+        grid-area: 2 / 1 / 3 / 2;
+    }
+
+    #oooMainBox > .ArticleArea {
+        grid-area: 1 / 1 / 2 / 2;
+    }
+
+    #oooMainBox > .WidgetColumn {
+        display: none
+    }
+}
+
+@media only screen and (min-width: 1176px ) and (max-width: 1439px) {
+    #oooMainBox.FAQContent {
+        display: grid;
+        margin-top: 24px;
+        grid-column-gap: 24px;
+        width: calc( 100% - 104px );
+        padding-left: 80px;
+        padding-right: 24px;
+        grid-template-columns: calc( 100% - 344px ) 320px;
+        grid-template-rows: auto 1fr;
+    }
+
+    #oooHeader {
+        width: calc( 100% - 104px ) !important;
+        padding-left: 80px !important;
+        padding-right: 24px !important;
+        display: grid; 
+        grid-template-columns: 332px calc( 100% - 432px ); 
+        grid-column-gap: 24px;
+        grid-template-rows: 48px 48px;
+        align-content: center;
+    }
+
+    #FAQSidebar {
+        grid-area: 2 / 2 / 3 / 3;
+    }
+
+    #oooMainBox > .ArticleArea {
+        grid-area: 1 / 1 / 3 / 2;
+    }
+
+    #oooMainBox > .WidgetColumn {
+        grid-area: 1 / 2 / 2 / 3;
+    }
+}
+
+@media only screen and (min-width: 1440px ) and (max-width: 1727px) {
+    #oooMainBox.FAQContent {
+        display: grid;
+        margin-top: 24px;
+        grid-column-gap: 24px;
+        width: calc( 100% - 104px );
+        padding-left: 80px;
+        padding-right: 24px;
+        grid-template-columns: 240px calc( 100% - 608px ) 320px;
+    }
+
+    #oooHeader {
+        width: calc( 100% - 104px ) !important;
+        padding-left: 80px !important;
+        padding-right: 24px !important;
+        display: grid; 
+        grid-template-columns: 332px calc( 100% - 792px ); 
+        grid-column-gap: 24px;
+        grid-template-rows: 48px 48px;
+        align-content: center;
+    }
+
+    .oooFAQSidebar {
+        min-height: 50vh;
+    }
+}
+
+@media only screen and (min-width: 1728px ) {
+    #oooMainBox.FAQContent {
+        display: grid;
+        margin-top: 24px;
+        grid-column-gap: 24px;
+        width: 1624px;
+        padding-left: calc( 50% - 784px );
+        padding-right: calc( 50% - 840px );
+        grid-template-columns: 240px 1016px 320px;
+    }
+
+    #oooHeader {
+        width: 1624px !important;
+        padding-left: calc( 50% - 784px ) !important;
+        padding-right: calc( 50% - 840px ) !important;
+        display: grid; 
+        grid-template-columns: 332px 832px; 
+        grid-column-gap: 24px;
+        grid-template-rows: 48px 48px;
+        align-content: center;
+    }
+
+    .oooFAQSidebar {
+        min-height: 50vh;
+    }
+}
+
+@media screen,projection,tv,handheld {
+
+    #oooHeader i {
+        display: inline-block;
+        vertical-align: middle;
+        padding-bottom: 3px;
+    }
+
+    .BreadCrumb {
+        max-width: 100%;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+
+    .BreadCrumb a,
+    .BreadCrumb h3 {
+        display: inline-block;
+    }
+
+    .BreadCrumb > a:after {
+        /* use !important to prevent issues with browser extensions that change fonts */
+        font-family: 'otobo' !important;
+        speak: none;
+        font-style: normal;
+        font-weight: normal;
+        font-variant: normal;
+        text-transform: none;
+        line-height: 1;
+
+        /* Better Font Rendering =========== */
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+
+        content: "\e904";
+        color: #7f809d;
+        color: var(--colTextLight);
+        padding-left: 4px;
+        padding-right: 4px;
+    }
+
+    #oooCustomerNotifications {
+        background-color: #f7f7f9;
+        background-color: var(--colBGLight);
+    }
+
+    .Header {
+        max-width: 1016px;
+    }
+
+/* SubCategories */
+    .oooSubBox {
+        position: relative;
+        top: -5px;
+        left: -5px;
+        padding: 5px 5px 5px 5px;
+        margin-top: 8px;
+
+        width: 100%;
+        height: 100%;
+        max-height: 260px;
+        overflow-y: auto;
+    }
+
+    .oooSub {
+        display: inline-block;
+        height: 66px;
+        width: 256px;
+        border-radius: 15px;
+        box-shadow: 0 1px 4px 0 rgba(4, 0, 71, 0.16);
+        box-shadow: 0 1px 4px 0 var(--colShadowDark);
+        background-color: #ffffff;
+        margin-right: 16px;
+        margin-top: 8px;
+        margin-bottom: 8px;
+        padding: 24px 24px 24px 24px;
+    }
+
+    .oooSub > h3,
+    .oooSub > p {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .oooSub > h3 {
+        display: inline-block;
+        max-width: 220px;
+    }
+
+    .oooSubCount {
+        float: right;
+        text-align: right;
+        padding-top: 2px;
+    }
+
+    .oooComment {
+        height: 42px;
+        overflow: hidden;
+        max-width: 100%;
+    }
+
+/* article list */
+    .Header > h2 {
+        display: inline-block;
+    }
+    .Pagination {
+        float: right;
+        padding-top: 20px;
+        padding-right: 36px;
+    }
+
+    .oooFAQ {
+        display: block;
+        height: 30px;
+        width: calc( 100% - 72px );
+        max-width: 1048px; /* consider removing when merging with FAQ */
+        border-radius: 15px;
+        box-shadow: 0 1px 4px 0 rgba(4, 0, 71, 0.16);
+        box-shadow: 0 1px 4px 0 var(--colShadowDark);
+        background-color: #ffffff;
+        padding: 24px 36px 24px 36px;
+        margin-top: 16px;
+    }
+
+    .oooFAQ h2 {
+        display: inline-block;
+        max-width: calc( 100% - 40px );
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+
+    .oooFAQ p {
+        float: right;
+        padding-top: 2px;
+    }
+
+/* article zoom */
+
+    #Messages > li,
+    #ZoomSidebar {
+        display: block;
+        width: calc( 100% - 72px );
+        max-width: 978px; /* consider removing when merging with FAQ */
+        border-radius: 15px;
+        box-shadow: 0 1px 4px 0 rgba(4, 0, 71, 0.16);
+        background-color: #ffffff;
+        padding: 24px 36px 24px 36px;
+    }
+
+    #Messages .MessageBody {
+        overflow: auto;
+    }
+
+    .Attachments,
+    #Metadata {
+        margin-left: 8px;
+    }
+
+/* Rating */
+    .RateButton {
+        position: relative;
+        text-align: center;
+        display: block;
+        height: 30px;
+        width: 25px;
+        cursor: pointer;
+        float: left;
+        color: #000000;
+        text-align: center;
+    }
+    
+    .RTL .RateButton {
+        float: right;
+    }
+    
+    .RateButton i {
+        display: block;
+        font-size: 16px;
+        width: 100%;
+        text-align: center;
+        color: #7f809d;
+        color: var(--colTextLight);
+    }
+    
+    .RateButton i.fa-star {
+        display: none;
+    }
+    
+    .RateButton.RateChecked i.fa-star {
+        display: block;
+        color: #001bff;
+        color: var(--colMainLight);
+    }
+    
+    .RateButton.RateChecked i.fa-star-o {
+        display: none;
+    }
+    
+    .RateButton:hover i.fa-star-o {
+        color: #00023c;
+        color: var(--colMainDark);
+    }
+    
+    .RateStar {
+        display: block;
+        height: 16px;
+        cursor: pointer;
+        float: left;
+        padding-left: 1px;
+        font-size: 10px;
+    }
+    
+    .RTL .RateStar {
+        float: right;
+    }
+    
+    .RateStarText {
+        margin-left: 6px;
+    }
+    
+    .RTL .RateStarText {
+        margin-left: 0px;
+        margin-right: 6px;
+    }
+    
+    .RateLabelBefore {
+        float: left;
+        padding-right: 15px;
+        margin-left: 10px;
+    }
+    
+    .RTL .RateLabelBefore {
+        float: right;
+    }
+    
+    .RateLabelAfter {
+        float: left;
+        margin-left: 5px;
+        margin-right: 25px;
+    }
+    
+    .RTL .RateLabelAfter {
+        float: left;
+        margin-right: 5px;
+        margin-left: 65px;
+    }
+    
+    .RatingLabel {
+        float: left;
+        padding-right: 2px;
+    }
+    
+    .RTL .RatingLabel {
+        float: right;
+        padding-left: 2px;
+    }
+
+    .VotingBox {
+        margin-top: 24px;
+    }
+
+    #FAQVoting .SpacingTop {
+        height: 12px;
+    }
+}

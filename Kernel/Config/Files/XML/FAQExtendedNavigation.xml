@@ -135,8 +135,8 @@
             <Hash>
                 <Item Key="CSS">
                     <Array>
-                        <Item>FAQExtendedNavigation.Customer.Default.css</Item>
-                        <Item>FAQExtendedNavigation.Customer.Detail.css</Item>
+                        <Item>FAQExtendedNavigation.Customer.FAQZoom.Default.css</Item>
+                        <Item>FAQExtendedNavigation.Customer.FAQZoom.Detail.css</Item>
                     </Array>
                 </Item>
             </Hash>
@@ -149,8 +149,8 @@
             <Hash>
                 <Item Key="CSS">
                     <Array>
-                        <Item>FAQExtendedNavigation.Customer.Default.css</Item>
-                        <Item>FAQExtendedNavigation.Customer.Detail.css</Item>
+                        <Item>FAQExtendedNavigation.Customer.FAQZoom.Default.css</Item>
+                        <Item>FAQExtendedNavigation.Customer.FAQZoom.Detail.css</Item>
                     </Array>
                 </Item>
             </Hash>

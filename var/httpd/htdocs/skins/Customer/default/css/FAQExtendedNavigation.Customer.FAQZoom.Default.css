@@ -1,0 +1,397 @@
+/* OTOBO is a web-based ticketing system for service organisations.
+
+Copyright (C) 2019-2026 Rother OSS GmbH, https://otobo.io/
+
+This program is free software: you can redistribute it and/or modify it under
+the terms of the GNU General Public License as published by the Free Software
+Foundation, either version 3 of the License, or (at your option) any later version.
+This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+You should have received a copy of the GNU General Public License
+along with this program. If not, see <https://www.gnu.org/licenses/>.
+*/
+
+:root {
+    --FAQSidebarIconSize: 20px;
+    --FAQSidebarIconMargin: 4px;
+    --FAQSidebarUnexplainedWhitespace: 4px;
+}
+
+.FAQHome {
+    color: var(--colTextDark);
+}
+
+#oooSearchBox.FAQSearchBox {
+    padding-right: 0;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+#oooSearch.oooSearchFAQ {
+    display: inline-block;
+    left: 0;
+    width: calc( 100% - 36px);
+    background: var(--colBGLight);
+}
+
+.oooSearchFAQ + #oooSearchLabel {
+    display: inline-block;
+    position: relative;
+    left: calc( -100% + 28px );
+}
+
+.WidgetColumn {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.ArticleArea>.WidgetSimple,
+.TableOfContents>.WidgetSimple,
+.SidebarArea>.WidgetSimple
+{
+    margin-top: 0px;
+    width: 100%;
+}
+
+.AdditionalData>.WidgetSimple {
+    margin-top: 0px;
+}
+
+.Rating>.WidgetSimple {
+    margin-top: 24px;
+}
+
+#RateSubmitButton {
+    position: relative;
+    top: 15px;
+}
+
+.VotingContainer {
+    margin-bottom: 10px;
+}
+
+.Keyword {
+    color: var(--colTextLight)
+}
+
+.oooFAQIndex {
+    margin-top: 0px !important;
+}
+
+.ContentIndex > a {
+    scroll-margin-top: 155px;
+}
+
+.oooFAQTOC {
+    display: block;
+    min-height: 20vh;
+    border-radius: 20px;
+    box-shadow: 0 1px 4px 0 rgba(4, 0, 71, .16);
+    box-shadow: 0 1px 4px 0 var(--colShadowDark);
+    background-color: #fff;
+    padding: 16px 24px 16px 16px;
+}
+
+.TOCLevel1 {
+    display: inline-block;
+    position: relative;
+    top: -6px;
+}
+
+.TOCLevel2 {
+    display: inline-block;
+    position: relative;
+    top: -6px;
+    left: 10px;
+}
+
+.LinkLevel {
+    position: relative;
+    padding-left: 6px;
+    font-weight: 600 !important;
+}
+
+.LinkLevel2 {
+    position: relative;
+    padding-left: 16px;
+}
+
+.LinkAnchorSingle {
+    left: 10px;
+}
+
+.Keyword > a { 
+    color: #001bff;
+}
+
+.oooFAQAdditionalData {
+    display: block;
+    border-radius: 20px;
+    box-shadow: 0 1px 4px 0 rgba(4, 0, 71, .16);
+    box-shadow: 0 1px 4px 0 var(--colShadowDark);
+    background-color: #ffffff;
+    padding: 16px 16px 16px 16px;
+}
+
+.oooFAQRating {
+    display: block;
+    border-radius: 20px;
+    box-shadow: 0 1px 4px 0 rgba(4, 0, 71, .16);
+    box-shadow: 0 1px 4px 0 var(--colShadowDark);
+    background-color: #ffffff;
+    padding: 16px 16px 16px 16px;
+}
+
+.VotingBox {
+    margin-top: 0px !important;
+}
+
+.RateButton {
+    width: 20px;
+}
+
+.RateLabelBefore {
+    margin-left: 0px;
+    padding-right: 3px;
+}
+
+.RateLabelAfter {
+    margin-right: 0px;
+}
+
+#Messenger {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.oooFAQExplorer {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    border-radius: 20px;
+    box-shadow: 0 1px 4px 0 rgba(4, 0, 71, .16);
+    box-shadow: 0 1px 4px 0 var(--colShadowDark);
+    background-color: #ffffff;
+    padding: 16px 16px 16px 16px;
+}
+
+.oooSideBarIconExplorer {
+    width: 20px;
+    height: 20px;
+    vertical-align: top;
+    margin-right: 4px;
+    display: inline-block;
+    position: relative;
+    fill: var(--colTextDark);
+}
+
+.oooSideBarIconHome {
+    font-size: 20px !important;
+    position: relative;
+    top: 1px;
+    margin-right: 4px;
+}
+
+.oooIndexIconExplorer {
+    width: 20px;
+    height: 20px;
+    vertical-align: top;
+    margin-right: 4px;
+    display: inline-block;
+    position: relative;
+    top: 2px;
+    content: url( '../img/faq.svg' );
+}
+
+.LinkFAQExplorer {
+    display: inline-block;
+}
+
+.oooFAQSidebar {
+    display: block;
+    border-radius: 20px;
+    box-shadow: 0 1px 4px 0 rgba(4, 0, 71, .16);
+    box-shadow: 0 1px 4px 0 var(--colShadowDark);
+    background-color: #ffffff;
+    padding: 16px 16px 16px 16px;
+}
+
+.oooFAQSidebarList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    max-width: 320px;
+}
+
+.oooFAQSidebarHeader {
+    color: var(--colTextDark);
+    font-size: 13px;
+    font-weight: 600;
+    padding: 25px 10px 10px 0px;
+}
+
+.oooFAQSidebarSubHeader {
+    color: var(--colTextDark);
+    font-size: 14px;
+    padding-left: .2rem;
+    padding-top: 8px;
+    cursor: pointer;
+}
+
+.oooFAQSidebarSubHeader .fa-chevron-right {
+    margin-right: 13px;
+}
+
+.oooFAQSubHeaderSpacing {
+    padding-left: 27px !important;
+}
+
+.oooFAQHeader {
+    font-size: 16px;
+    padding: 8px 0 12px 0;
+}
+
+.oooFAQSidebarHeader:first-child,
+.oooFAQTOCHeader:first-child
+{
+    padding-top: 8px;
+}
+
+.oooFAQLinks:first-child {
+    padding-top: 5px;
+}
+
+.oooFAQLinks > li {
+    margin-bottom: 5px;
+}
+
+.oooFAQSidebarArticle,
+.oooFAQSidebarSubHeader {
+    display: grid;
+    grid-template-areas: "icon text";
+    grid-template-columns: var(--FAQSidebarIconSize) auto;
+    align-items: center;
+    gap: var(--FAQSidebarIconMargin);
+    list-style: none;
+    padding-top: 0.25rem;
+    padding-left: 0.1rem;
+    min-height: var(--FAQSidebarIconSize);
+}
+
+.oooFAQBox svg {
+    width: 30px;
+    height: 30px;
+    margin-right: 5px;
+    top: -2px;
+    filter: brightness(0) opacity(0.5);
+}
+
+.oooFAQSidebarArticle svg {
+    width: 20px;
+    height: 20px;
+    vertical-align: top;
+    margin-right: 4px;
+    display: inline-block;
+    fill: var(--colTextDark);
+}
+
+.oooFAQSidebarList li:last-child {
+  padding-bottom: 20px;
+}
+
+.oooFAQSidebarArticle+.oooFAQSidebarHeader {
+    border-top: 1px solid #e9e8e88c;
+    margin-top: 16px;
+    padding-top: 20px;
+}
+
+.oooSideBarIcon,
+.oooFAQSidebar .oooIconSubHeader,
+.oooFAQSidebarArticle svg {
+    width: var(--FAQSidebarIconSize);
+    height: var(--FAQSidebarIconSize);
+    vertical-align: top;
+    margin-right: var(--FAQSidebarIconMargin);
+    display: inline-block;
+}
+
+.oooFAQSidebar .oooIconSubHeader {
+    grid-area: icon;
+    font-size: 17px;
+    cursor: pointer;
+    color: var(--colTextDark);
+    text-align: center;
+}
+
+.oooFAQTOCArticle a {
+    display: inline-block;
+    width: 80%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-weight: 400;
+    position: relative;
+}
+
+.oooFAQSidebarArticle a,
+.oooFAQSidebarSubHeader span {
+    grid-area: text;
+    top: 5px;
+    width: 85%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-weight: 400;
+}
+
+.oooFAQSidebarArticle:hover a {
+    color: var(--colMainHover);
+}
+
+.BackTop {
+    float: right;
+    cursor: pointer;
+    color: var(--colTextLight);
+    opacity: 0.5;
+}
+
+.CaptionLabel {
+    display: inline-block;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 145px;
+}
+
+.oooFAQSidebarArticle.oooFAQSubHeaderSpacing {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    padding-left: calc( 
+        var(--FAQSidebarIconSize) + 
+        var(--FAQSidebarIconMargin) +
+        16px
+    ); 
+}
+
+.oooFAQSidebarArticle.ooo-is-visible {
+    display: flex;
+    opacity: 1;
+}
+
+.oooFAQSidebarSubHeader.is-expanded .fa-chevron-right {
+    transform: rotate(90deg);
+    transition: transform 0.2s ease;
+    position: relative;
+    top: 2px;
+}
+
+.WidgetSimple > a.oooFAQNoItems {
+    position: relative;
+    width: 600px;
+    z-index: 1000;
+}
