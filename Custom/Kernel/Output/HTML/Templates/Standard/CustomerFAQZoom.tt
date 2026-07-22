@@ -96,7 +96,9 @@
              <a class="oooFAQ oooFAQIndex" href="#">
                 [% Data.Icon %]
                  <h3 class="Title" title="[% Data.Title | html %]">[% Data.Title | html %]</h3>
-                 <p class="Language ooog" title="[% Data.Language | html %]">[% Data.Language | html %]</p>
+# Rother OSS / FAQ-ExtendedNavigation
+#                  <p class="Language ooog" title="[% Data.Language | html %]">[% Data.Language | html %]</p>
+# EO FAQ-ExtendedNavigation
              </a>
          </div>
 
