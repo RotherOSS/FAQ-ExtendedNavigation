@@ -419,26 +419,26 @@ sub _Edit {
     }
 
     # restrict selectable FAQ articles by interface
-    my %FAQStateList = $FAQObject->StateList(
+    my $FAQStateTypeListRef = $FAQObject->StateTypeList(
         UserID => 1,
     );
-    my %FAQStateIDLookup = reverse %FAQStateList;
+    my %FAQStateTypeIDLookup = reverse $FAQStateTypeListRef->%*;
     if ( $Param{Interface} eq 'Agent' ) {
         $FAQSearchParameter{States} = {
-            $FAQStateIDLookup{'internal (agent)'}    => 'internal (agent)',
-            $FAQStateIDLookup{'external (customer)'} => 'external (customer)',
-            $FAQStateIDLookup{'public (all)'}        => 'public (all)',
+            $FAQStateTypeIDLookup{'internal'} => 'internal',
+            $FAQStateTypeIDLookup{'external'} => 'external',
+            $FAQStateTypeIDLookup{'public'}   => 'public',
         };
     }
     elsif ( $Param{Interface} eq 'Customer' ) {
         $FAQSearchParameter{States} = {
-            $FAQStateIDLookup{'external (customer)'} => 'external (customer)',
-            $FAQStateIDLookup{'public (all)'}        => 'public (all)',
+            $FAQStateTypeIDLookup{'external'} => 'external',
+            $FAQStateTypeIDLookup{'public'}   => 'public',
         };
     }
     elsif ( $Param{Interface} eq 'Public' ) {
         $FAQSearchParameter{States} = {
-            $FAQStateIDLookup{'public (all)'} => 'public (all)',
+            $FAQStateTypeIDLookup{'public'} => 'public',
         };
     }
 
