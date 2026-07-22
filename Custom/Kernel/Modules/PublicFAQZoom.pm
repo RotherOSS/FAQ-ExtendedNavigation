@@ -451,53 +451,55 @@ sub Run {
     # get config of frontend module
     my $Config = $ConfigObject->Get("FAQ::Frontend::$Self->{Action}");
 
-    # get the dynamic fields for this screen
-    my $DynamicField = $Kernel::OM->Get('Kernel::System::DynamicField')->DynamicFieldListGet(
-        Valid       => 1,
-        ObjectType  => 'FAQ',
-        FieldFilter => $Config->{DynamicField} || {},
-    );
-
-    my $DynamicFieldBackendObject = $Kernel::OM->Get('Kernel::System::DynamicField::Backend');
-
-    DYNAMICFIELDCONFIG:
-    for my $DynamicFieldConfig ( @{$DynamicField} ) {
-        next DYNAMICFIELDCONFIG if !IsHashRefWithData($DynamicFieldConfig);
-
-        my $Value = $DynamicFieldBackendObject->ValueGet(
-            DynamicFieldConfig => $DynamicFieldConfig,
-            ObjectID           => $GetParam{ItemID},
-        );
-
-        # get print string for this dynamic field
-        my $ValueStrg = $DynamicFieldBackendObject->DisplayValueRender(
-            DynamicFieldConfig => $DynamicFieldConfig,
-            Value              => $Value,
-            ValueMaxChars      => 250,
-            LayoutObject       => $LayoutObject,
-        );
-
-        my $Label = $DynamicFieldConfig->{Label};
-
-        $LayoutObject->Block(
-            Name => 'FAQDynamicField',
-            Data => {
-                Label => $Label,
-                Value => $ValueStrg->{Value},
-                Title => $ValueStrg->{Title},
-            },
-        );
-
-        # example of dynamic fields order customization
-        $LayoutObject->Block(
-            Name => 'FAQDynamicField_' . $DynamicFieldConfig->{Name},
-            Data => {
-                Label => $Label,
-                Value => $ValueStrg->{Value},
-                Title => $ValueStrg->{Title},
-            },
-        );
-    }
+# Rother OSS / FAQ-ExtendedNavigation
+#     # get the dynamic fields for this screen
+#     my $DynamicField = $Kernel::OM->Get('Kernel::System::DynamicField')->DynamicFieldListGet(
+#         Valid       => 1,
+#         ObjectType  => 'FAQ',
+#         FieldFilter => $Config->{DynamicField} || {},
+#     );
+#
+#     my $DynamicFieldBackendObject = $Kernel::OM->Get('Kernel::System::DynamicField::Backend');
+#
+#     DYNAMICFIELDCONFIG:
+#     for my $DynamicFieldConfig ( @{$DynamicField} ) {
+#         next DYNAMICFIELDCONFIG if !IsHashRefWithData($DynamicFieldConfig);
+#
+#         my $Value = $DynamicFieldBackendObject->ValueGet(
+#             DynamicFieldConfig => $DynamicFieldConfig,
+#             ObjectID           => $GetParam{ItemID},
+#         );
+#
+#         # get print string for this dynamic field
+#         my $ValueStrg = $DynamicFieldBackendObject->DisplayValueRender(
+#             DynamicFieldConfig => $DynamicFieldConfig,
+#             Value              => $Value,
+#             ValueMaxChars      => 250,
+#             LayoutObject       => $LayoutObject,
+#         );
+#
+#         my $Label = $DynamicFieldConfig->{Label};
+#
+#         $LayoutObject->Block(
+#             Name => 'FAQDynamicField',
+#             Data => {
+#                 Label => $Label,
+#                 Value => $ValueStrg->{Value},
+#                 Title => $ValueStrg->{Title},
+#             },
+#         );
+#
+#         # example of dynamic fields order customization
+#         $LayoutObject->Block(
+#             Name => 'FAQDynamicField_' . $DynamicFieldConfig->{Name},
+#             Data => {
+#                 Label => $Label,
+#                 Value => $ValueStrg->{Value},
+#                 Title => $ValueStrg->{Title},
+#             },
+#         );
+#     }
+# EO FAQ-ExtendedNavigation
 
     # log access to this FAQ item
     $FAQObject->FAQLogAdd(
