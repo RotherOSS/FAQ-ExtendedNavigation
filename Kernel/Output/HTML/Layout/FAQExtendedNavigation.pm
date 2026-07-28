@@ -19,10 +19,13 @@ package Kernel::Output::HTML::Layout::FAQExtendedNavigation;
 use strict;
 use warnings;
 
-use Kernel::Language qw(Translatable);
+# core modules
+use List::Util qw(none);
 
+# CPAN modules
+
+# OTOBO modules
 use Kernel::System::VariableCheck qw(:all);
-use MIME::Base64                  qw(decode_base64 encode_base64);
 
 our @ObjectDependencies = (
     'Kernel::Config',
@@ -370,6 +373,9 @@ sub FAQTableOfContents {
     my @TOCFields = grep { $Data{$_} =~ /\S/ } qw(Field1 Field2 Field3 Field4 Field5 Field6);
 
     return unless @TOCFields;
+
+    # check for sub anchors
+    return if none { $Data{$_} =~ m|<h([1-6])[^>]*>(.*?)</h[1-6]>|gi } @TOCFields;
 
     my $SingleFieldMode = 0;
 
