@@ -28,9 +28,10 @@ sub Data {
     $Self->{Translation}->{'Back to top'} = 'Zurück nach oben';
     $Self->{Translation}->{'Icon (svg)'} = 'Icon (svg)';
     $Self->{Translation}->{'Upload Icon'} = 'Icon hochladen';
+    $Self->{Translation}->{'Delete Icon'} = 'Icon löschen';
     $Self->{Translation}->{'Select an icon in SVG format to upload it.'} = 'Wählen Sie ein Symbol im SVG-Format aus, um es hochzuladen.';
 
-    $Self->{Translation}->{'Sidebar Settings'} = 'Seitenleistenkonfiguration';
+    $Self->{Translation}->{'Quick Link Settings'} = 'Schnell-Link-Verwaltung';
     $Self->{Translation}->{'Filter for Settings'} = 'Filter für Einstellungen';
     $Self->{Translation}->{'FAQ Sidebar Settings'} = 'FAQ-Seitenleistenkonfiguration';
     $Self->{Translation}->{'Load Settings'} = 'Lade Konfiguration';
