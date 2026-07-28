@@ -31,7 +31,7 @@ sub Data {
     $Self->{Translation}->{'Delete Icon'} = 'Icon löschen';
     $Self->{Translation}->{'Select an icon in SVG format to upload it.'} = 'Wählen Sie ein Symbol im SVG-Format aus, um es hochzuladen.';
 
-    $Self->{Translation}->{'Quick Link Settings'} = 'Schnell-Link-Verwaltung';
+    $Self->{Translation}->{'Quicklink Management'} = 'Schnell-Link-Verwaltung';
     $Self->{Translation}->{'Filter for Settings'} = 'Filter für Einstellungen';
     $Self->{Translation}->{'FAQ Sidebar Settings'} = 'FAQ-Seitenleistenkonfiguration';
     $Self->{Translation}->{'Load Settings'} = 'Lade Konfiguration';

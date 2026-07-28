@@ -29,7 +29,7 @@ sub Data {
     $Self->{Translation}->{'Icon (svg)'} = 'Icono (svg)';
     $Self->{Translation}->{'Upload Icon'} = 'Cargar Icono';
     $Self->{Translation}->{'Select an icon in SVG format to upload it.'} = 'Seleccione un icono en formato SVG para cargarlo.';
-    $Self->{Translation}->{'Quicklink Settings'} = 'Gestión de la Barra Lateral';
+    $Self->{Translation}->{'Quicklink Management'} = 'Gestión de la Barra Lateral';
     $Self->{Translation}->{'Filter for Settings'} = 'Filtrar Configuraciones';
     $Self->{Translation}->{'FAQ Sidebar Settings'} = 'Gestión de la Barra Lateral del FAQ';
     $Self->{Translation}->{'Load Settings'} = 'Cargar Configuración';

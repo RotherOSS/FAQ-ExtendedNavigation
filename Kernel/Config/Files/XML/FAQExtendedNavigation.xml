@@ -198,7 +198,7 @@
                     </Item>
                     <Item Key="Description" Translatable="1">Manage FAQ Sidebar settings.</Item>
                     <Item Key="NavBarName">FAQ</Item>
-                    <Item Key="Title" Translatable="1">Quicklink Settings</Item>
+                    <Item Key="Title" Translatable="1">Quicklink Management</Item>
                 </Hash>
             </Item>
         </Value>
@@ -242,7 +242,7 @@
                             </Array>
                         </Item>
                         <Item Key="Description" Translatable="1">Manage FAQ Sidebar settings.</Item>
-                        <Item Key="Name" Translatable="1">Quicklink Settings</Item>
+                        <Item Key="Name" Translatable="1">Quicklink Management</Item>
                         <Item Key="Link">Action=AgentFAQSidebar</Item>
                         <Item Key="LinkOption"></Item>
                         <Item Key="NavBar">FAQ</Item>
