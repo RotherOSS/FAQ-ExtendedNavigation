@@ -374,9 +374,6 @@ sub FAQTableOfContents {
 
     return unless @TOCFields;
 
-    # check for sub anchors
-    return if none { $Data{$_} =~ m|<h([1-6])[^>]*>(.*?)</h[1-6]>|gi } @TOCFields;
-
     my $SingleFieldMode = 0;
 
     # Identify if we are in single field mode
@@ -403,6 +400,8 @@ sub FAQTableOfContents {
         next FIELD if $FieldConfig->{Show} eq 'internal' && $Param{Mode} ne 'Agent';
 
         my @SubAnchors = $Data{$Field} =~ m|<h([1-6])[^>]*>(.*?)</h[1-6]>|gi;
+
+        return unless ( $SingleFieldMode != 1 || @SubAnchors );
 
         if ( $SingleFieldMode > 1 ) {
             $LayoutObject->Block(
