@@ -307,13 +307,12 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
     transition: opacity 0.3s ease;
     padding-left: calc( 
         var(--FAQSidebarIconSize) + 
-        var(--FAQSidebarIconMargin) +
-        16px
+        var(--FAQSidebarIconMargin)
     ); 
 }
 
 .oooFAQSidebarArticle.ooo-is-visible {
-    display: flex;
+    display: grid;
     opacity: 1;
 }
 
