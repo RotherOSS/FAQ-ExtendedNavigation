@@ -19,6 +19,7 @@
         <File Permission="660" Location="Kernel/Modules/AgentFAQAutoComplete.pm" />
         <File Permission="660" Location="Kernel/Modules/AgentFAQSidebar.pm" />
         <File Permission="660" Location="Custom/Kernel/System/FAQ.pm" />
+        <File Permission="660" Location="Custom/Kernel/System/FAQSearch.pm" />
         <File Permission="660" Location="Custom/Kernel/Modules/AgentFAQAdd.pm" />
         <File Permission="660" Location="Custom/Kernel/Modules/AgentFAQEdit.pm" />
         <File Permission="660" Location="Custom/Kernel/Modules/AgentFAQZoom.pm" />

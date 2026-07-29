@@ -160,8 +160,9 @@ sub Run {
         if (@CategoryIDs) {
             @IDs = $FAQObject->FAQSearch(
                 %SearchParams,
-                CategoryIDs => \@CategoryIDs,
-                UserID      => $Self->{UserID},
+                WhatAttributes => [ 'Title', 'Keyword', 'Number' ],
+                CategoryIDs    => \@CategoryIDs,
+                UserID         => $Self->{UserID},
             );
         }
 
