@@ -59,7 +59,7 @@ Shows a side bar to quick open FAQ articles.
         Mode            => 'Public',                   # (Agent, Customer, Public)
         Language        => $Self->{UserLanguage},
         Interface       => $Self->{Interface},
-        UserID          => 1,
+        UserID          => $Self->{UserID},
     );
 
 =cut
@@ -204,13 +204,13 @@ sub FAQSideBar {
                             my $Permission = $Kernel::OM->Get('Kernel::System::FAQ')->CheckCategoryCustomerPermission(
                                 CustomerUser => $Self->{UserLogin},
                                 CategoryID   => $FAQData{CategoryID},
-                                UserID       => $Self->{UserID},
+                                UserID       => $Param{UserID},
                             );
 
                             # get interface state list
                             my $InterfaceStates = $Kernel::OM->Get('Kernel::System::FAQ')->StateTypeList(
                                 Types  => $ConfigObject->Get("FAQ::$Param{Mode}::StateTypes"),
-                                UserID => $Self->{UserID},
+                                UserID => $Param{UserID},
                             );
 
                             # permission check
