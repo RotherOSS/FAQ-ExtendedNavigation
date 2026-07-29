@@ -127,7 +127,7 @@ sub FAQSideBar {
 
         $InterfaceStates = $FAQObject->StateTypeList(
             Types  => $ConfigObject->Get('FAQ::Public::StateTypes'),
-            UserID => $Self->{UserID},
+            UserID => 1,
         );
     }
 
