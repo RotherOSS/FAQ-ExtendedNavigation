@@ -45,7 +45,7 @@ sub Run {
         my %SearchParams;
         my @Items;
 
-        for my $Needed (qw(Query UserID Marker)) {
+        for my $Needed (qw(Query Marker)) {
             if ( !$ParamObject->GetParam( Param => $Needed ) ) {
                 $Kernel::OM->Get('Kernel::System::Log')->Log(
                     Priority => 'error',
@@ -56,15 +56,15 @@ sub Run {
             }
         }
 
-        $SearchParams{What}   = '*' . uri_unescape( $ParamObject->GetParam( Param => 'Query' ) ) . '*';
-        $SearchParams{UserID} = $ParamObject->GetParam( Param => 'UserID' );
-        $SearchParams{Valid}  = 1;
+        $SearchParams{What}  = '*' . uri_unescape( $ParamObject->GetParam( Param => 'Query' ) ) . '*';
+        $SearchParams{Valid} = 1;
 
         my $Marker = uri_unescape( $ParamObject->GetParam( Param => 'Marker' ) );
         my $Hook   = $ConfigObject->Get('FAQ::FAQHook');
 
         my @IDs = $FAQObject->FAQSearch(
-            %SearchParams
+            %SearchParams,
+            UserID => $Self->{UserID},
         );
 
         for my $ID (@IDs) {
@@ -72,7 +72,7 @@ sub Run {
                 ItemID        => $ID,
                 ItemFields    => 1,
                 DynamicFields => 0,
-                UserID        => 1,
+                UserID        => $Self->{UserID},
             );
 
             push @Items,

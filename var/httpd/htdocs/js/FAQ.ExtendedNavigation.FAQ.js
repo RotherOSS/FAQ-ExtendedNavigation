@@ -178,7 +178,6 @@ FAQ.ExtendedNavigation.FAQ = (function (TargetNS) {
                 Subaction: 'GetFAQItems',
                 Query:     encodeURIComponent(queryText),
                 Marker:    encodeURIComponent('#'),
-                UserID:    1,
                 Limit:     20, 
             };
 
