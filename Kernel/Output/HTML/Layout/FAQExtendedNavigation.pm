@@ -151,6 +151,7 @@ sub FAQSideBar {
             my %FAQDataAll;
             my %QuickLinkStructure;
             my @Groups;
+            my $Prio = 0;
 
             CONFIGENTRY:
             for my $ConfigEntry ( @{ $Data{$Config}->{"Articles"} // [] } ) {
@@ -207,7 +208,7 @@ sub FAQSideBar {
 
                     # traverse through the layers, using existing or initializing new hash refs
                     for my $FAQItem (@Element) {
-                        $Structure = $Structure->{$FAQItem} ||= {};
+                        $Structure = $Structure->{Nested}{$FAQItem} ||= {Prio => $Prio++};
                     }
                 }
 
@@ -223,8 +224,8 @@ sub FAQSideBar {
             my $ProcessLevel;
             my $ExpandLevelName = '';
             $ProcessLevel = sub {
-
                 my ( $HashRef, $LevelName ) = @_;
+
                 return if !$HashRef || ref $HashRef ne 'HASH';
 
                 if ( $HashRef->{ $Param{ItemID} } ) {
@@ -232,21 +233,21 @@ sub FAQSideBar {
                 }
 
                 ITEM:
-                for my $Key ( sort keys %{$HashRef} ) {
+                for my $Key ( sort { $HashRef->{$a}{Prio} <=> $HashRef->{$b}{Prio} } keys %{$HashRef} ) {
                     my $CurrentNode = $HashRef->{$Key};
 
-                    if ( keys %{$CurrentNode} ) {
+                    if ( $CurrentNode->{Nested} ) {
                         $LayoutObject->Block(
                             Name => 'Header',
                             Data => {
                                 Header      => $Key,
-                                Class       => $QuickLinkStructure{$Key} ? 'oooFAQSidebarHeader' : 'oooFAQSidebarSubHeader Collapsed',
-                                Arrow       => $QuickLinkStructure{$Key} ? ''                    : '<i class="fa fa-caret-right oooIconSubHeader"></i>',
+                                Class       => $QuickLinkStructure{Nested}{$Key} ? 'oooFAQSidebarHeader' : 'oooFAQSidebarSubHeader Collapsed',
+                                Arrow       => $QuickLinkStructure{Nested}{$Key} ? ''                    : '<i class="fa fa-caret-right oooIconSubHeader"></i>',
                                 Subcategory => $Key
                             }
                         );
 
-                        $ProcessLevel->( $CurrentNode, $Key );
+                        $ProcessLevel->( $CurrentNode->{Nested}, $Key );
                     }
                     else {
                         $LayoutObject->Block(
@@ -256,7 +257,7 @@ sub FAQSideBar {
                                 ID     => $Key,
                                 Title  => $FAQDataAll{$Key}{Title},
                                 Action => $ZoomAction,
-                                Class  => $QuickLinkStructure{$LevelName} ? '' : 'oooFAQSubHeaderSpacing'
+                                Class  => $QuickLinkStructure{Nested}{$LevelName} ? '' : 'oooFAQSubHeaderSpacing'
                             },
                         );
                     }
@@ -279,15 +280,13 @@ sub FAQSideBar {
                     $SidebarInit++;
                 }
 
-                my @TopLevel = $Data{$Config}->{"CustomGroupOrder"}
-                    ? split( /,/, $Data{$Config}->{"CustomGroupOrder"} )
-                    : sort keys %QuickLinkStructure;
-
                 GROUP:
-                for my $Group (@TopLevel) {
+                for my $Group (@Groups) {
                     $Group =~ s/^\s+|\s+$//g;
-                    next GROUP if !$QuickLinkStructure{$Group};
-                    $ProcessLevel->( { $Group => $QuickLinkStructure{$Group} }, $Group );
+
+                    next GROUP if !$QuickLinkStructure{Nested}{$Group};
+
+                    $ProcessLevel->( { $Group => $QuickLinkStructure{Nested}{$Group} }, $Group );
                 }
             }
 
