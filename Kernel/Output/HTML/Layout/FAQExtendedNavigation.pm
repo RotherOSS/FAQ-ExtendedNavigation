@@ -67,15 +67,13 @@ Shows a side bar to quick open FAQ articles.
 sub FAQSideBar {
     my ( $Self, %Param ) = @_;
 
-    my $LayoutObject = $Kernel::OM->Get('Kernel::Output::HTML::Layout');
-    my $ConfigObject = $Kernel::OM->Get('Kernel::Config');
-
     for my $ParamName (qw(Mode Language UserID)) {
         if ( !$Param{$ParamName} ) {
             $Kernel::OM->Get('Kernel::System::Log')->Log(
                 Priority => 'error',
                 Message  => "Need $ParamName!",
             );
+
             return;
         }
     }
@@ -86,44 +84,51 @@ sub FAQSideBar {
             Priority => 'error',
             Message  => 'Mode must be either Agent, Customer or Public!',
         );
+
         return;
     }
 
-    # check if sidebar is enabled
+    my $LayoutObject = $Kernel::OM->Get('Kernel::Output::HTML::Layout');
+    my $ConfigObject = $Kernel::OM->Get('Kernel::Config');
+    my $FAQObject    = $Kernel::OM->Get('Kernel::System::FAQ');
+
+    # check if sidebar is enabled and subcategories should be expanded
     my $IsActive = $ConfigObject->Get("FAQSideBar::$Param{Mode}::Enabled") || 'No';
-
-    #Set Zoom Action
-    my $ZoomAction = ( $Param{Mode} eq 'Agent' ) ? 'AgentFAQZoom' :
-        ( $Param{Mode} eq 'Customer' ) ? 'CustomerFAQZoom' :
-        ( $Param{Mode} eq 'Public' )   ? 'PublicFAQZoom' : '';
-
-    #Set Home Action
-    $Param{HomeAction} = ( $Param{Mode} eq 'Agent' ) ? 'AgentFAQZoom' :
-        ( $Param{Mode} eq 'Customer' ) ? 'CustomerFAQZoom' :
-        ( $Param{Mode} eq 'Public' )   ? 'PublicFAQZoom' : '';
-
-    #Set Explorer Action
-    $Param{ExplorerAction} = ( $Param{Mode} eq 'Agent' ) ? 'AgentFAQExplorer' :
-        ( $Param{Mode} eq 'Customer' ) ? 'CustomerFAQExplorer' :
-        ( $Param{Mode} eq 'Public' )   ? 'PublicFAQExplorer' : '';
-
-    #Redirect screen
-    if ( $Param{Mode} eq 'Customer' ) {
-        $ZoomAction = $Param{Action} eq 'CustomerFAQExplorer' ? 'CustomerFAQZoom' : $Param{Action};
-    }
-    elsif ( $Param{Mode} eq 'Public' ) {
-        $ZoomAction = $Param{Action} eq 'PublicFAQExplorer' ? 'PublicFAQZoom' : $Param{Action};
-    }
-    elsif ( $Param{Mode} eq 'Agent' ) {
-        $ZoomAction = $Param{Action} eq 'AgentFAQExplorer' ? 'AgentFAQZoom' : $Param{Action};
-    }
-
-    my $Expand = $ConfigObject->Get('FAQSideBar::ExpandSubcategories');
+    my $Expand   = $ConfigObject->Get('FAQSideBar::ExpandSubcategories');
 
     $Self->AddJSData(
         Key   => 'ExpandSubcategories',
         Value => $Expand,
     );
+
+    # set interface specific variables
+    my $ZoomAction;
+    my $InterfaceStates = {};
+    if ( $Param{Mode} eq 'Agent' ) {
+        $ZoomAction            = $Param{Action} eq 'AgentFAQExplorer' ? 'AgentFAQZoom' : $Param{Action};
+        $Param{HomeAction}     = 'AgentFAQZoom';
+        $Param{ExplorerAction} = 'AgentFAQExplorer';
+    }
+    elsif ( $Param{Mode} eq 'Customer' ) {
+        $ZoomAction            = $Param{Action} eq 'CustomerFAQExplorer' ? 'CustomerFAQZoom' : $Param{Action};
+        $Param{HomeAction}     = 'CustomerFAQZoom';
+        $Param{ExplorerAction} = 'CustomerFAQExplorer';
+
+        $InterfaceStates = $FAQObject->StateTypeList(
+            Types  => $ConfigObject->Get('FAQ::Customer::StateTypes'),
+            UserID => $Self->{UserID},
+        );
+    }
+    elsif ( $Param{Mode} eq 'Public' ) {
+        $ZoomAction            = $Param{Action} eq 'PublicFAQExplorer' ? 'PublicFAQZoom' : $Param{Action};
+        $Param{HomeAction}     = 'PublicFAQZoom';
+        $Param{ExplorerAction} = 'PublicFAQExplorer';
+
+        $InterfaceStates = $FAQObject->StateTypeList(
+            Types  => $ConfigObject->Get('FAQ::Public::StateTypes'),
+            UserID => $Self->{UserID},
+        );
+    }
 
     # get the valid ids
     my @ValidIDs      = $Kernel::OM->Get('Kernel::System::Valid')->ValidIDsGet();
@@ -134,33 +139,84 @@ sub FAQSideBar {
     $Param{HasDefaultArticle} ||= 0;
 
     if ( $IsActive eq 'Yes' ) {
-        my %Data = %{ $ConfigObject->Get("$Param{Mode}FAQSideBar::Articles") };
+        my %Data = %{ $ConfigObject->Get("$Param{Mode}FAQSideBar::Articles") // {}};
 
         CONFIG:
         for my $Config ( keys %Data ) {
             next CONFIG if $Data{$Config}->{Language} ne $Param{Language};
 
-            my @ArticleData = @{ $Data{$Config}->{"Articles"} };
-            my @Groups      = map { /^(.+?)::/; $1 } @ArticleData;
+            my $QuickLinkConfig = $Data{$Config};
 
-            if ( $Data{$Config}->{"CustomGroupOrder"} ) {    ## nofilter(TidyAll::Plugin::OTOBO::Perl::PerlCritic)
-                @Groups = split /\,/, $Data{$Config}->{"CustomGroupOrder"};
+            my %FAQDataAll;
+            my %QuickLinkStructure;
+            my @Groups;
+
+            CONFIGENTRY:
+            for my $ConfigEntry ( @{ $Data{$Config}->{"Articles"} // [] } ) {
+                my @Element = split /::/, $ConfigEntry;
+
+                my %FAQData = $FAQObject->FAQGet(
+                    ItemID     => $Element[-1],
+                    ItemFields => 0,
+                    UserID     => 1,
+                );
+
+                # check category permission for agents and customers
+                if ( !exists $Self->{CategoryPermission}{ $FAQData{CategoryID} } ) {
+                    if ( $Param{Mode} eq 'Agent' ) {
+                        $Self->{CategoryPermission}{ $FAQData{CategoryID} } = $FAQObject->CheckCategoryUserPermission(
+                            UserID     => $Self->{UserID},
+                            CategoryID => $FAQData{CategoryID},
+                            Type       => 'ro',
+                        );
+                    }
+                    elsif ( $Param{Mode} eq 'Customer' ) {
+                        $Self->{CategoryPermission}{ $FAQData{CategoryID} } = $FAQObject->CheckCategoryCustomerPermission(
+                            CustomerUser => $Self->{UserLogin},
+                            CategoryID   => $FAQData{CategoryID},
+                            UserID       => $Self->{UserID},
+                        );
+                    }
+                    else {
+                        # PublicFAQs are only restricted by state type
+                        $Self->{CategoryPermission}{ $FAQData{CategoryID} } = 1;
+                    }
+                }
+
+                next CONFIGENTRY unless $Self->{CategoryPermission}{ $FAQData{CategoryID} };
+
+                # check faq state type permission for customers and public
+                if ( $Param{Mode} ne 'Agent' && (
+                    !$FAQData{Approved} ||
+                    !$ValidIDLookup{ $FAQData{ValidID} } ||
+                    !$InterfaceStates->{ $FAQData{StateTypeID} } ) ) {
+
+                    next CONFIGENTRY;
+                }
+
+                $FAQDataAll{ $Element[-1] } = \%FAQData;
+
+                # build nested QuickLinkStructure
+                {
+                    my $Structure = \%QuickLinkStructure;
+
+                    # traverse through the layers, using existing or initializing new hash refs
+                    for my $FAQItem (@Element) {
+                        $Structure = $Structure->{$FAQItem} ||= {};
+                    }
+                }
+
+                # prepare standard group order
+                push @Groups, $Element[0];
+            }
+
+            if ( $QuickLinkConfig->{CustomGroupOrder} ) {
+                @Groups = split /\,/, $QuickLinkConfig->{CustomGroupOrder};
                 @Groups = map {s/^\s+|\s+$//gr} @Groups;
             }
 
-            my %Nested;
-            my $ExpandLevelName = '';
-
-            for my $Item (@ArticleData) {
-                my @Element = split /::/, $Item;
-                my $Data    = \%Nested;
-
-                for my $FAQItem (@Element) {
-                    $Data = $Data->{$FAQItem} ||= {};
-                }
-            }
-
             my $ProcessLevel;
+            my $ExpandLevelName = '';
             $ProcessLevel = sub {
 
                 my ( $HashRef, $LevelName ) = @_;
@@ -179,8 +235,8 @@ sub FAQSideBar {
                             Name => 'Header',
                             Data => {
                                 Header      => $Key,
-                                Class       => $Nested{$Key} ? 'oooFAQSidebarHeader' : 'oooFAQSidebarSubHeader Collapsed',
-                                Arrow       => $Nested{$Key} ? ''                    : '<i class="fa fa-caret-right oooIconSubHeader"></i>',
+                                Class       => $QuickLinkStructure{$Key} ? 'oooFAQSidebarHeader' : 'oooFAQSidebarSubHeader Collapsed',
+                                Arrow       => $QuickLinkStructure{$Key} ? ''                    : '<i class="fa fa-caret-right oooIconSubHeader"></i>',
                                 Subcategory => $Key
                             }
                         );
@@ -188,75 +244,21 @@ sub FAQSideBar {
                         $ProcessLevel->( $CurrentNode, $Key );
                     }
                     else {
-                        my $ItemID = $Key;
-
-                        my %FAQData = $Kernel::OM->Get('Kernel::System::FAQ')->FAQGet(
-                            ItemID     => $ItemID,
-                            ItemFields => 0,
-                            UserID     => $Param{UserID},
-                        );
-
-                        next ITEM if !keys %FAQData;
-
-                        if ( $Param{Mode} ne 'Public' ) {
-
-                            # check user permission
-                            my $Permission = $Kernel::OM->Get('Kernel::System::FAQ')->CheckCategoryCustomerPermission(
-                                CustomerUser => $Self->{UserLogin},
-                                CategoryID   => $FAQData{CategoryID},
-                                UserID       => $Param{UserID},
-                            );
-
-                            # get interface state list
-                            my $InterfaceStates = $Kernel::OM->Get('Kernel::System::FAQ')->StateTypeList(
-                                Types  => $ConfigObject->Get("FAQ::$Param{Mode}::StateTypes"),
-                                UserID => $Param{UserID},
-                            );
-
-                            # permission check
-                            if (
-                                !$Permission
-                                || !$FAQData{Approved}
-                                || !$ValidIDLookup{ $FAQData{ValidID} }
-                                || !$InterfaceStates->{ $FAQData{StateTypeID} }
-                                )
-                            {
-                                next ITEM;
-                            }
-                        }
-                        else {
-                            # get interface state list
-                            my $InterfaceStates = $Kernel::OM->Get('Kernel::System::FAQ')->StateTypeList(
-                                Types  => $ConfigObject->Get('FAQ::Public::StateTypes'),
-                                UserID => $Param{UserID},
-                            );
-
-                            # permission check
-                            if (
-                                !$FAQData{Approved}
-                                || !$ValidIDLookup{ $FAQData{ValidID} }
-                                || !$InterfaceStates->{ $FAQData{StateTypeID} }
-                                )
-                            {
-                                next ITEM;
-                            }
-                        }
-
                         $LayoutObject->Block(
                             Name => 'ArticleLink',
                             Data => {
-                                Icon   => $FAQData{Icon} ? decode_base64( $FAQData{Icon} ) : '',
-                                ID     => $ItemID,
-                                Title  => $FAQData{Title},
+                                Icon   => $FAQDataAll{ $Key }{Icon} ? decode_base64( $FAQDataAll{ $Key }{Icon} ) : '',
+                                ID     => $Key,
+                                Title  => $FAQDataAll{ $Key }{Title},
                                 Action => $ZoomAction,
-                                Class  => $Nested{$LevelName} ? '' : 'oooFAQSubHeaderSpacing'
+                                Class  => $QuickLinkStructure{$LevelName} ? '' : 'oooFAQSubHeaderSpacing'
                             },
                         );
                     }
                 }
             };
 
-            if ( keys %Nested ) {
+            if ( keys %QuickLinkStructure ) {
                 if ( !$SidebarInit ) {
                     $LayoutObject->Block(
                         Name => 'SideBar',
@@ -274,13 +276,13 @@ sub FAQSideBar {
 
                 my @TopLevel = $Data{$Config}->{"CustomGroupOrder"}
                     ? split( /,/, $Data{$Config}->{"CustomGroupOrder"} )
-                    : sort keys %Nested;
+                    : sort keys %QuickLinkStructure;
 
                 GROUP:
                 for my $Group (@TopLevel) {
                     $Group =~ s/^\s+|\s+$//g;
-                    next GROUP if !$Nested{$Group};
-                    $ProcessLevel->( { $Group => $Nested{$Group} }, $Group );
+                    next GROUP if !$QuickLinkStructure{$Group};
+                    $ProcessLevel->( { $Group => $QuickLinkStructure{$Group} }, $Group );
                 }
             }
 
