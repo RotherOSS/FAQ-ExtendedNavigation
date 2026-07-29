@@ -20,7 +20,8 @@ use strict;
 use warnings;
 
 # core modules
-use List::Util qw(none);
+use List::Util   qw(none);
+use MIME::Base64 qw(decode_base64);
 
 # CPAN modules
 
@@ -139,7 +140,7 @@ sub FAQSideBar {
     $Param{HasDefaultArticle} ||= 0;
 
     if ( $IsActive eq 'Yes' ) {
-        my %Data = %{ $ConfigObject->Get("$Param{Mode}FAQSideBar::Articles") // {}};
+        my %Data = %{ $ConfigObject->Get("$Param{Mode}FAQSideBar::Articles") // {} };
 
         CONFIG:
         for my $Config ( keys %Data ) {
@@ -186,10 +187,14 @@ sub FAQSideBar {
                 next CONFIGENTRY unless $Self->{CategoryPermission}{ $FAQData{CategoryID} };
 
                 # check faq state type permission for customers and public
-                if ( $Param{Mode} ne 'Agent' && (
-                    !$FAQData{Approved} ||
-                    !$ValidIDLookup{ $FAQData{ValidID} } ||
-                    !$InterfaceStates->{ $FAQData{StateTypeID} } ) ) {
+                if (
+                    $Param{Mode} ne 'Agent' && (
+                        !$FAQData{Approved} ||
+                        !$ValidIDLookup{ $FAQData{ValidID} } ||
+                        !$InterfaceStates->{ $FAQData{StateTypeID} }
+                    )
+                    )
+                {
 
                     next CONFIGENTRY;
                 }
@@ -247,9 +252,9 @@ sub FAQSideBar {
                         $LayoutObject->Block(
                             Name => 'ArticleLink',
                             Data => {
-                                Icon   => $FAQDataAll{ $Key }{Icon} ? decode_base64( $FAQDataAll{ $Key }{Icon} ) : '',
+                                Icon   => $FAQDataAll{$Key}{Icon} ? decode_base64( $FAQDataAll{$Key}{Icon} ) : '',
                                 ID     => $Key,
-                                Title  => $FAQDataAll{ $Key }{Title},
+                                Title  => $FAQDataAll{$Key}{Title},
                                 Action => $ZoomAction,
                                 Class  => $QuickLinkStructure{$LevelName} ? '' : 'oooFAQSubHeaderSpacing'
                             },
