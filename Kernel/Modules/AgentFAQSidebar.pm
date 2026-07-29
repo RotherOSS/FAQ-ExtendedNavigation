@@ -448,7 +448,7 @@ sub _Edit {
         OrderBy          => ['FAQID'],
         OrderByDirection => ['Down'],
         Limit            => $SearchLimit,
-        UserID           => 1,
+        UserID           => $Self->{UserID},
     );
 
     for my $ItemID (@FAQArticleIDs) {
@@ -456,7 +456,7 @@ sub _Edit {
             ItemID        => $ItemID,
             ItemFields    => 0,
             DynamicFields => 0,
-            UserID        => 1,
+            UserID        => $Self->{UserID},
         );
 
         $FAQArticles{$ItemID} = "[$FAQ{Language}] $FAQ{Title}";
@@ -612,7 +612,7 @@ sub _Overview {
                     ItemID        => $SelectedData{$Config}->{DefaultItemID},
                     ItemFields    => 0,
                     DynamicFields => 0,
-                    UserID        => 1,
+                    UserID        => $Self->{UserID},
                 );
             }
 
