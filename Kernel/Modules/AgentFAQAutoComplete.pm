@@ -78,10 +78,92 @@ sub Run {
         my $Marker = uri_unescape( $GetParam{Marker} );
         my $Hook   = $ConfigObject->Get('FAQ::FAQHook');
 
-        my @IDs = $FAQObject->FAQSearch(
-            %SearchParams,
+        # Get UserCategoryGroup Hash.
+        # This returns a Hash of the following sample data structure:
+        #
+        # $UserCatGroup = {
+        #   '1' => {
+        #          '3' => 'MiscSub'
+        #        },
+        #   '3' => {},
+        #   '0' => {
+        #            '1' => 'Misc',
+        #            '2' => 'secret'
+        #          },
+        #   '2' => {}
+        # };
+        #
+        # Keys of the outer hash inform about subcategories.
+        #   0 Shows top level CategoryIDs.
+        #   1 Shows the SubcategoryIDs of Category 1.
+        #   2 and 3 are empty hashes because these categories don't have subcategories.
+        #
+        # Keys of the inner hashes are CategoryIDs a user is allowed to have ro access to.
+        # Values are the Category names.
+        my $UserCatGroup = $FAQObject->GetUserCategories(
+            Type   => 'ro',
             UserID => $Self->{UserID},
         );
+
+        # Find CategoryIDs the current User is allowed to view.
+        my %AllowedCategoryIDs = ();
+
+        if ( $UserCatGroup && ref $UserCatGroup eq 'HASH' ) {
+
+            # So now we have to extract all Category ID's of the "inner hashes"
+            #   -> Loop through the outer category ID's.
+            for my $Level ( sort keys %{$UserCatGroup} ) {
+
+                # Check if the Value of the current hash key is a hash ref.
+                if ( $UserCatGroup->{$Level} && ref $UserCatGroup->{$Level} eq 'HASH' ) {
+
+                    # Map the keys of the inner hash to a TempIDs hash.
+                    # Original Data structure:
+                    #   {
+                    #       '1' => 'Misc',
+                    #       '2' => 'secret'
+                    #   }
+                    #
+                    #   after mapping:
+                    #
+                    #   {
+                    #       '1' => 1,
+                    #       '2' => 1'
+                    #   }
+                    my %TempIDs = map { $_ => 1 } keys %{ $UserCatGroup->{$Level} };
+
+                    # Put the TempIDs over the formally found AllowedCategories to produce a hash
+                    #   that holds all CategoryID as keys and the number 1 as values.
+                    %AllowedCategoryIDs = (
+                        %AllowedCategoryIDs,
+                        %TempIDs
+                    );
+                }
+            }
+        }
+
+        # For the database query it's necessary to have an array of CategoryIDs.
+        my @CategoryIDs = ();
+
+        if (%AllowedCategoryIDs) {
+            @CategoryIDs = sort keys %AllowedCategoryIDs;
+        }
+
+        # Just search if we do have categories, we have access to.
+        # If we don't have access to any category, a search with no CategoryIDs
+        #   would result in finding all categories.
+        #
+        # It is not possible to create FAQ's without categories
+        #   so at least one category has to be present
+
+        my @IDs;
+        if (@CategoryIDs) {
+            @IDs = $FAQObject->FAQSearch(
+                %SearchParams,
+                CategoryIDs => \@CategoryIDs,
+                UserID      => $Self->{UserID},
+            );
+        }
 
         for my $ID (@IDs) {
             my %FAQ = $FAQObject->FAQGet(
@@ -100,12 +182,11 @@ sub Run {
                 };
         }
 
-        #Codifica la respuesta a devolver via AJAX
         my $JSON = $LayoutObject->JSONEncode(
             Data => \@Items,
         );
 
-        #Retorna respuesta
+        # return data to frontend
         return $LayoutObject->Attachment(
             ContentType => 'application/json; charset='
                 . $LayoutObject->{Charset},
