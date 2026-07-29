@@ -42,11 +42,27 @@ sub Run {
     my $ConfigObject = $Kernel::OM->Get('Kernel::Config');
 
     if ( $Self->{Subaction} eq 'GetFAQItems' ) {
+
+        # fetch params
+        my %GetParam;
+        for my $Param (qw(Query Marker)) {
+            $GetParam{$Param} = $ParamObject->GetParam( Param => $Param );
+        }
+
         my %SearchParams;
         my @Items;
 
-        for my $Needed (qw(Query Marker)) {
-            if ( !$ParamObject->GetParam( Param => $Needed ) ) {
+        if ( !defined $GetParam{Query} ) {
+            $Kernel::OM->Get('Kernel::System::Log')->Log(
+                Priority => 'error',
+                Message  => "Need: Query!"
+            );
+
+            return @Items;
+        }
+
+        for my $Needed (qw(Marker)) {
+            if ( !$GetParam{$Needed} ) {
                 $Kernel::OM->Get('Kernel::System::Log')->Log(
                     Priority => 'error',
                     Message  => "Need: $Needed!"
@@ -56,10 +72,10 @@ sub Run {
             }
         }
 
-        $SearchParams{What}  = '*' . uri_unescape( $ParamObject->GetParam( Param => 'Query' ) ) . '*';
+        $SearchParams{What}  = '*' . uri_unescape( $GetParam{Query} ) . '*';
         $SearchParams{Valid} = 1;
 
-        my $Marker = uri_unescape( $ParamObject->GetParam( Param => 'Marker' ) );
+        my $Marker = uri_unescape( $GetParam{Marker} );
         my $Hook   = $ConfigObject->Get('FAQ::FAQHook');
 
         my @IDs = $FAQObject->FAQSearch(
