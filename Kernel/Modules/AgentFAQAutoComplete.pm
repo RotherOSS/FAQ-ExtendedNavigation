@@ -19,7 +19,7 @@ package Kernel::Modules::AgentFAQAutoComplete;
 use strict;
 use warnings;
 use Kernel::System::VariableCheck qw(:all);
-use URI::Escape                   qw(uri_escape_utf8 uri_unescape);
+use URI::Escape                   qw(uri_unescape);
 
 our $ObjectManagerDisabled = 1;
 
