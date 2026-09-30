@@ -122,6 +122,37 @@ FAQ.ExtendedNavigation.FAQ = (function (TargetNS) {
             });
         });
 
+        $('.oooFAQSidebarHeader').on('click', function() {
+            $(this).toggleClass('Collapsed Expanded');
+            $('i.oooIconSubHeader', this).toggleClass('fa-caret-right fa-caret-down');
+
+            let $Collapsed = $(this).hasClass('Collapsed');
+            let $Next      = $(this).next();
+            while ( $Next && !$Next.hasClass('oooFAQSidebarHeader') ) {
+                if ( $Collapsed ) {
+                    $Next.removeClass('ooo-is-visible');
+                }
+                else {
+                    $Next.addClass('ooo-is-visible');
+                }
+
+                if ( $Next.hasClass('oooFAQSidebarSubHeader') ) {
+                    $Next.removeClass('Expanded');
+                    $Next.addClass('Collapsed');
+
+                    $Next = $Next.next();
+                    while ( $Next && $Next.hasClass('oooFAQSidebarArticle') ) {
+                        $Next.removeClass('ooo-is-visible');
+
+                        $Next = $Next.next();
+                    }
+                }
+                else {
+                    $Next = $Next.next();
+                }
+            }
+        });
+
         $( document ).ready(function() {
             if ( Core.Config.Get('ExpandSubcategories') == "Yes" ) {
                 $("oooFAQSidebar .fa-chevron-right").trigger("click");

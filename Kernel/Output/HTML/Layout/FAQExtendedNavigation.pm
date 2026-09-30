@@ -241,8 +241,8 @@ sub FAQSideBar {
                             Name => 'Header',
                             Data => {
                                 Header      => $Key,
-                                Class       => $QuickLinkStructure{Nested}{$Key} ? 'oooFAQSidebarHeader' : 'oooFAQSidebarSubHeader Collapsed',
-                                Arrow       => $QuickLinkStructure{Nested}{$Key} ? ''                    : '<i class="fa fa-caret-right oooIconSubHeader"></i>',
+                                Class       => $QuickLinkStructure{Nested}{$Key} ? 'oooFAQSidebarHeader Collapsed' : 'oooFAQSidebarSubHeader Collapsed',
+                                Arrow       => '<i class="fa fa-caret-right oooIconSubHeader"></i>',
                                 Subcategory => $Key
                             }
                         );
