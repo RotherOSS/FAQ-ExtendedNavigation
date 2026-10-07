@@ -38,8 +38,9 @@
         <File Permission="660" Location="Custom/Kernel/Output/HTML/Templates/Standard/PublicFAQExplorer.tt" />
         <File Permission="660" Location="Custom/Kernel/Output/HTML/Templates/Standard/PublicFAQZoom.tt" />
         <File Permission="660" Location="Custom/Kernel/Output/HTML/Templates/Standard/AgentFAQExplorer.tt" />
-        <File Permission="660" Location="Kernel/Output/HTML/Templates/Standard/AgentFAQSidebar.tt" />
+        <File Permission="660" Location="Kernel/Output/HTML/CustomerDashboard/TileFAQQuickLinks.pm" />
         <File Permission="660" Location="Kernel/Output/HTML/Layout/FAQExtendedNavigation.pm" />
+        <File Permission="660" Location="Kernel/Output/HTML/Templates/Standard/AgentFAQSidebar.tt" />
         <File Permission="660" Location="Kernel/Output/HTML/Templates/Standard/FAQ/FAQAdditionalData.tt" />
         <File Permission="660" Location="Kernel/Output/HTML/Templates/Standard/FAQ/FAQSideBar.tt" />
         <File Permission="660" Location="Kernel/Output/HTML/Templates/Standard/FAQ/FAQTableOfContents.tt" />
