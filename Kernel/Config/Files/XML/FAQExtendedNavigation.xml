@@ -602,6 +602,16 @@
             </Array>
         </Value>
     </Setting>
+    <Setting Name="FAQ::Frontend::CustomerFAQZoom###AttachmentPosition" Required="0" Valid="1">
+        <Description Translatable="1">Where attachments are shown in the FAQ zoom screen of the customer interface.</Description>
+        <Navigation>Frontend::Customer::View::FAQZoom</Navigation>
+        <Value>
+            <Item ValueType="Select" SelectedID="Top">
+                <Item ValueType="Option" Value="Top" Translatable="1">Top</Item>
+                <Item ValueType="Option" Value="Bottom" Translatable="1">Bottom</Item>
+            </Item>
+        </Value>
+    </Setting>
     <Setting Name="CustomerDashboard::Tiles###FAQQuickLinks-01" Required="0" Valid="0">
         <Description Translatable="1">Tile registration for the CustomerDashboard. Module is required.</Description>
         <Navigation>Frontend::Customer::View::Dashboard::Tiles</Navigation>

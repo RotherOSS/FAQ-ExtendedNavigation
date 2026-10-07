@@ -89,7 +89,7 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
     gap: var(--FAQSidebarIconMargin);
     list-style: none;
     padding-top: 0.25rem;
-    padding-left: 0.1rem;
+    padding-left: 8px;
     min-height: var(--FAQSidebarIconSize);
 }
 
@@ -301,19 +301,26 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
     vertical-align: middle;
 }
 
-.oooFAQSidebarArticle.oooFAQSubHeaderSpacing {
-    display: none;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    padding-left: calc( 
-        var(--FAQSidebarIconSize) + 
-        var(--FAQSidebarIconMargin)
-    ); 
-}
-
-.oooFAQSidebarArticle.ooo-is-visible {
+.oooFAQSidebarArticle {
     display: grid;
     opacity: 1;
+    transition: opacity 0.3s ease;
+    padding-left: 8px;
+}
+
+.oooFAQSidebarArticle.oooFAQSubHeaderSpacing {
+    padding-left: calc( 
+        8px +
+        var(--FAQSidebarIconSize) + 
+        var(--FAQSidebarIconMargin)
+    );
+}
+
+.oooFAQSidebarArticle.Hidden,
+.oooFAQSidebarSubHeader.Hidden,
+.oooFAQSidebarArticle.oooFAQSidebarSubHeader.Hidden {
+    display: none;
+    opacity: 0;
 }
 
 }

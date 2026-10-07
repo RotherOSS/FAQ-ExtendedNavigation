@@ -241,7 +241,7 @@ sub FAQSideBar {
                             Name => 'Header',
                             Data => {
                                 Header      => $Key,
-                                Class       => $QuickLinkStructure{Nested}{$Key} ? 'oooFAQSidebarHeader Collapsed' : 'oooFAQSidebarSubHeader Collapsed',
+                                Class       => $QuickLinkStructure{Nested}{$Key} ? 'oooFAQSidebarHeader Collapsed' : 'oooFAQSidebarSubHeader Collapsed Hidden',
                                 Arrow       => '<i class="fa fa-caret-right oooIconSubHeader"></i>',
                                 Subcategory => $Key
                             }
@@ -257,7 +257,7 @@ sub FAQSideBar {
                                 ID     => $Key,
                                 Title  => $FAQDataAll{$Key}{Title},
                                 Action => $ZoomAction,
-                                Class  => $QuickLinkStructure{Nested}{$LevelName} ? '' : 'oooFAQSubHeaderSpacing'
+                                Class  => $QuickLinkStructure{Nested}{$LevelName} ? 'Hidden' : 'oooFAQSubHeaderSpacing Hidden'
                             },
                         );
                     }
@@ -654,12 +654,20 @@ sub FAQAdditionalData {
 
     # output attachments
     if (@AttachmentIndex) {
+        my $BlockNameHeader = 'AttachmentHeader';
+        my $BlockNameRow    = 'AttachmentRow';
+
+        if ( $Config->{AttachmentPosition} && $Config->{AttachmentPosition} eq 'Bottom' ) {
+            $BlockNameHeader = 'AttachmentHeaderBottom';
+            $BlockNameRow    = 'AttachmentRowBottom';
+        }
+
         $LayoutObject->Block(
-            Name => 'AttachmentHeader',
+            Name => $BlockNameHeader,
         );
         for my $Attachment (@AttachmentIndex) {
             $LayoutObject->Block(
-                Name => 'AttachmentRow',
+                Name => $BlockNameRow,
                 Data => {
                     %FAQData,
                     %{$Attachment},

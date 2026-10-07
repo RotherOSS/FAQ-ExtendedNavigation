@@ -108,41 +108,44 @@ FAQ.ExtendedNavigation.FAQ = (function (TargetNS) {
             observer.observe(targetNode, { attributes: true });
         }
 
-        document.querySelectorAll('.oooFAQSidebarSubHeader').forEach(header => {
-            header.addEventListener('click', () => {
-                header.classList.toggle('Expanded');
-                header.classList.toggle('Collapsed');
-                $("i.oooIconSubHeader", $(header)).toggleClass('fa-caret-right fa-caret-down');
-                
-                let next = header.nextElementSibling;
-                while (next && next.classList.contains('oooFAQSidebarArticle')) {
-                    next.classList.toggle('ooo-is-visible');
-                    next = next.nextElementSibling;
-                }
-            });
+        $('.oooFAQSidebarSubHeader').off('click').on('click', function() {
+            $(this).toggleClass('Collapsed Expanded');
+            $('i.oooIconSubHeader', this).toggleClass('fa-caret-right fa-caret-down');
+
+            let $Next = $(this).next();
+            while ( $Next.length && $Next.hasClass('oooFAQSubHeaderSpacing') ) {
+                $Next.toggleClass('Hidden');
+
+                $Next = $Next.next();
+            }
         });
 
-        $('.oooFAQSidebarHeader').on('click', function() {
+        $('.oooFAQSidebarHeader').off('click').on('click', function() {
             $(this).toggleClass('Collapsed Expanded');
             $('i.oooIconSubHeader', this).toggleClass('fa-caret-right fa-caret-down');
 
             let $Collapsed = $(this).hasClass('Collapsed');
             let $Next      = $(this).next();
-            while ( $Next && !$Next.hasClass('oooFAQSidebarHeader') ) {
+            while ( $Next.length && !$Next.hasClass('oooFAQSidebarHeader') ) {
                 if ( $Collapsed ) {
-                    $Next.removeClass('ooo-is-visible');
+                    $Next.addClass('Hidden');
                 }
                 else {
-                    $Next.addClass('ooo-is-visible');
+                    $Next.removeClass('Hidden');
                 }
 
                 if ( $Next.hasClass('oooFAQSidebarSubHeader') ) {
-                    $Next.removeClass('Expanded');
-                    $Next.addClass('Collapsed');
+                    $Next
+                        .removeClass('Expanded')
+                        .addClass('Collapsed');
+
+                    $("i.oooIconSubHeader", $Next)
+                        .removeClass('fa-caret-down')
+                        .addClass('fa-caret-right');
 
                     $Next = $Next.next();
-                    while ( $Next && $Next.hasClass('oooFAQSidebarArticle') ) {
-                        $Next.removeClass('ooo-is-visible');
+                    while ( $Next.length && $Next.hasClass('oooFAQSubHeaderSpacing') ) {
+                        $Next.addClass('Hidden');
 
                         $Next = $Next.next();
                     }
@@ -155,9 +158,16 @@ FAQ.ExtendedNavigation.FAQ = (function (TargetNS) {
 
         $( document ).ready(function() {
             if ( Core.Config.Get('ExpandSubcategories') == "Yes" ) {
-                $("oooFAQSidebar .fa-chevron-right").trigger("click");
+                $('.oooFAQSidebarHeader').trigger("click");
+                $('.oooFAQSidebarSubHeader').trigger("click");
             } else if ( Core.Config.Get('LevelName') != "" ) {
-                $('[data-name="'+ escapeString(Core.Config.Get('LevelName')) + '"]').trigger("click");
+                let $SidebarHeader = $('[data-name="'+ escapeString(Core.Config.Get('LevelName')) + '"]');
+
+                if ( $SidebarHeader.length && $SidebarHeader.hasClass('oooFAQSidebarSubHeader') ) {
+                    $SidebarHeader.prevAll('.oooFAQSidebarHeader').first().trigger('click');
+                }
+
+                $SidebarHeader.trigger('click');
             }
         });
        

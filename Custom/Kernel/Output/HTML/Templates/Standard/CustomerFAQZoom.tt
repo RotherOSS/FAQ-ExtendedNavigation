@@ -199,6 +199,26 @@ function CheckIFrameHeight(IFrameID) {
 [% RenderBlockEnd("FAQContent") %]
 # Rother OSS / FAQ-ExtendedNavigation
                 </li>
+[% RenderBlockStart("AttachmentHeaderBottom") %]
+                <li class="Customer Visible ContentIndex">
+                    <div class="MessageHeader">
+                        <h3>[% Translate("Attachments") | html %]:</h3>
+                        <div class="Clear"></div>
+                    </div>
+                    <div class="Attachments">
+[% RenderBlockStart("AttachmentRowBottom") %]
+                        <i class="fa fa-paperclip"></i>
+                        <span class="DownloadAttachment" title="[% Translate("Download Attachment") | html %]">
+                            <a href="[% Env("Baselink") %]Action=[% Env("Action") %];Subaction=DownloadAttachment;ItemID=[% Data.ItemID | uri %];FileID=[% Data.FileID | uri %]">
+                                [% Data.Filename | html %]
+                            </a>
+                            , [% Data.Filesize | html %]
+                        </span>
+                        <br/>
+[% RenderBlockEnd("AttachmentRowBottom") %]
+                    </div>
+                </li>
+[% RenderBlockEnd("AttachmentHeaderBottom") %]
 # EO FAQ-ExtendedNavigation
             </ul>
         </div>
