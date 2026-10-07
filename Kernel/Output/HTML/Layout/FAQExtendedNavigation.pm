@@ -208,7 +208,7 @@ sub FAQSideBar {
 
                     # traverse through the layers, using existing or initializing new hash refs
                     for my $FAQItem (@Element) {
-                        $Structure = $Structure->{Nested}{$FAQItem} ||= {Prio => $Prio++};
+                        $Structure = $Structure->{Nested}{$FAQItem} ||= { Prio => $Prio++ };
                     }
                 }
 

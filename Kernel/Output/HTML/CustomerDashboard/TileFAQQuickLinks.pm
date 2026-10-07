@@ -47,7 +47,7 @@ sub Run {
         Action    => 'CustomerFAQZoom',
     ) || '';
 
-    return <<EOF
+    return <<"EOF";
 <div id="oooTile$Param{TileID}" class="oooTile oooTile_FAQQuickLinks">
     $QuickLinkHTML
 </div>
