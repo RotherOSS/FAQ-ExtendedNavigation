@@ -7,10 +7,10 @@
     <Vendor>Rother OSS GmbH</Vendor>
     <URL>https://otobo.io/</URL>
     <License>GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007</License>
-    <Description Lang="en">Packages for greater experience of use in the FAQ module.</Description>
+    <Description Lang="en">Package for greater experience of use in the FAQ module.</Description>
     <Description Lang="de">Paket für bessere Benutzererfahrung im Modul-FAQ.</Description>
     <Description Lang="es">Paquete para mejorar la experiencia del usuario en el módulo FAQ.</Description>
-    <Description Lang="hu">Csomag a GYIK modul felhasználói élményének javítására.</Description>
+    <Description Lang="hu">Csomag a GyIK-modul használatának jobb felhasználói élményéhez.</Description>
     <ChangeLog Date="2026-05-12 11:00:00" Version="11.0.0">Initial release for OTOBO 11.0.</ChangeLog>
     <Filelist>
         <File Permission="660" Location="Kernel/Config/Files/XML/FAQExtendedNavigation.xml" />
